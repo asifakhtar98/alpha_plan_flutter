@@ -1,7 +1,3 @@
-
-const planImageCloudPrefix =
-    "https://res.cloudinary.com/promisedpayment/image/upload/v1649487545/DreamLightCity/PlanImages";
-
 class InvestmentProduct {
   final String uidProduct;
   final String productName;
@@ -29,99 +25,195 @@ class InvestmentProduct {
 List<InvestmentProduct> mainInvestmentProductsList = [
   InvestmentProduct(
     uidProduct: "APPINVPLAN1",
-    productName: "HongKong",
+    productName: "Stadium1",
     pImageUrl:
-        "$planImageCloudPrefix/POP_98_1683_00_1683_WembleyStadium_Exterior_Night2_Hufton_Crow_ov1thd.jpg",
-    productPrice: 500,
+    "https://res.cloudinary.com/promisedpayment/image/upload/v1650531051/DreamLightCity/PlanImages/photo-1549923015-badf41b04831_bzzobd.jpg",
+    productPrice: 300,
     dailyIncome: 50,
     totalIncome: 1000,
     maturityTime: 20,
     longDescription:
-        '"Hong Kong" is one of the cloud-computing server management full hosting plans Alpha\'s Plan provides to the holders. When you purchase this plan at the price of 500 for one piece, please check your "Order" page for confirmation. You will be holding a contract of obtaining the next 20 days of net income of this plan for one share.You receive income daily at the result of 50 per day generated and by Alpha\'s Plan\'s top-notch customized management on this certain server room, which will be distributed',
+    'Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1Stadium1',
     fakeNumber: 571,
   ),
   InvestmentProduct(
       uidProduct: "APPINVPLAN2",
-      productName: "Dubai",
+      productName: "Stadium2",
       pImageUrl:
-          "$planImageCloudPrefix/POP_98_1683_00_1683_WembleyStadium_Exterior_Night2_Hufton_Crow_ov1thd.jpg",
-      productPrice: 1000,
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650530695/DreamLightCity/PlanImages/photo-1489944440615-453fc2b6a9a9_semdle.jpg",
+      productPrice: 500,
       totalIncome: 2000,
       dailyIncome: 100,
       maturityTime: 20,
       fakeNumber: 379,
       longDescription:
-          '"Dubai" is one of the cloud-computing server management full hosting plans Alpha\'s Plan provides to the holders.When you purchase this plan at the price of 1000 for one piece, please check your "Order" page for confirmation. You will be holding a contract of obtaining the next 20 days of net income of this plan for one share.You receive income daily at the result of 100 per day generated and by Alpha\'s Plan\'s top-notch customized management on this certain server room, which will be distributed'),
+      'Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2Stadium2'),
   InvestmentProduct(
       uidProduct: "APPINVPLAN3",
-      productName: "London",
+      productName: "Stadium3",
       pImageUrl:
-          "$planImageCloudPrefix/POP_98_1683_00_1683_WembleyStadium_Exterior_Night2_Hufton_Crow_ov1thd.jpg",
-      productPrice: 3000,
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650530617/DreamLightCity/PlanImages/photo-1512631737701-737916001362_q5bcct.jpg",
+      productPrice: 1000,
       totalIncome: 6000,
       dailyIncome: 300,
       maturityTime: 20,
       fakeNumber: 234,
       longDescription:
-          '"London" is one of the cloud-computing server management full hosting plans Alpha\'s Plan provides to the holders.When you purchase this plan at the price of 3000 for one piece, please check your "Order" page for comfirmation. You will be holding a contract of obtaining the next 20 days of net income of this plan for one share.You receive income on a daily basis at the result of 300 per day generated and by Alpha\'s Plan\'s top notch customized management on this certain server room, which will be distributed'),
+      'Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3Stadium3'),
   InvestmentProduct(
       uidProduct: "APPINVPLAN4",
-      productName: "Beijing",
+      productName: "Stadium4",
       pImageUrl:
-          "$planImageCloudPrefix/POP_98_1683_00_1683_WembleyStadium_Exterior_Night2_Hufton_Crow_ov1thd.jpg",
-      productPrice: 5000,
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650567423/DreamLightCity/PlanImages/Moteras-Sardar-Patel-Stadium_jqvyof.jpg",
+      productPrice: 1500,
       maturityTime: 20,
       dailyIncome: 500,
       totalIncome: 10000,
       fakeNumber: 126,
       longDescription:
-          '"Beijing" is one of the cloud-computing server management full hosting plans Alpha\'s Plan provides to the holders. When you purchase this plan at the price of 5000 for one piece, please check your "Order" page for confirmation. You will be holding a contract of obtaining the next 20 days of net income of this plan for one share. You receive income daily at the result of 500 per day generated and by Alpha\'s Plan\'s top-notch customized management on this certain server room, which will be distributed'),
+      'Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4Stadium4'),
   InvestmentProduct(
       uidProduct: "APPINVPLAN5",
-      productName: "Tokyo",
+      productName: "Stadium5",
       pImageUrl:
-          "$planImageCloudPrefix/POP_98_1683_00_1683_WembleyStadium_Exterior_Night2_Hufton_Crow_ov1thd.jpg",
-      productPrice: 8000,
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650567524/DreamLightCity/PlanImages/5d89f45c7e8a220e5a299894_1569322076480_tzhhkd.jpg",
+      productPrice: 2000,
       maturityTime: 20,
       totalIncome: 16000,
       dailyIncome: 800,
       fakeNumber: 138,
       longDescription:
-          '"Tokyo" is one of the cloud-computing server management full hosting plans Alpha\'s Plan provides to the holders. When you purchase this plan at the price of 8000 for one piece, please check your "Order" page for confirmation. You will be holding a contract of obtaining the next 20 days of net income of this plan for one share. You receive income daily at the result of 800 per day generated and by Alpha\'s Plan\'s top-notch customized management on this certain server room, which will be distributed'),
+      'Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5Stadium5'),
   InvestmentProduct(
       uidProduct: "APPINVPLAN6",
-      productName: "Moscow",
+      productName: "Stadium6",
       pImageUrl:
-          "$planImageCloudPrefix/POP_98_1683_00_1683_WembleyStadium_Exterior_Night2_Hufton_Crow_ov1thd.jpg",
-      productPrice: 10000,
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650530948/DreamLightCity/PlanImages/photo-1511204579483-e5c2b1d69acd_mvllqh.jpg",
+      productPrice: 3000,
       maturityTime: 20,
       totalIncome: 20000,
       dailyIncome: 1000,
       fakeNumber: 77,
       longDescription:
-          '"Moscow" is one of the cloud-computing server management full hosting plans Alpha\'s Plan provides to the holders. When you purchase this plan at the price of 10000 for one piece, please check your "Order" page for confirmation. You will be holding a contract of obtaining the next 20 days of net income of this plan for one share. You receive income daily at the result of 1000 per day generated and by Alpha\'s Plan\'s top-notch customized management on this certain server room, which will be distributed'),
+      'Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6Stadium6'),
   InvestmentProduct(
       uidProduct: "APPINVPLAN7",
-      productName: "NewYork",
+      productName: "Stadium7",
       pImageUrl:
-          "$planImageCloudPrefix/POP_98_1683_00_1683_WembleyStadium_Exterior_Night2_Hufton_Crow_ov1thd.jpg",
-      productPrice: 20000,
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650530591/DreamLightCity/PlanImages/photo-1629298011324-1908916d01a7_r3m1d2.jpg",
+      productPrice: 5000,
       dailyIncome: 2000,
       totalIncome: 40000,
       maturityTime: 20,
       fakeNumber: 26,
       longDescription:
-          '"New York" is one of the cloud-computing server management full hosting plans Alpha\'s Plan provides to the holders. When you purchase this plan at the price of 20000 for one piece, please check your "Order" page for confirmation. You will be holding a contract of obtaining the next 20 days of net income of this plan for one share.You receive income daily at the result of 2000 per day generated and by Alpha\'s Plan\'s top-notch customized management on this certain server room, which will be distributed'),
+      'Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7Stadium7'),
   InvestmentProduct(
       uidProduct: "APPINVPLAN8",
-      productName: "Shenzhen",
+      productName: "Stadium8",
       pImageUrl:
-          "$planImageCloudPrefix/POP_98_1683_00_1683_WembleyStadium_Exterior_Night2_Hufton_Crow_ov1thd.jpg",
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650567824/DreamLightCity/PlanImages/1024px-Marriott_Center_1-1000x600_mjrw6m.jpg",
+      productPrice: 6000,
+      totalIncome: 100000,
+      dailyIncome: 5000,
+      maturityTime: 20,
+      fakeNumber: 11,
+      longDescription:
+      'Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8Stadium8'),
+  InvestmentProduct(
+      uidProduct: "APPINVPLAN9",
+      productName: "Stadium9",
+      pImageUrl:
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650567875/DreamLightCity/PlanImages/106698727-1599822851881-SoFi_Stadium_est_2020_ynf0a1.jpg",
+      productPrice: 7000,
+      totalIncome: 100000,
+      dailyIncome: 5000,
+      maturityTime: 20,
+      fakeNumber: 11,
+      longDescription:
+      'Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9Stadium9'),
+  InvestmentProduct(
+      uidProduct: "APPINVPLAN10",
+      productName: "Stadium10",
+      pImageUrl:
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650573038/DreamLightCity/PlanImages/foreign_english_2020-08-10_dn122769_image1_h4cace.jpg",
+      productPrice: 8000,
+      totalIncome: 100000,
+      dailyIncome: 5000,
+      maturityTime: 20,
+      fakeNumber: 11,
+      longDescription:
+      'Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10Stadium10'),
+  InvestmentProduct(
+      uidProduct: "APPINVPLAN11",
+      productName: "Stadium11",
+      pImageUrl:
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650532147/DreamLightCity/PlanImages/J1A6493_2_LIGHTS-1504x846_m2vhj2.jpg",
+      productPrice: 10000,
+      totalIncome: 100000,
+      dailyIncome: 5000,
+      maturityTime: 20,
+      fakeNumber: 11,
+      longDescription:
+      'Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11Stadium11'),
+  InvestmentProduct(
+      uidProduct: "APPINVPLAN12",
+      productName: "Stadium12",
+      pImageUrl:
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650531431/DreamLightCity/PlanImages/royal_arena_copenhagen_xn62pt.jpg",
+      productPrice: 15000,
+      totalIncome: 100000,
+      dailyIncome: 5000,
+      maturityTime: 20,
+      fakeNumber: 11,
+      longDescription:
+      'Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12Stadium12'),
+  InvestmentProduct(
+      uidProduct: "APPINVPLAN13",
+      productName: "Stadium13",
+      pImageUrl:
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650532117/DreamLightCity/PlanImages/Alienware-Arena-2-1504x846_wdy115.jpg",
+      productPrice: 30000,
+      totalIncome: 100000,
+      dailyIncome: 5000,
+      maturityTime: 20,
+      fakeNumber: 11,
+      longDescription:
+      'Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13Stadium13'),
+  InvestmentProduct(
+      uidProduct: "APPINVPLAN14",
+      productName: "Stadium14",
+      pImageUrl:
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650531405/DreamLightCity/PlanImages/cska_arena_gpyyca.jpg",
+      productPrice: 40000,
+      totalIncome: 100000,
+      dailyIncome: 5000,
+      maturityTime: 20,
+      fakeNumber: 11,
+      longDescription:
+      'Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14Stadium14'),
+  InvestmentProduct(
+      uidProduct: "APPINVPLAN15",
+      productName: "Stadium15",
+      pImageUrl:
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650531086/DreamLightCity/PlanImages/photo-1568663469495-b09d5e3c2e07_aepsye.jpg",
       productPrice: 50000,
       totalIncome: 100000,
       dailyIncome: 5000,
       maturityTime: 20,
       fakeNumber: 11,
       longDescription:
-          '"Shenzhen" is one of the cloud-computing server management full hosting plans Alpha\'s Plan provides to the holders. When you purchase this plan at the price of 50000 for one piece, please check your "Order" page for confirmation. You will be holding a contract of obtaining the next 20 days of net income of this plan for one share.You receive income daily at the result of 5000 per day generated and by Alpha\'s Plan\'s top-notch customized management on this certain server room, which will be distributed'),
+      'Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15Stadium15'),
+  InvestmentProduct(
+      uidProduct: "APPINVPLAN16",
+      productName: "Stadium16",
+      pImageUrl:
+      "https://res.cloudinary.com/promisedpayment/image/upload/v1650531196/DreamLightCity/PlanImages/photo-1585805152588-5beb7808255d_vy0gf4.jpg",
+      productPrice: 80000,
+      totalIncome: 100000,
+      dailyIncome: 5000,
+      maturityTime: 20,
+      fakeNumber: 11,
+      longDescription:
+      'Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16Stadium16'),
 ];

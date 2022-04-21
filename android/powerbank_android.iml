@@ -335,5 +335,8 @@
     <orderEntry type="library" name="Gradle: E:\AndroidProjects\BackUP\powerbank\android:cloud_firestore::debug" level="project" />
     <orderEntry type="library" name="Gradle: E:\AndroidProjects\BackUP\powerbank\android:path_provider_android::debug" level="project" />
     <orderEntry type="library" name="Gradle: E:\AndroidProjects\BackUP\powerbank\android:flutter_native_splash::debug" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.21" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21" level="project" />
   </component>
 </module>
