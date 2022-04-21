@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "531892714948",
+    "firebase_url": "https://dlc2022april-a36ca-default-rtdb.firebaseio.com",
+    "project_id": "dlc2022april-a36ca",
+    "storage_bucket": "dlc2022april-a36ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531892714948:android:3ec5212bada169fa543891",
+        "android_client_info": {
+          "package_name": "com.admin.dreamlightcity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531892714948-28b8s52ur829uvfmq100270rpvr6u0hh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzb_R3o1WbfT-tD3GOHzpJ6JC_CTm6pII"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531892714948-28b8s52ur829uvfmq100270rpvr6u0hh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531892714948:android:8c62f1351d7a9bd1543891",
+        "android_client_info": {
+          "package_name": "com.ecopower.dreamlightcity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531892714948-28b8s52ur829uvfmq100270rpvr6u0hh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzb_R3o1WbfT-tD3GOHzpJ6JC_CTm6pII"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531892714948-28b8s52ur829uvfmq100270rpvr6u0hh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

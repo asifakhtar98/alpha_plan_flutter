@@ -1,0 +1,81 @@
+name: powerbank
+description: A new finance app.
+publish_to: 'none'
+version: 2022.4.1+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #ui
+  cupertino_icons: ^1.0.4
+  flutter_native_splash: ^2.1.6
+  auto_size_text: ^3.0.0
+  cached_network_image: ^3.2.0
+  flutter_smart_dialog: ^3.4.2+2
+  google_fonts: ^2.3.1
+  font_awesome_flutter: ^10.1.0
+  delayed_display: ^2.0.0
+  double_back_to_close: ^2.0.0
+  animated_flip_counter: ^0.2.4
+  carousel_slider: ^4.0.0
+  selectable_container: ^1.0.2
+  flutter_inappwebview: ^5.4.0+2
+  lottie: ^1.3.0
+  expansion_tile_card: ^2.0.0
+  async_button_builder: ^2.2.0+1
+  rotated_corner_decoration: ^2.0.0
+  animate_do: ^2.1.0
+
+  #utils
+  logger: ^1.1.0
+  country_code_picker: ^2.0.2
+  intl: ^0.17.0
+  ntp: ^2.0.0
+  url_launcher: ^6.0.20
+  onesignal_flutter: ^3.3.0
+  firebase_core: ^1.14.1
+  cloud_firestore: ^3.1.12
+  get: ^4.6.1
+  hive: ^2.1.0
+  hive_flutter: ^1.1.0
+  razorpay_flutter: ^1.3.0
+  upi_pay: ^1.0.1
+  cashfree_pg: ^2.0.9+29
+  dio: ^4.0.6
+  device_info_plus: ^3.2.3
+  internet_connection_checker: ^0.0.1+3
+  package_info_plus: ^1.4.2
+  firebase_analytics: ^9.1.5
+  paytm_allinonesdk: ^1.1.6
+  share_plus: ^4.0.4
+  path_provider: ^2.0.9
+  firebase_dynamic_links: ^4.1.3
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^1.0.4
+  change_app_package_name: ^1.0.0
+  #flutter pub run change_app_package_name:main com.ecopower.dreamlightcity
+  #flutter build apk --split-per-abi
+
+flutter_native_splash:
+  # flutter pub run flutter_native_splash:create
+  # flutter pub run flutter_native_splash:remove
+  # image: assets/SplashLogo.png
+  color: "#00353f"
+  android12: true
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/refer_files/
