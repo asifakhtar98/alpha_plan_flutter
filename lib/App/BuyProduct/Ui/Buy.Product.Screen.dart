@@ -81,17 +81,16 @@ class BuyProductScreen extends StatelessWidget {
                       left: 16,
                       top: 12,
                       child: Container(
-                        padding: const EdgeInsets.only(
-                            top: 2, bottom: 4, left: 4, right: 4),
+                        padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
                             color: color3.withOpacity(0.7),
                             borderRadius: BorderRadius.circular(15)),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const SizedBox(
-                                width: 25, height: 25, child: AppIconWidget()),
+                                width: 18, height: 18, child: AppIconWidget()),
                             const SizedBox(
                               width: 8,
                             ),
@@ -144,7 +143,7 @@ class BuyProductScreen extends StatelessWidget {
                   right: 77,
                   top: 60,
                   child: Icon(
-                    FontAwesomeIcons.rupeeSign,
+                    FontAwesomeIcons.indianRupeeSign,
                     size: 60,
                     color: color2.withOpacity(0.8),
                   ),

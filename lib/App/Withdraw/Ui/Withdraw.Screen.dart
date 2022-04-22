@@ -214,7 +214,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                               fontWeight: FontWeight.bold),
                           decoration: const InputDecoration(
                             prefixIcon: Icon(
-                              FontAwesomeIcons.rupeeSign,
+                              FontAwesomeIcons.indianRupeeSign,
                               color: colorWhite,
                             ),
                           ),

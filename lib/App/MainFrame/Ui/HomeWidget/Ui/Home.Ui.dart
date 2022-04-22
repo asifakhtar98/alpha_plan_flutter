@@ -227,8 +227,9 @@ class ProductHomeCatalogue extends StatelessWidget {
       children: [
         for (InvestmentProduct oProduct in mainInvestmentProductsList)
           ClipRRect(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(12),
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(60),
+              bottom: Radius.circular(18),
             ),
             child: Obx(
               () {
@@ -253,218 +254,199 @@ class ProductHomeCatalogue extends StatelessWidget {
                       (_serverPrice >= oProduct.productPrice / 2)
                           ? true
                           : false;
-                  return DelayedDisplay(
-                    fadingDuration: Duration(
-                        milliseconds: 300 *
-                            (mainInvestmentProductsList
-                                .indexWhere((element) => element == oProduct))),
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.46,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 20),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  color2.withOpacity(0.7),
-                                  color3.withOpacity(0.5),
-                                ]),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                oProduct.productName,
-                                style: const TextStyle(
-                                    fontSize: 18, color: colorWhite),
+                  return Stack(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.46,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 20),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                color2.withOpacity(0.7),
+                                color3.withOpacity(0.5),
+                              ]),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              oProduct.productName,
+                              style: const TextStyle(
+                                  fontSize: 18, color: colorWhite),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                if (isNotHibernated) {
+                                  Get.to(
+                                    () => BuyProductScreen(
+                                      productIndex: mainInvestmentProductsList
+                                          .indexOf(oProduct),
+                                    ),
+                                  );
+                                } else {
+                                  SmartDialog.showToast(
+                                      "${oProduct.productName} Server in hibernation");
+                                }
+                              },
+                              child: Container(
+                                height: 100,
+                                decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15)),
+                                    color: color3,
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: CachedNetworkImageProvider(
+                                            oProduct.pImageUrl))),
                               ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  if (isNotHibernated) {
-                                    Get.to(
-                                      () => BuyProductScreen(
-                                        productIndex: mainInvestmentProductsList
-                                            .indexOf(oProduct),
-                                      ),
-                                    );
-                                  } else {
-                                    SmartDialog.showToast(
-                                        "${oProduct.productName} Server in hibernation");
-                                  }
-                                },
-                                child: Container(
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
-                                      color: color3,
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: CachedNetworkImageProvider(
-                                              oProduct.pImageUrl))),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "Price:",
+                                  style: TextStyle(color: color4, fontSize: 11),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "Price:",
-                                    style:
-                                        TextStyle(color: color4, fontSize: 11),
-                                  ),
-                                  Text(
-                                    "₹${oProduct.productPrice.toString()}",
-                                    style: const TextStyle(
-                                        color: Colors.amberAccent,
-                                        fontSize: 13),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "Daily Income:",
-                                    style:
-                                        TextStyle(color: color4, fontSize: 11),
-                                  ),
-                                  Text(
-                                    "₹${oProduct.dailyIncome.toString()}",
-                                    style: const TextStyle(
-                                        color: Colors.amberAccent,
-                                        fontSize: 13),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "Full Income:",
-                                    style:
-                                        TextStyle(color: color4, fontSize: 11),
-                                  ),
-                                  Text(
-                                    "₹${oProduct.totalIncome.toString()}",
-                                    style: const TextStyle(
-                                        color: Colors.amberAccent,
-                                        fontSize: 13),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "Serving Time:",
-                                    style:
-                                        TextStyle(color: color4, fontSize: 11),
-                                  ),
-                                  Text(
-                                    "${oProduct.maturityTime.toString()} Dy",
-                                    style: const TextStyle(
-                                        color: Colors.amberAccent,
-                                        fontSize: 13),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              MaterialButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                minWidth: 130,
-                                onPressed: () {
-                                  if (isNotHibernated) {
-                                    Get.to(
-                                      () => BuyProductScreen(
-                                        productIndex: mainInvestmentProductsList
-                                            .indexOf(oProduct),
-                                      ),
-                                    );
-                                  } else {
-                                    SmartDialog.showToast(
-                                        "${oProduct.productName} Server in hibernation");
-                                  }
-                                },
-                                color: (isNotHibernated)
-                                    ? color4
-                                    : Colors.blueGrey,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text((isNotHibernated)
-                                        ? "₹${oProduct.productPrice}"
-                                        : "Hibernated"),
-                                  ],
+                                Text(
+                                  "₹${oProduct.productPrice.toString()}",
+                                  style: const TextStyle(
+                                      color: Colors.amberAccent, fontSize: 13),
+                                )
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "Daily Income:",
+                                  style: TextStyle(color: color4, fontSize: 11),
                                 ),
+                                Text(
+                                  "₹${oProduct.dailyIncome.toString()}",
+                                  style: const TextStyle(
+                                      color: Colors.amberAccent, fontSize: 13),
+                                )
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "Full Income:",
+                                  style: TextStyle(color: color4, fontSize: 11),
+                                ),
+                                Text(
+                                  "₹${oProduct.totalIncome.toString()}",
+                                  style: const TextStyle(
+                                      color: Colors.amberAccent, fontSize: 13),
+                                )
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "Serving Time:",
+                                  style: TextStyle(color: color4, fontSize: 11),
+                                ),
+                                Text(
+                                  "${oProduct.maturityTime.toString()} Dy",
+                                  style: const TextStyle(
+                                      color: Colors.amberAccent, fontSize: 13),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              minWidth: 130,
+                              onPressed: () {
+                                if (isNotHibernated) {
+                                  Get.to(
+                                    () => BuyProductScreen(
+                                      productIndex: mainInvestmentProductsList
+                                          .indexOf(oProduct),
+                                    ),
+                                  );
+                                } else {
+                                  SmartDialog.showToast(
+                                      "${oProduct.productName} Server in hibernation");
+                                }
+                              },
+                              color:
+                                  (isNotHibernated) ? color4 : Colors.blueGrey,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text((isNotHibernated)
+                                      ? "₹${oProduct.productPrice}"
+                                      : "Hibernated"),
+                                ],
                               ),
-                              Text(
-                                "Total Pushes : ${totalInvestments + oProduct.fakeNumber}",
-                                style: TextStyle(
-                                    color: colorWhite.withOpacity(0.6),
-                                    fontSize: 8),
-                              )
-                            ],
+                            ),
+                            Text(
+                              "Total Pushes : ${totalInvestments + oProduct.fakeNumber}",
+                              style: TextStyle(
+                                  color: colorWhite.withOpacity(0.6),
+                                  fontSize: 8),
+                            )
+                          ],
+                        ),
+                      ),
+                      if (_serverPrice != oProduct.productPrice &&
+                          isNotHibernated)
+                        Positioned(
+                          top: -10,
+                          left: -35,
+                          child: Transform.rotate(
+                            angle: -45 * pi / 180,
+                            child: Container(
+                              width: 120,
+                              height: 45,
+                              color: color4.withOpacity(0.4),
+                            ),
                           ),
                         ),
-                        if (_serverPrice != oProduct.productPrice &&
-                            isNotHibernated)
-                          Positioned(
-                            top: -10,
-                            left: -35,
-                            child: Transform.rotate(
-                              angle: -45 * pi / 180,
-                              child: Container(
-                                width: 120,
-                                height: 45,
-                                color: color4.withOpacity(0.4),
-                              ),
+                      if (_serverPrice != oProduct.productPrice &&
+                          isNotHibernated)
+                        Positioned(
+                          top: 20,
+                          left: 2,
+                          child: Transform.rotate(
+                            angle: -45 * pi / 180,
+                            child: AutoSizeText(
+                              "${oProduct.productPrice - _serverPrice} Less",
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  color: colorWhite,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold),
+                              minFontSize: 10,
                             ),
                           ),
-                        if (_serverPrice != oProduct.productPrice &&
-                            isNotHibernated)
-                          Positioned(
-                            top: 20,
-                            left: 2,
-                            child: Transform.rotate(
-                              angle: -45 * pi / 180,
-                              child: AutoSizeText(
-                                "${oProduct.productPrice - _serverPrice} Less",
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    color: colorWhite,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold),
-                                minFontSize: 10,
-                              ),
-                            ),
+                        ),
+                      if (_serverPrice != oProduct.productPrice &&
+                          isNotHibernated)
+                        const Positioned(
+                          top: 8,
+                          left: 8,
+                          child: Icon(
+                            FontAwesomeIcons.fireAlt,
+                            size: 14,
                           ),
-                        if (_serverPrice != oProduct.productPrice &&
-                            isNotHibernated)
-                          const Positioned(
-                            top: 8,
-                            left: 8,
-                            child: Icon(
-                              FontAwesomeIcons.fireAlt,
-                              size: 14,
-                            ),
-                          ),
-                      ],
-                    ),
+                        ),
+                    ],
                   );
                 }
               },
@@ -800,11 +782,11 @@ class MySlidingImages extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 200.0,
         autoPlay: true,
         autoPlayInterval: const Duration(seconds: 3),
         autoPlayAnimationDuration: const Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
+        viewportFraction: 1.0,
       ),
       items: corouselItemList.map((i) {
         return Builder(
@@ -900,7 +882,7 @@ List<CarouselModel> corouselItemList = [
       actionName: ''),
   CarouselModel(
       pImageUrl:
-          "$cloudinaryGradientImagePath/Products/mljenjgppxgwq3v03dhc.jpg",
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1650567875/DreamLightCity/PlanImages/106698727-1599822851881-SoFi_Stadium_est_2020_ynf0a1.jpg",
       onClick: () {
         Get.to(() => const BuyProductScreen(productIndex: 5));
       },

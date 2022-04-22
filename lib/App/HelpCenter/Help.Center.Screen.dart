@@ -50,7 +50,7 @@ class HelpCenterScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               child: CachedNetworkImage(
                                   width: 150,
-                                  fit: BoxFit.fitWidth,
+                                  fit: BoxFit.cover,
                                   imageUrl: m["Image"]),
                             ),
                           ),
