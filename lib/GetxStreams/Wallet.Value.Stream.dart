@@ -2,13 +2,11 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-
+import 'package:powerbank/App/LoginRegister/Ui/Auth.Screen.dart';
 import 'package:powerbank/Constants/strings.dart';
-import 'package:powerbank/LoginRegister/Ui/Auth.Screen.dart';
 
 class WalletBalanceStreamController extends GetxService {
   final _hiveBox = Hive.box(hiveBoxName);

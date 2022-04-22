@@ -1,26 +1,27 @@
 import 'package:get/get.dart';
+import 'package:powerbank/App/AllActivityRecords/all_activity_screen.dart';
+import 'package:powerbank/App/BuyProduct/Controllers/Commission.Controller.dart';
+import 'package:powerbank/App/LoginRegister/GetXControllers/Auth.Controller.dart';
+import 'package:powerbank/App/LoginRegister/Ui/Auth.Screen.dart';
+import 'package:powerbank/App/MainFrame/GetxController/Main.Frame.Service.dart';
+import 'package:powerbank/App/MainFrame/Ui/Main.Frame.Ui.dart';
+import 'package:powerbank/App/MainFrame/Ui/OrderWidget/Order.Ui.Controller.dart';
+import 'package:powerbank/App/RechargeScreen/Controllers/Cashfree.Pg.Controller.dart';
+import 'package:powerbank/App/RechargeScreen/Controllers/Razor.Pay.Controller.dart';
+import 'package:powerbank/App/RechargeScreen/Controllers/Recharge.Screen.Controller.dart';
+import 'package:powerbank/App/RechargeScreen/Controllers/Upi.Pay.Controller.dart';
+import 'package:powerbank/App/RechargeScreen/Recharge.Screen.dart';
+import 'package:powerbank/App/ReferIncome/GetxControllers/Refer.Controller.dart';
+import 'package:powerbank/App/ReferIncome/Ui/Refer.Income.Screen.dart';
 import 'package:powerbank/GetxStreams/Investment.Products.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Permission.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
-import 'package:powerbank/LoginRegister/GetXControllers/Auth.Controller.dart';
-import 'package:powerbank/LoginRegister/Ui/Auth.Screen.dart';
-import 'package:powerbank/MainFrame/GetxController/Main.Frame.Service.dart';
-import 'package:powerbank/MainFrame/Ui/Main.Frame.Ui.dart';
-import 'package:powerbank/RechargeScreen/Controllers/Cashfree.Pg.Controller.dart';
-import 'package:powerbank/RechargeScreen/Controllers/Razor.Pay.Controller.dart';
-import 'package:powerbank/RechargeScreen/Controllers/Recharge.Screen.Controller.dart';
-import 'package:powerbank/RechargeScreen/Controllers/Upi.Pay.Controller.dart';
-import 'package:powerbank/RechargeScreen/Recharge.Screen.dart';
-import 'AllActivityRecords/all_activity_controller.dart';
-import 'AllActivityRecords/all_activity_screen.dart';
-import 'HelperClasses/Password.Renew.Controller.dart';
+
+import 'App/AllActivityRecords/all_activity_controller.dart';
+import 'App/LoginRegister/GetXControllers/Dynamic.Link.Controller.dart';
 import 'HelperClasses/Notice.Get.Service.dart';
+import 'HelperClasses/Password.Renew.Controller.dart';
 import 'HelperClasses/Server.Stats.Service.dart';
-import 'LoginRegister/GetXControllers/Dynamic.Link.Controller.dart';
-import 'OrderWidget/Order.Ui.Controller.dart';
-import 'BuyProduct/Controllers/Commission.Controller.dart';
-import 'ReferIncome/GetxControllers/Refer.Controller.dart';
-import 'ReferIncome/Ui/Refer.Income.Screen.dart';
 
 List<GetPage> myGetRoutes = [
   GetPage(

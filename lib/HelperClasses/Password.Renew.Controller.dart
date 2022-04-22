@@ -3,14 +3,14 @@ import 'dart:math';
 import 'package:async_button_builder/async_button_builder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
+import 'package:powerbank/App/LoginRegister/GetXControllers/Auth.Controller.dart';
 import 'package:powerbank/Constants/strings.dart';
-import 'package:powerbank/LoginRegister/GetXControllers/Auth.Controller.dart';
 import 'package:powerbank/generated/assets.dart';
 
 import '../Constants/Colors.dart';

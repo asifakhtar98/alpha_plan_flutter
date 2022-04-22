@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -15,12 +16,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:powerbank/App/LoginRegister/Ui/Auth.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Get.Routes.dart';
+
 import 'Constants/strings.dart';
 import 'GlobalBindings.dart';
 import 'HelperClasses/Widgets.dart';
-import 'LoginRegister/Ui/Auth.Screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,7 +79,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       getPages: myGetRoutes,
       theme: ThemeData.dark().copyWith(
-        textTheme: GoogleFonts.varelaRoundTextTheme(
+        textTheme: GoogleFonts.encodeSansTextTheme(
           Theme.of(context).textTheme,
         ),
       ),
