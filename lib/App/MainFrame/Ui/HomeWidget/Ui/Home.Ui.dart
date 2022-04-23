@@ -226,232 +226,251 @@ class ProductHomeCatalogue extends StatelessWidget {
       alignment: WrapAlignment.center,
       children: [
         for (InvestmentProduct oProduct in mainInvestmentProductsList)
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(60),
-              bottom: Radius.circular(18),
-            ),
-            child: Obx(
-              () {
-                if (_investmentProductsStreamController
-                    .noOfInvestmentsList.isEmpty) {
-                  return SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.46,
-                    height: 170,
-                    child: const Center(
-                      child: CircularProgressIndicator(color: color3),
-                    ),
-                  );
-                } else {
-                  int serverIndexOfPlan = _investmentProductsStreamController
-                      .investmentPlansIdList
-                      .indexWhere((element) => element == oProduct.uidProduct);
-                  int _serverPrice = _investmentProductsStreamController
-                      .investmentPlansPriceList[serverIndexOfPlan];
-                  int totalInvestments = _investmentProductsStreamController
-                      .noOfInvestmentsList[serverIndexOfPlan];
-                  bool isNotHibernated =
-                      (_serverPrice >= oProduct.productPrice / 2)
-                          ? true
-                          : false;
-                  return Stack(
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.46,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 20),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                color2.withOpacity(0.7),
-                                color3.withOpacity(0.5),
-                              ]),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              oProduct.productName,
-                              style: const TextStyle(
-                                  fontSize: 18, color: colorWhite),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                if (isNotHibernated) {
-                                  Get.to(
-                                    () => BuyProductScreen(
-                                      productIndex: mainInvestmentProductsList
-                                          .indexOf(oProduct),
-                                    ),
-                                  );
-                                } else {
-                                  SmartDialog.showToast(
-                                      "${oProduct.productName} Server in hibernation");
-                                }
-                              },
-                              child: Container(
-                                height: 100,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(15)),
-                                    color: color3,
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: CachedNetworkImageProvider(
-                                            oProduct.pImageUrl))),
+          Obx(() {
+            int serverIndexOfPlan = _investmentProductsStreamController
+                .investmentPlansIdList
+                .indexWhere((element) => element == oProduct.uidProduct);
+            int _serverPrice = _investmentProductsStreamController
+                .investmentPlansPriceList[serverIndexOfPlan];
+            int totalInvestments = _investmentProductsStreamController
+                .noOfInvestmentsList[serverIndexOfPlan];
+            bool isNotHibernated =
+                (_serverPrice >= oProduct.productPrice / 2) ? true : false;
+            bool isDiscounted = _serverPrice != oProduct.productPrice;
+            return ClipRRect(
+              borderRadius: BorderRadius.only(
+                topRight: const Radius.circular(60),
+                topLeft: isDiscounted
+                    ? const Radius.circular(18)
+                    : const Radius.circular(60),
+                bottomRight: const Radius.circular(18),
+                bottomLeft: const Radius.circular(18),
+              ),
+              child: Obx(
+                () {
+                  if (_investmentProductsStreamController
+                      .noOfInvestmentsList.isEmpty) {
+                    return SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.46,
+                      height: 170,
+                      child: const Center(
+                        child: CircularProgressIndicator(color: color3),
+                      ),
+                    );
+                  } else {
+                    return Stack(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.46,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 20),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  color2.withOpacity(0.7),
+                                  color3.withOpacity(0.5),
+                                ]),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                oProduct.productName,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontSize: 16, color: colorWhite),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "Price:",
-                                  style: TextStyle(color: color4, fontSize: 11),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  if (isNotHibernated) {
+                                    Get.to(
+                                      () => BuyProductScreen(
+                                        productIndex: mainInvestmentProductsList
+                                            .indexOf(oProduct),
+                                      ),
+                                    );
+                                  } else {
+                                    SmartDialog.showToast(
+                                        "${oProduct.productName} Server in hibernation");
+                                  }
+                                },
+                                child: Container(
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15)),
+                                      color: color3,
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: CachedNetworkImageProvider(
+                                              oProduct.pImageUrl))),
                                 ),
-                                Text(
-                                  "₹${oProduct.productPrice.toString()}",
-                                  style: const TextStyle(
-                                      color: Colors.amberAccent, fontSize: 13),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "Daily Income:",
-                                  style: TextStyle(color: color4, fontSize: 11),
-                                ),
-                                Text(
-                                  "₹${oProduct.dailyIncome.toString()}",
-                                  style: const TextStyle(
-                                      color: Colors.amberAccent, fontSize: 13),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "Full Income:",
-                                  style: TextStyle(color: color4, fontSize: 11),
-                                ),
-                                Text(
-                                  "₹${oProduct.totalIncome.toString()}",
-                                  style: const TextStyle(
-                                      color: Colors.amberAccent, fontSize: 13),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "Serving Time:",
-                                  style: TextStyle(color: color4, fontSize: 11),
-                                ),
-                                Text(
-                                  "${oProduct.maturityTime.toString()} Dy",
-                                  style: const TextStyle(
-                                      color: Colors.amberAccent, fontSize: 13),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            MaterialButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              minWidth: 130,
-                              onPressed: () {
-                                if (isNotHibernated) {
-                                  Get.to(
-                                    () => BuyProductScreen(
-                                      productIndex: mainInvestmentProductsList
-                                          .indexOf(oProduct),
-                                    ),
-                                  );
-                                } else {
-                                  SmartDialog.showToast(
-                                      "${oProduct.productName} Server in hibernation");
-                                }
-                              },
-                              color:
-                                  (isNotHibernated) ? color4 : Colors.blueGrey,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text((isNotHibernated)
-                                      ? "₹${oProduct.productPrice}"
-                                      : "Hibernated"),
+                                  const Text(
+                                    "Price:",
+                                    style:
+                                        TextStyle(color: color4, fontSize: 11),
+                                  ),
+                                  Text(
+                                    "₹${oProduct.productPrice.toString()}",
+                                    style: const TextStyle(
+                                        color: Colors.amberAccent,
+                                        fontSize: 13),
+                                  )
                                 ],
                               ),
-                            ),
-                            Text(
-                              "Total Pushes : ${totalInvestments + oProduct.fakeNumber}",
-                              style: TextStyle(
-                                  color: colorWhite.withOpacity(0.6),
-                                  fontSize: 8),
-                            )
-                          ],
-                        ),
-                      ),
-                      if (_serverPrice != oProduct.productPrice &&
-                          isNotHibernated)
-                        Positioned(
-                          top: -10,
-                          left: -35,
-                          child: Transform.rotate(
-                            angle: -45 * pi / 180,
-                            child: Container(
-                              width: 120,
-                              height: 45,
-                              color: color4.withOpacity(0.4),
-                            ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    "Daily Income:",
+                                    style:
+                                        TextStyle(color: color4, fontSize: 11),
+                                  ),
+                                  Text(
+                                    "₹${oProduct.dailyIncome.toString()}",
+                                    style: const TextStyle(
+                                        color: Colors.amberAccent,
+                                        fontSize: 13),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    "Full Income:",
+                                    style:
+                                        TextStyle(color: color4, fontSize: 11),
+                                  ),
+                                  Text(
+                                    "₹${oProduct.totalIncome.toString()}",
+                                    style: const TextStyle(
+                                        color: Colors.amberAccent,
+                                        fontSize: 13),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    "Serving Time:",
+                                    style:
+                                        TextStyle(color: color4, fontSize: 11),
+                                  ),
+                                  Text(
+                                    "${oProduct.maturityTime.toString()} Dy",
+                                    style: const TextStyle(
+                                        color: Colors.amberAccent,
+                                        fontSize: 13),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              MaterialButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                minWidth: 130,
+                                onPressed: () {
+                                  if (isNotHibernated) {
+                                    Get.to(
+                                      () => BuyProductScreen(
+                                        productIndex: mainInvestmentProductsList
+                                            .indexOf(oProduct),
+                                      ),
+                                    );
+                                  } else {
+                                    SmartDialog.showToast(
+                                        "${oProduct.productName} Server in hibernation");
+                                  }
+                                },
+                                color: (isNotHibernated)
+                                    ? color4
+                                    : Colors.blueGrey,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text((isNotHibernated)
+                                        ? "₹${oProduct.productPrice}"
+                                        : "Hibernated"),
+                                  ],
+                                ),
+                              ),
+                              Text(
+                                "Total Investments : ${totalInvestments + oProduct.fakeNumber}",
+                                style: TextStyle(
+                                    color: colorWhite.withOpacity(0.6),
+                                    fontSize: 8),
+                              )
+                            ],
                           ),
                         ),
-                      if (_serverPrice != oProduct.productPrice &&
-                          isNotHibernated)
-                        Positioned(
-                          top: 20,
-                          left: 2,
-                          child: Transform.rotate(
-                            angle: -45 * pi / 180,
-                            child: AutoSizeText(
-                              "${oProduct.productPrice - _serverPrice} Less",
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  color: colorWhite,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold),
-                              minFontSize: 10,
+                        if (_serverPrice != oProduct.productPrice &&
+                            isNotHibernated)
+                          Positioned(
+                            top: -10,
+                            left: -35,
+                            child: Transform.rotate(
+                              angle: -45 * pi / 180,
+                              child: Container(
+                                width: 120,
+                                height: 45,
+                                color: color4.withOpacity(0.4),
+                              ),
                             ),
                           ),
-                        ),
-                      if (_serverPrice != oProduct.productPrice &&
-                          isNotHibernated)
-                        const Positioned(
-                          top: 8,
-                          left: 8,
-                          child: Icon(
-                            FontAwesomeIcons.fireAlt,
-                            size: 14,
+                        if (_serverPrice != oProduct.productPrice &&
+                            isNotHibernated)
+                          Positioned(
+                            top: 20,
+                            left: 2,
+                            child: Transform.rotate(
+                              angle: -45 * pi / 180,
+                              child: AutoSizeText(
+                                "${oProduct.productPrice - _serverPrice} Less",
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: colorWhite,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold),
+                                minFontSize: 10,
+                              ),
+                            ),
                           ),
-                        ),
-                    ],
-                  );
-                }
-              },
-            ),
-          ),
+                        if (_serverPrice != oProduct.productPrice &&
+                            isNotHibernated)
+                          const Positioned(
+                            top: 8,
+                            left: 8,
+                            child: Icon(
+                              FontAwesomeIcons.fireAlt,
+                              size: 14,
+                            ),
+                          ),
+                      ],
+                    );
+                  }
+                },
+              ),
+            );
+          }),
       ],
     );
   }
@@ -850,7 +869,7 @@ class MountainCPaint extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+    return false;
   }
 }
 

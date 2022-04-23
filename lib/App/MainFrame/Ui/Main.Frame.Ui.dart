@@ -94,13 +94,13 @@ class CustomAppBar extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
-          height: 68,
+          height: 65,
           child: ClipPath(
             clipper: const AppBarClipper(),
             child: Container(
               alignment: Alignment.center,
               width: Get.width,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -111,24 +111,30 @@ class CustomAppBar extends StatelessWidget {
                 onTap: () {
                   _serverStatsController.showServerStatsDialog();
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
-                    Text(
-                      "DREAM ",
-                      style: TextStyle(
-                          color: color4,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w900),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: const [
+                        Text(
+                          "DREAM ",
+                          style: TextStyle(
+                              color: color4,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        Text(
+                          "LIGHT CITY",
+                          style: TextStyle(
+                              color: colorWhite,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w900),
+                        ),
+                      ],
                     ),
-                    Text(
-                      "LIGHT CITY",
-                      style: TextStyle(
-                          color: colorWhite,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w900),
-                    ),
+                    const SizedBox(height: 8),
                   ],
                 ),
               ),
@@ -136,9 +142,9 @@ class CustomAppBar extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 8,
-          bottom: 8,
+          top: 4,
           right: 8,
+          bottom: 12,
           child: InkWell(
             onTap: () {
               _noticeGetxService.showNoticeWallDialog();
@@ -152,9 +158,9 @@ class CustomAppBar extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 8,
+          top: 4,
           left: 8,
-          bottom: 8,
+          bottom: 12,
           child: GestureDetector(
             onTap: () {
               _serverStatsController.showServerStatsDialog();
@@ -216,5 +222,5 @@ class AppBarClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
