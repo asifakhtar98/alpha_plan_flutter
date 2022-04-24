@@ -31,6 +31,7 @@ class HelpCenterScreen extends StatelessWidget {
               ),
             ),
             child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
@@ -157,7 +158,7 @@ List<Map> contactsMapList = [
       CustomerSupport.openTelegramChannel();
     },
     "Image":
-        "https://res.cloudinary.com/earnindia/image/upload/v1644341452/AlphaPlan2/Assets/my8lc5mwzubyomrakv5m.jpg",
+        "https://res.cloudinary.com/promisedpayment/image/upload/v1650794761/DreamLightCity/AppAssets/telegram3627_qniduu.png",
     "ActionText": "Join Now"
   },
   {
@@ -166,7 +167,7 @@ List<Map> contactsMapList = [
       CustomerSupport.whatsappSupportAdmin1();
     },
     "Image":
-        "https://res.cloudinary.com/earnindia/image/upload/v1644341519/AlphaPlan2/Assets/ghxjz2jwwnwh1ud1g6s3.jpg",
+        "https://res.cloudinary.com/promisedpayment/image/upload/v1650793484/DreamLightCity/AppAssets/official-man1241_na6g6e.jpg",
     "ActionText": "WhatsApp"
   },
   {
@@ -175,7 +176,7 @@ List<Map> contactsMapList = [
       CustomerSupport.whatsappSupportAdmin2();
     },
     "Image":
-        "https://res.cloudinary.com/earnindia/image/upload/v1644341502/AlphaPlan2/Assets/xxh4vfxupqeqd3wztea4.jpg",
+        "https://res.cloudinary.com/promisedpayment/image/upload/v1650793538/DreamLightCity/AppAssets/official-woman12414_v9kwqv.jpg",
     "ActionText": "WhatsApp"
   },
   {

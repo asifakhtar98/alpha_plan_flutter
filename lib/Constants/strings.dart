@@ -17,8 +17,6 @@ const kIfttApiKey1 = "bfSAEnWasrTOOwlUxqHWEY";
 const String oneSignalAppId = "1ab853e9-d7ee-461a-ba71-64986656a70e";
 const String appPrivacyPolicyLink =
     "https://dreamlightcity.tech/privacy_policy.html";
-const String cloudinaryGradientImagePath =
-    "https://res.cloudinary.com/earnindia/image/upload/c_fill,g_auto/b_rgb:24b3ff,e_gradient_fade,y_-0.50/c_scale,co_rgb:ffffff,e_sharpen,fl_relative,l_text:montserrat_25_style_light_align_center:%20,w_0.5,y_0.18/v1637324377/AlphaPlan2";
 // const String razorPayStagingApiKey = "rzp_test_XqovTPpGzbsJFE";
 const String appWebsiteLink = "https://dreamlightcity.tech";
 const String referLinkPrefix = "https://dreamlightcity.tech?refcode=";

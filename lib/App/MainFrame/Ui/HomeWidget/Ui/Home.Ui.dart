@@ -180,9 +180,22 @@ class HomeView extends StatelessWidget {
                 ),
               ),
             ),
-            const DelayedDisplay(
-                fadingDuration: Duration(milliseconds: 800),
-                child: ProductHomeCatalogue()),
+            Obx(() {
+              if (_investmentProductsStreamController
+                  .investmentPlansIdList.isNotEmpty) {
+                return const DelayedDisplay(
+                    fadingDuration: Duration(milliseconds: 800),
+                    child: ProductHomeCatalogue());
+              } else {
+                return Container(
+                  alignment: Alignment.center,
+                  height: Get.height / 1.5,
+                  child: const CircularProgressIndicator(
+                    color: color3,
+                  ),
+                );
+              }
+            }),
             const SizedBox(
               height: 20,
             ),
@@ -806,36 +819,53 @@ class MySlidingImages extends StatelessWidget {
         autoPlayAnimationDuration: const Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
         viewportFraction: 1.0,
+        enlargeCenterPage: true,
       ),
       items: corouselItemList.map((i) {
         return Builder(
           builder: (BuildContext context) {
-            return InkWell(
+            return GestureDetector(
               onTap: () => i.onClick(),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(i.pImageUrl)),
-                  color: color2,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(10),
-                  ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(18),
                 ),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      i.actionName,
-                      style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: colorWhite),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      foregroundDecoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.transparent,
+                            color4
+                          ],
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: CachedNetworkImageProvider(i.pImageUrl)),
+                        color: color2,
+                      ),
                     ),
-                  ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          i.actionName,
+                          style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: colorWhite),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             );
@@ -887,18 +917,18 @@ class CarouselModel {
 List<CarouselModel> corouselItemList = [
   CarouselModel(
       pImageUrl:
-          "https://res.cloudinary.com/earnindia/image/upload/v1645799635/AlphaPlan2/Events/p8kufx8jy8f8gprwxqse.jpg",
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1650797576/DreamLightCity/AppAssets/jk-placeholder-image_lpds2k.jpg",
       onClick: () {
         SmartDialog.showToast("Your already signup");
       },
-      actionName: ''),
+      actionName: 'SignUp Bonus'),
   CarouselModel(
       pImageUrl:
-          "https://res.cloudinary.com/earnindia/image/upload/v1645799630/AlphaPlan2/Events/ppdh09bpeztwnrvjmsz2.jpg",
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1650797576/DreamLightCity/AppAssets/jk-placeholder-image_lpds2k.jpg",
       onClick: () {
         Get.toNamed(UserReferIncomeScreen.screenName);
       },
-      actionName: ''),
+      actionName: 'Referral Income'),
   CarouselModel(
       pImageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1650567875/DreamLightCity/PlanImages/106698727-1599822851881-SoFi_Stadium_est_2020_ynf0a1.jpg",
@@ -907,13 +937,15 @@ List<CarouselModel> corouselItemList = [
       },
       actionName: 'Server of Rs.1000/Day'),
   CarouselModel(
-      pImageUrl: "$cloudinaryGradientImagePath/Assets/my8lc5mwzubyomrakv5m.jpg",
+      pImageUrl:
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1650794761/DreamLightCity/AppAssets/telegram3627_qniduu.png",
       onClick: () {
         CustomerSupport.openTelegramChannel();
       },
       actionName: 'Join Group'),
   CarouselModel(
-      pImageUrl: "$cloudinaryGradientImagePath/Assets/ghxjz2jwwnwh1ud1g6s3.jpg",
+      pImageUrl:
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1650793538/DreamLightCity/AppAssets/official-woman12414_v9kwqv.jpg",
       onClick: () {
         CustomerSupport.whatsappSupportAdmin1();
       },
