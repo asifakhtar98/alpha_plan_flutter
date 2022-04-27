@@ -4,14 +4,14 @@ class Assets {
 
   static const String assetsConfettiLottie = 'assets/confettiLottie.json';
   static const String assetsDialerBounce = 'assets/dialer_bounce.json';
-  static const String assetsMoneyRocket = 'assets/money_rocket.json';
+
   static const String assetsMoneyStaks = 'assets/money_staks.json';
   static const String assetsNotificationAlert = 'assets/notificationAlert.json';
   static const String assetsPngAppLogo = 'assets/png_app_logo.png';
   static const String assetsRotatingStar = 'assets/rotating_star.json';
   static const String assetsRupeeCoinLeftRight =
       'assets/rupeeCoinLeftRight.json';
-  static const String assetsServerOnline = 'assets/server_online.json';
+
   static const String assetsSmsBubble = 'assets/smsBubble.json';
   static const String assetsStopWarning = 'assets/stop_warning.json';
   static const String assetsTempLogo = 'assets/tempLogo.png';

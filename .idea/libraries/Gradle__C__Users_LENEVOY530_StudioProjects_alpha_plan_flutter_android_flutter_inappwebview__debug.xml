@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: C:\Users\LENEVOY530\StudioProjects\alpha_plan_flutter\android:flutter_inappwebview::debug" type="AndroidModuleLibraryType">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.4.0+2/android/build/intermediates/library_manifest/debug/AndroidManifest.xml/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.4.0+2/android/build/intermediates/library_manifest/debug/AndroidManifest.xml/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

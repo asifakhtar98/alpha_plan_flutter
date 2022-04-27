@@ -1,22 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ntp/ntp.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/Investment.Products.dart';
-import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/GetxStreams/Investment.Products.Stream.dart';
 import 'package:powerbank/HelperClasses/Server.Stats.Service.dart';
 import 'package:powerbank/HelperClasses/SpamZone.dart';
+import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 import 'package:powerbank/HelperClasses/small_services.dart';
-import 'package:powerbank/generated/assets.dart';
 
 import 'Commission.Controller.dart';
 
@@ -191,6 +189,7 @@ class BuyProductController extends GetxService {
                         ),
                         Text(
                           mainInvestmentProductsList[localIndex].productName,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                               color: colorWhite,
                               fontSize: 20,
@@ -199,7 +198,8 @@ class BuyProductController extends GetxService {
                         const SizedBox(
                           height: 8,
                         ),
-                        const Text("Server Instance Purchased",
+                        const Text("Investment Done Successfully",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: colorWhite,
                                 fontWeight: FontWeight.bold)),
@@ -215,7 +215,7 @@ class BuyProductController extends GetxService {
                       height: 8,
                     ),
                     const Text(
-                      "(This server will be online from tomorrow 12:00 am)",
+                      "(Return of investment will begin from tomorrow 12:00 am)",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: colorWhite, fontSize: 10),
                     ),
@@ -236,11 +236,11 @@ class BuyProductController extends GetxService {
                 ),
               ),
               Positioned(
-                top: -95,
+                top: -110,
                 child: Lottie.asset(
-                  Assets.assetsMoneyRocket,
-                  width: 180,
-                  height: 180,
+                  "assets/astronaut-rocket.json",
+                  width: 220,
+                  height: 220,
                 ),
               ),
             ],

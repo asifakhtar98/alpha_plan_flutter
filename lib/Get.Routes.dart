@@ -18,7 +18,6 @@ import 'package:powerbank/GetxStreams/Wallet.Permission.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
 
 import 'App/AllActivityRecords/all_activity_controller.dart';
-import 'App/LoginRegister/GetXControllers/Dynamic.Link.Controller.dart';
 import 'HelperClasses/Notice.Get.Service.dart';
 import 'HelperClasses/Password.Renew.Controller.dart';
 import 'HelperClasses/Server.Stats.Service.dart';
@@ -35,8 +34,6 @@ List<GetPage> myGetRoutes = [
         Get.lazyPut<ServerStatsController>(() => ServerStatsController(),
             fenix: true),
         Get.lazyPut<NoticeGetxService>(() => NoticeGetxService(), fenix: true),
-        Get.lazyPut<DynamicLinkController>(() => DynamicLinkController(),
-            fenix: true),
       },
     ),
   ),

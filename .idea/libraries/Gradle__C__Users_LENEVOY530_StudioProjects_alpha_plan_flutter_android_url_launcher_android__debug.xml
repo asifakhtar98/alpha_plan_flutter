@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: C:\Users\LENEVOY530\StudioProjects\alpha_plan_flutter\android:url_launcher_android::debug" type="AndroidModuleLibraryType">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.15/android/build/intermediates/library_manifest/debug/AndroidManifest.xml/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../../../flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.15/android/build/intermediates/library_manifest/debug/AndroidManifest.xml/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -107,9 +107,9 @@ class BuyProductScreen extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      bottom: -25,
+                      bottom: -15,
                       right: -10,
-                      child: Lottie.asset(Assets.assetsServerOnline,
+                      child: Lottie.asset("assets/robot-manager.json",
                           width: 100, height: 100),
                     )
                   ],
@@ -176,7 +176,7 @@ class BuyProductScreen extends StatelessWidget {
                             width: 8,
                           ),
                           const Text(
-                            "Investment\nServer Details",
+                            "Investment\nStadium Details",
                             style: TextStyle(fontSize: 24, color: colorWhite),
                           ),
                         ],
@@ -194,7 +194,7 @@ class BuyProductScreen extends StatelessWidget {
                                   color: color4,
                                 ),
                                 Text(
-                                  "  Server Price   ⇋   Rs. ${mainInvestmentProductsList[productIndex].productPrice}",
+                                  "  Price Of Share   ⇋   Rs. ${mainInvestmentProductsList[productIndex].productPrice}",
                                   style: const TextStyle(
                                       color: colorWhite, fontSize: 16),
                                 ),
@@ -242,6 +242,20 @@ class BuyProductScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            Row(
+                              children: const [
+                                Icon(
+                                  FontAwesomeIcons.bolt,
+                                  size: 16,
+                                  color: color4,
+                                ),
+                                Text(
+                                  "  Availability ⇋  Unlimited",
+                                  style: TextStyle(
+                                      color: colorWhite, fontSize: 16),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 12,
                             ),
@@ -263,7 +277,7 @@ class BuyProductScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               child: const Text(
-                                "◆ You receive it's daily income at 12:02 AM ◆\nIf you purchase the product after 12:00 AM then your fist daily income will arrive on the next day at 12:00 PM",
+                                "◆ You receive it's daily income at 12:02 AM after next day of investment. If you purchase the product after 12:00 AM then your fist daily income will arrive on the next day",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: color4),
                               ),
@@ -573,8 +587,8 @@ class BuyProductScreen extends StatelessWidget {
                             ),
                             Text(
                               (_buyProductController.isNotHibernated.value)
-                                  ? "Invest In These Servers"
-                                  : "All Servers Hibernated",
+                                  ? "Buy Shares Of These Stadium"
+                                  : "Shares Currently Hibernated",
                               style: const TextStyle(fontSize: 16),
                             ),
                             Icon(
