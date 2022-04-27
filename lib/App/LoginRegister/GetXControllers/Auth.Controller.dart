@@ -180,6 +180,7 @@ class AuthGController extends GetxController {
                 FireString.withdrawableCoin: 0,
                 FireString.investReturn: 0,
                 FireString.referralIncome: 0,
+                FireString.lifetimeDeposit: 0,
                 FireString.totalWithdrawal: 0,
                 FireString.upcomingIncome: 0,
               }, SetOptions(merge: true));
@@ -210,8 +211,10 @@ class AuthGController extends GetxController {
                   .doc(mNo)
                   .collection(FireString.personalInfo)
                   .doc(FireString.document1)
-                  .set({FireString.registeredOn: currentDateTime},
-                      SetOptions(merge: true));
+                  .set({
+                FireString.fullName: "",
+                FireString.registeredOn: currentDateTime
+              }, SetOptions(merge: true));
 
               Get.find<ServerStatsController>().pushServerGlobalStats(
                   fireString: FireString.totalGlobalUsers, valueToAdd: 1);

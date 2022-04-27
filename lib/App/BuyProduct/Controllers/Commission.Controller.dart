@@ -20,8 +20,8 @@ class CommissionController extends GetxService {
     // TODO: implement onInit
     print("On Init Commission Controller");
     super.onInit();
-    investorName = await _hiveBox.get(FireString.fullName) ?? "";
     investorNum = await _hiveBox.get(FireString.mobileNo) ?? "";
+    investorName = await _hiveBox.get(FireString.fullName) ?? "";
   }
 
   getGlobalReferCommissionData() async {

@@ -26,11 +26,12 @@ class MainFrameGService extends GetxService {
   late String loggedMobile;
   @override
   void onInit() async {
+    super.onInit();
     readDeviceInfo();
     loggedMobile = await _hiveBox.get(FireString.mobileNo) ?? "";
     print(loggedMobile);
     initSomeValue();
-    super.onInit();
+    getReqDataAndLocalIt();
   }
 
   initSomeValue() async {
@@ -216,5 +217,28 @@ class MainFrameGService extends GetxService {
     int randMillisec = Random().nextInt(2000) + 500;
     await Future.delayed(Duration(milliseconds: randMillisec));
     animateHomeAlertBar();
+  }
+
+  ///////////////////////////
+  void getReqDataAndLocalIt() async {
+    try {
+      String mNo = await _hiveBox.get(FireString.mobileNo);
+      await FirebaseFirestore.instance
+          .collection(FireString.accounts)
+          .doc(mNo)
+          .collection(FireString.personalInfo)
+          .doc(FireString.document1)
+          .get()
+          .then((_personalData) {
+        if (_personalData.exists) {
+          _hiveBox.put(
+              FireString.fullName, _personalData[FireString.fullName] ?? "");
+
+          print("Full name: ${_personalData[FireString.fullName]}");
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }
