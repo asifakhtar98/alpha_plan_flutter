@@ -496,124 +496,129 @@ class _WAddDCoinState extends State<WAddDCoin> {
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(4), topLeft: Radius.circular(8))),
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(
-              height: 15,
-            ),
-            Wrap(
-              alignment: WrapAlignment.center,
-              children: [
-                for (Map e in dCoins)
-                  SelectableContainer(
-                    marginColor: color1,
-                    unselectedOpacity: 1.0,
-                    elevation: 0,
-                    borderRadius: 30,
-                    unselectedBorderColor: Colors.grey,
-                    unselectedBackgroundColor: color1,
-                    iconSize: 8,
-                    selected: e["sel"],
-                    padding: 8,
-                    iconColor: Colors.black,
-                    selectedBorderColor: Colors.white,
-                    selectedBackgroundColor: color4,
-                    onValueChanged: (v) {
-                      _rechargeScreenController.selectedDCoin.value = e["val"];
+        child: Obx(() {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(
+                height: 15,
+              ),
+              Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  for (Map e in dCoins)
+                    SelectableContainer(
+                      marginColor: color1,
+                      unselectedOpacity: 1.0,
+                      elevation: 0,
+                      borderRadius: 30,
+                      unselectedBorderColor: Colors.grey,
+                      unselectedBackgroundColor: color1,
+                      iconSize: 8,
+                      selected: e["sel"],
+                      padding: 8,
+                      iconColor: Colors.black,
+                      selectedBorderColor: Colors.white,
+                      selectedBackgroundColor: color4,
+                      onValueChanged: (v) {
+                        _rechargeScreenController.selectedDCoin.value =
+                            e["val"];
 
-                      for (var i in dCoins) {
-                        i["sel"] = false;
-                      }
-                      setState(() {
-                        customAmountBgColor = Colors.transparent;
-                        customAmountCheckVisibility = false;
-                        e["sel"] = true;
-                      });
-                    },
-                    child: SizedBox(
-                      width: 95,
-                      child: Text(
-                        "₹${e["val"]}",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(color: Colors.white),
+                        for (var i in dCoins) {
+                          i["sel"] = false;
+                        }
+                        setState(() {
+                          customAmountBgColor = Colors.transparent;
+                          customAmountCheckVisibility = false;
+                          e["sel"] = true;
+                        });
+                      },
+                      child: SizedBox(
+                        width: 95,
+                        child: Text(
+                          "₹${e["val"]}",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-              ],
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            GestureDetector(
-              onTap: updateCustomAmount,
-              child: Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Container(
-                    height: 41,
-                    width: 180,
-                    decoration: BoxDecoration(
-                        color: customAmountBgColor,
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(
-                            color: colorWhite.withOpacity(0.7), width: 2)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "      ₹",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                        SizedBox(
-                          width: 70,
-                          child: TextField(
-                            onChanged: (s) {
-                              updateCustomAmount();
-                            },
-                            onTap: updateCustomAmount,
-                            controller: customAmount,
-                            // textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 14),
-                            keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.zero,
-                              hintText: "0000",
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
+                ],
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              if (_rechargeScreenController.maxCustomAmount.value > 0)
+                GestureDetector(
+                  onTap: updateCustomAmount,
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Container(
+                        height: 41,
+                        width: 180,
+                        decoration: BoxDecoration(
+                            color: customAmountBgColor,
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(
+                                color: colorWhite.withOpacity(0.7), width: 2)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "      ₹",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
+                            ),
+                            SizedBox(
+                              width: 70,
+                              child: TextField(
+                                onChanged: (s) {
+                                  updateCustomAmount();
+                                },
+                                onTap: updateCustomAmount,
+                                controller: customAmount,
+                                // textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 14),
+                                keyboardType: TextInputType.number,
+                                decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.zero,
+                                  hintText: "0000",
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                  ),
+                                ),
                               ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Visibility(
+                        visible: customAmountCheckVisibility,
+                        child: Positioned(
+                          top: 0,
+                          right: 95,
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: colorWhite,
+                              border: Border.all(color: Colors.white),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.check,
+                              color: Colors.black,
+                              size: 8,
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      )
+                    ],
                   ),
-                  Visibility(
-                    visible: customAmountCheckVisibility,
-                    child: Positioned(
-                      top: 0,
-                      right: 95,
-                      child: Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: colorWhite,
-                          border: Border.all(color: Colors.white),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.check,
-                          color: Colors.black,
-                          size: 8,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
+                ),
+            ],
+          );
+        }),
       ),
     );
   }

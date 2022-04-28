@@ -16,6 +16,8 @@ class WalletBalanceStreamController extends GetxService {
   RxInt referralIncome = RxInt(0);
   RxInt totalWithdrawal = RxInt(0);
   RxInt upcomingIncome = RxInt(0);
+  RxInt lifetimeDeposit = RxInt(0);
+  RxInt totalRefers = RxInt(0);
   late StreamSubscription subscription1;
   @override
   void onInit() async {
@@ -38,6 +40,8 @@ class WalletBalanceStreamController extends GetxService {
         referralIncome.value = documentSnapshot[FireString.referralIncome];
         totalWithdrawal.value = documentSnapshot[FireString.totalWithdrawal];
         upcomingIncome.value = documentSnapshot[FireString.upcomingIncome];
+        lifetimeDeposit.value = documentSnapshot[FireString.lifetimeDeposit];
+        totalRefers.value = documentSnapshot[FireString.totalRefers];
       });
       print("Subscribing to wallet balances");
       //Also subscribing to can login value

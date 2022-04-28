@@ -184,6 +184,7 @@ class AuthGController extends GetxController {
                 FireString.lifetimeDeposit: 0,
                 FireString.totalWithdrawal: 0,
                 FireString.upcomingIncome: 0,
+                FireString.totalRefers: 0,
               }, SetOptions(merge: true));
               await _firestoreIns
                   .collection(FireString.accounts)
@@ -588,6 +589,14 @@ class AuthGController extends GetxController {
                 newItemsAsList: [
                   "Your refer code was used by ${mobileNo.replaceRange(1, 6, "*" * (10 - 3))}"
                 ]);
+            //Increse Upline Total Refers
+            await FirebaseFirestore.instance
+                .collection(FireString.accounts)
+                .doc(documentSnap[FireString.mobileNo])
+                .collection(FireString.walletBalance)
+                .doc(FireString.document1)
+                .set({FireString.totalRefers: FieldValue.increment(1)},
+                    SetOptions(merge: true));
 
             ///Build Refers Tree of upline
             await FirebaseFirestore.instance

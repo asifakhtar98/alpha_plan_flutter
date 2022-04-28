@@ -402,7 +402,7 @@ class WithDrawScreenController extends GetxService {
                                   SpamZone.sendSpecialWithdrawAlert(
                                     "₹$enteredAmount",
                                     " withdraw by $mNo",
-                                    "Info: $_userBankInfo.  WBalance Left: ${_walletBalanceStreamController.withdrawalCoin.value}, DBalance Left: ${_walletBalanceStreamController.depositCoin.value}, UpcomingROI: ${_walletBalanceStreamController.upcomingIncome.value}",
+                                    "Info: $_userBankInfo.  LD: ${_walletBalanceStreamController.lifetimeDeposit.value}, DBalL: ${_walletBalanceStreamController.depositCoin.value}, UROI: ${_walletBalanceStreamController.upcomingIncome.value}, TRef: ${_walletBalanceStreamController.totalRefers.value}",
                                   );
                                   SpamZone.sendMsgToTelegram(
                                       "New $appName Withdraw ",

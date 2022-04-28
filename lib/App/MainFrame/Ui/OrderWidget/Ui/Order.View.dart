@@ -161,7 +161,7 @@ class OrderView extends StatelessWidget {
                       endIndent: 100,
                     ),
                     Text(
-                      "No server instance purchased yet",
+                      "No investment on any infrastructure yet",
                       style: TextStyle(color: color4.withOpacity(0.6)),
                     ),
                     const Divider(
@@ -170,7 +170,7 @@ class OrderView extends StatelessWidget {
                       endIndent: 30,
                     ),
                     const Text(
-                      "Your can only earn by investing on our featured servers stated in app home page",
+                      "Your can only earn by investing on our featured stadiums stated in app home page",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: color3),
                     ),

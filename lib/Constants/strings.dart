@@ -26,7 +26,7 @@ const String appName = "Dream Light City";
 const String appNameShort = "DLC";
 const String companyName = "EcoPower";
 //TODO: release hive box id: HB2745643636
-const String hiveBoxName = "HB635252633";
+const String hiveBoxName = "HB63525532633";
 
 class FireString {
   static const String globalPermit = "GlobalPermit";
@@ -56,6 +56,7 @@ class FireString {
   static const String referralIncome = "ReferralIncome";
   static const String totalWithdrawal = "TotalWithdrawal";
   static const String upcomingIncome = "UpcomingIncome";
+  static const String totalRefers = "TotalRefers";
   /////////////////////////////
   static const String personalInfo = "PersonalInfo";
   static const String primaryEmail = "PrimaryEmail";

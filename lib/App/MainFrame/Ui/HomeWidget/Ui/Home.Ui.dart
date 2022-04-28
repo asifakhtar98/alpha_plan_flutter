@@ -174,7 +174,7 @@ class HomeView extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
-                  "Select a package from below to start your journey of investment, Monitor your investment on a regular basis to understand in depth perfomance.",
+                  "Select a infrastructure from below to start your journey of investment, Monitor your investment on a regular basis to understand in depth perfomance.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(color: colorWhite),
                 ),
@@ -935,7 +935,7 @@ List<CarouselModel> corouselItemList = [
       onClick: () {
         Get.to(() => const BuyProductScreen(productIndex: 5));
       },
-      actionName: 'Server of Rs.1000/Day'),
+      actionName: 'Stadium of Rs.1000/Day'),
   CarouselModel(
       pImageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1650794761/DreamLightCity/AppAssets/telegram3627_qniduu.png",
