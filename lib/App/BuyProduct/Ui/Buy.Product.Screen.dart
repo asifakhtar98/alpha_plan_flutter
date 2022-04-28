@@ -10,6 +10,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:lottie/lottie.dart';
 import 'package:powerbank/App/BuyProduct/Controllers/Buy.Product.Controller.dart';
+import 'package:powerbank/App/BuyProduct/Controllers/Commission.Controller.dart';
 import 'package:powerbank/App/RechargeScreen/Recharge.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/Investment.Products.dart';
@@ -21,17 +22,30 @@ import 'package:selectable_container/selectable_container.dart';
 var _walletBalanceStreamer = Get.find<WalletBalanceStreamController>();
 var _buyProductController = Get.put(BuyProductController());
 
-class BuyProductScreen extends StatelessWidget {
+class BuyProductScreen extends StatefulWidget {
   final int productIndex;
 
   const BuyProductScreen({Key? key, required this.productIndex})
       : super(key: key);
 
   @override
+  State<BuyProductScreen> createState() => _BuyProductScreenState();
+}
+
+class _BuyProductScreenState extends State<BuyProductScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Get.find<CommissionController>().getGlobalReferCommissionData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     _buyProductController.togglePlan(
-      planID: mainInvestmentProductsList[productIndex].uidProduct,
-      localPlanPrice: mainInvestmentProductsList[productIndex].productPrice,
+      planID: mainInvestmentProductsList[widget.productIndex].uidProduct,
+      localPlanPrice:
+          mainInvestmentProductsList[widget.productIndex].productPrice,
     );
     return Scaffold(
       backgroundColor: color1,
@@ -72,7 +86,7 @@ class BuyProductScreen extends StatelessWidget {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: CachedNetworkImageProvider(
-                              mainInvestmentProductsList[productIndex]
+                              mainInvestmentProductsList[widget.productIndex]
                                   .pImageUrl),
                         ),
                       ),
@@ -95,7 +109,7 @@ class BuyProductScreen extends StatelessWidget {
                               width: 8,
                             ),
                             Text(
-                              mainInvestmentProductsList[productIndex]
+                              mainInvestmentProductsList[widget.productIndex]
                                   .productName,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -124,7 +138,8 @@ class BuyProductScreen extends StatelessWidget {
           height: Get.height,
           child: Obx(() {
             bool isDiscount = (_buyProductController.planServerPrice.value <
-                        mainInvestmentProductsList[productIndex].productPrice &&
+                        mainInvestmentProductsList[widget.productIndex]
+                            .productPrice &&
                     _buyProductController.isNotHibernated.value)
                 ? true
                 : false;
@@ -194,7 +209,7 @@ class BuyProductScreen extends StatelessWidget {
                                   color: color4,
                                 ),
                                 Text(
-                                  "  Price Of Share   ⇋   Rs. ${mainInvestmentProductsList[productIndex].productPrice}",
+                                  "  Price Of Share   ⇋   Rs. ${mainInvestmentProductsList[widget.productIndex].productPrice}",
                                   style: const TextStyle(
                                       color: colorWhite, fontSize: 16),
                                 ),
@@ -208,7 +223,7 @@ class BuyProductScreen extends StatelessWidget {
                                   color: color4,
                                 ),
                                 Text(
-                                  "  Daily Income ⇋   Rs. ${mainInvestmentProductsList[productIndex].dailyIncome}",
+                                  "  Daily Income ⇋   Rs. ${mainInvestmentProductsList[widget.productIndex].dailyIncome}",
                                   style: const TextStyle(
                                       color: colorWhite, fontSize: 16),
                                 ),
@@ -222,7 +237,7 @@ class BuyProductScreen extends StatelessWidget {
                                   color: color4,
                                 ),
                                 Text(
-                                  "  Total Income ⇋   Rs. ${mainInvestmentProductsList[productIndex].totalIncome}",
+                                  "  Total Income ⇋   Rs. ${mainInvestmentProductsList[widget.productIndex].totalIncome}",
                                   style: const TextStyle(
                                       color: colorWhite, fontSize: 16),
                                 ),
@@ -236,7 +251,7 @@ class BuyProductScreen extends StatelessWidget {
                                   color: color4,
                                 ),
                                 Text(
-                                  "  Serving Time ⇋   ${mainInvestmentProductsList[productIndex].maturityTime} Days",
+                                  "  Serving Time ⇋   ${mainInvestmentProductsList[widget.productIndex].maturityTime} Days",
                                   style: const TextStyle(
                                       color: colorWhite, fontSize: 16),
                                 ),
@@ -260,7 +275,7 @@ class BuyProductScreen extends StatelessWidget {
                               height: 12,
                             ),
                             Text(
-                              mainInvestmentProductsList[productIndex]
+                              mainInvestmentProductsList[widget.productIndex]
                                   .longDescription,
                               textAlign: TextAlign.justify,
                               style: const TextStyle(
@@ -325,7 +340,7 @@ class BuyProductScreen extends StatelessWidget {
                                 Lottie.asset(Assets.assetsRupeeCoinLeftRight,
                                     width: 25, height: 25),
                                 Text(
-                                  "${mainInvestmentProductsList[productIndex].productPrice - _buyProductController.planServerPrice.value} Discount Today  ",
+                                  "${mainInvestmentProductsList[widget.productIndex].productPrice - _buyProductController.planServerPrice.value} Discount Today  ",
                                   style: const TextStyle(fontSize: 10),
                                 )
                               ],
@@ -526,7 +541,8 @@ class BuyProductScreen extends StatelessWidget {
                                                               .value,
                                                       planUid:
                                                           mainInvestmentProductsList[
-                                                                  productIndex]
+                                                                  widget
+                                                                      .productIndex]
                                                               .uidProduct);
                                               if (isSuccess) {
                                                 await Future.delayed(
@@ -534,7 +550,7 @@ class BuyProductScreen extends StatelessWidget {
 
                                                 _buyProductController
                                                     .showAfterPurchaseDialog(
-                                                        productIndex);
+                                                        widget.productIndex);
                                               } else {
                                                 throw "notSuccess";
                                               }
@@ -573,7 +589,7 @@ class BuyProductScreen extends StatelessWidget {
                           );
                         } else {
                           SmartDialog.showToast(
-                              "${mainInvestmentProductsList[productIndex].productName} servers in hibernation");
+                              "${mainInvestmentProductsList[widget.productIndex].productName} servers in hibernation");
                         }
                       },
                       child: Padding(

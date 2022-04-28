@@ -160,6 +160,9 @@ class BuyProductController extends GetxService {
     SmartDialog.show(
       alignmentTemp: Alignment.center,
       backDismiss: false,
+      onDismiss: () {
+        Get.find<CommissionController>().showUplineIncomeDialog();
+      },
       widget: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,

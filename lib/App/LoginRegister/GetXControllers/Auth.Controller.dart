@@ -137,7 +137,8 @@ class AuthGController extends GetxController {
             );
           } else {
             //Check if refer code is compulsory
-            if (_serverPermitStreamController.isReferCodeCompulsory.value) {
+            if (_serverPermitStreamController.isReferCodeCompulsory.value &&
+                showReferrerBoxTick.isFalse) {
               Get.snackbar(
                 "Refer code is compulsory",
                 "Enter a valid refer code to create account",

@@ -26,7 +26,7 @@ const String appName = "Dream Light City";
 const String appNameShort = "DLC";
 const String companyName = "EcoPower";
 //TODO: release hive box id: HB2745643636
-const String hiveBoxName = "HB635235233";
+const String hiveBoxName = "HB635252633";
 
 class FireString {
   static const String globalPermit = "GlobalPermit";

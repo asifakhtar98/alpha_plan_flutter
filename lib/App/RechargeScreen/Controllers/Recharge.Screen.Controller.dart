@@ -128,7 +128,6 @@ class RechargeScreenController extends GetxService {
 
   ////////////////////////
   void updateDCoinAfterRecharge({required int amountToAdd}) async {
-    Logger().i("Recharge Successful Updating Now");
     DateTime currentDateTime = await NTP.now();
 
     String mNo = await _hiveBox.get(FireString.mobileNo);
@@ -144,8 +143,10 @@ class RechargeScreenController extends GetxService {
           .doc(mNo)
           .collection(FireString.walletBalance)
           .doc(FireString.document1)
-          .set({FireString.depositCoin: FieldValue.increment(amountToAdd)},
-              SetOptions(merge: true));
+          .set({
+        FireString.depositCoin: FieldValue.increment(amountToAdd),
+        FireString.lifetimeDeposit: FieldValue.increment(amountToAdd)
+      }, SetOptions(merge: true));
 
       SmartDialog.showToast('Recharge Successful');
       //Adding record to deposit list

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:ntp/ntp.dart';
 import 'package:powerbank/App/ReferIncome/Ui/Refer.Income.Screen.dart';
+import 'package:powerbank/App/UserPersonalInfo/User.Personal.Info.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/strings.dart';
 
@@ -20,8 +21,6 @@ class CommissionController extends GetxService {
     // TODO: implement onInit
     print("On Init Commission Controller");
     super.onInit();
-    investorNum = await _hiveBox.get(FireString.mobileNo) ?? "";
-    investorName = await _hiveBox.get(FireString.fullName) ?? "";
   }
 
   getGlobalReferCommissionData() async {
@@ -45,6 +44,15 @@ class CommissionController extends GetxService {
         level3CommissionPercent.value
       ];
     });
+    investorNum = await _hiveBox.get(FireString.mobileNo) ?? "";
+    investorName = await _hiveBox.get(FireString.fullName) ?? "";
+    if (investorName.isEmpty) {
+      SmartDialog.dismiss();
+      Get.off(() => UserPersonalInfoScreen());
+      SmartDialog.showToast("Please fill this info");
+    }
+    print("Investor Name: $investorName");
+    print("Investor Number: $investorNum");
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -59,8 +67,8 @@ class CommissionController extends GetxService {
   grabUserReferrerNo(
       {required String findReferrerOf, required int invAmount}) async {
     if (currentLevel > _maxLevel) {
-      showUplineIncomeDialog(thisCommissionHistory, invAmount);
-      thisCommissionHistory = [];
+      tmpInvAmount = invAmount;
+
       currentLevel = 1;
       return;
     }
@@ -164,8 +172,7 @@ class CommissionController extends GetxService {
           }
         } catch (e) {
           print("Referer $currentLevel Dont Exist");
-          showUplineIncomeDialog(thisCommissionHistory, invAmount);
-          thisCommissionHistory = [];
+          tmpInvAmount = invAmount;
           currentLevel = 1;
           return;
         }
@@ -173,18 +180,21 @@ class CommissionController extends GetxService {
     });
   }
 
-  void showUplineIncomeDialog(
-      List thisCommissionHistory, int lastRechargedAmount) {
+  int tmpInvAmount = 0;
+  void showUplineIncomeDialog() {
     print(thisCommissionHistory.length.toString());
     if (thisCommissionHistory.isNotEmpty) {
       SmartDialog.show(
           maskColorTemp: color1.withOpacity(0.9),
           alignmentTemp: Alignment.center,
+          onDismiss: () {
+            thisCommissionHistory = [];
+          },
           widget: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "Referral commission by Apha Plan 2\n-Upline1 (One who refer you to the app)-",
+                "Referral commission by $appNameShort App\n-Upline1 (One who refer you to the app)-",
                 textAlign: TextAlign.center,
                 style: TextStyle(color: color4),
               ),
@@ -239,7 +249,7 @@ class CommissionController extends GetxService {
                 child: Column(
                   children: [
                     Text(
-                      "₹$lastRechargedAmount",
+                      "₹$tmpInvAmount",
                       style: const TextStyle(
                           color: colorWhite,
                           fontSize: 20,
