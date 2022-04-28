@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:lottie/lottie.dart';
 import 'package:powerbank/App/ReferIncome/Ui/Refer.Income.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/strings.dart';
@@ -39,22 +39,31 @@ class ReferralProgramScreen extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [color1, color3],
                       ),
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          "https://res.cloudinary.com/asifakhtarcloudinary/image/upload/v1637143581/PowerBankImages/AppAssets/ReferFriend.png",
-                        ),
-                      ),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(6.0),
-                      child: Text(
-                        ">> 3 Level Income\n(From all your refers)",
-                        textAlign: TextAlign.end,
-                        style: TextStyle(
-                            color: colorWhite,
-                            fontStyle: FontStyle.italic,
-                            fontSize: 12),
-                      ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 1,
+                          bottom: -10,
+                          child: Lottie.asset(
+                            "assets/man-and-woman-.json",
+                            height: Get.height * 0.30,
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 8,
+                          right: 8,
+                          child: Text(
+                            ">> 3 Level Income\n(From all your refers)",
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                              color: colorWhite,
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(
@@ -149,7 +158,7 @@ class ReferralProgramScreen extends StatelessWidget {
                           height: 15,
                         ),
                         Text(
-                            "Get 12% commission from all your  Level 3 (Level 2's direct downline members) refers when they recharge any amount in the app at any time.",
+                            "Get 3% commission from all your  Level 3 (Level 2's direct downline members) refers when they recharge any amount in the app at any time.",
                             textAlign: TextAlign.center,
                             style: _textStyle1),
                         const SizedBox(
