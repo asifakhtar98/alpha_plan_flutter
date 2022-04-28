@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
 
 class HelpCenterScreen extends StatelessWidget {
@@ -185,14 +186,14 @@ List<Map> contactsMapList = [
       CustomerSupport.openDeveloperSite();
     },
     "Image":
-        "https://res.cloudinary.com/earnindia/image/upload/v1644341468/AlphaPlan2/Assets/felxygmint1nyoi3exgp.jpg",
+        "https://res.cloudinary.com/promisedpayment/image/upload/v1651164426/DreamLightCity/AppAssets/felxygmint1nyoi3exgp_tcj8o6.jpg",
     "ActionText": "Order Apps"
   },
 ];
 
 List<Map> faqMapList = [
   {
-    "q": "What is the income credit time of alpha 2 app plans?",
+    "q": "What is the income credit time of $appNameShort App?",
     "a":
         "Daily income of each active plan is credited at sharp 12.00 am midnight"
   },
@@ -204,7 +205,7 @@ List<Map> faqMapList = [
   {
     "q": "How refer commission are distributed?",
     "a":
-        "Refer commission are grabbed by your account when your refers(downline members) recharge in alpha 2 recharge section by any methods"
+        "Refer commission are grabbed by your account when your refers(downline members) recharge in $appNameShort App recharge section by any methods"
   },
   {
     "q": "What happen when wrong bank info are available in account?",
@@ -212,8 +213,8 @@ List<Map> faqMapList = [
         "While withdrawing with wrong bank details your full withdraw amount will get refund instantly or within few minutes. Then you can withdraw that amount again with correct bank details"
   },
   {
-    "q": "How to get best supports from alpha 2 managers/accountants",
+    "q": "How to get best supports from $appNameShort App managers/accountants",
     "a":
-        "While connecting for help support with alpha 2 manager/accountant explain your query, complain, issue with details and visual or proofs. Record and send video if you found any bugs or issue in app"
+        "While connecting for help support with $appNameShort App manager/accountant explain your query, complain, issue with details and visual or proofs. Record and send video if you found any bugs or issue in app"
   },
 ];

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
 
 class AboutAppScreen extends StatelessWidget {
@@ -312,44 +313,14 @@ class DescriptionModel {
 List<DescriptionModel> descriptionList = [
   DescriptionModel(
       imageUrl:
-          "https://res.cloudinary.com/earnindia/image/upload/v1645811487/AlphaPlan2/Documents/ygcqllvwgtgtuywkwdls.jpg",
-      headline: "WHAT ARE WE ALPHA?",
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1651170187/DreamLightCity/AppAssets/Fall-2018-Freshman-Class-Diversity-Feature-800x450_tgej03.jpg",
+      headline: "WHAT ARE WE ECO POWER GROUP?",
       description:
-          "Established in July 2016, Alpha Microelectronics Corporation is an IC design house specializing in the design, research, development, application and marketing of integrated circuits. Alpha's common stocks are listed on the Gre-Tai Securities Market (OTC) since September 2018."),
+          "Established in July 2016, $appNameShort App Microelectronics Corporation is an IC design house specializing in the design, research, development, application and marketing of integrated circuits. Alpha's common stocks are listed on the Gre-Tai Securities Market (OTC) since September 2018."),
   DescriptionModel(
       imageUrl:
-          "https://res.cloudinary.com/earnindia/image/upload/v1645811487/AlphaPlan2/Documents/maoqozzvtc8jxnhn0tfa.jpg",
-      headline: "OUR PRODUCTS VALUES",
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1651170428/DreamLightCity/AppAssets/822c91e2-5ead-11e8-9334-2218e7146b04_nynemx.jpg",
+      headline: "OUR SHARES VALUES",
       description:
           "Currently, the total registered capital is NT \$451.60 million. Alpha's product range covers voice ICs, voice integrated MCUS and IC recording products. These products are primarily used in consumer products such as sound equipment, personal electronics, home appliances, toys, gifts and interactive consumer items."),
-  DescriptionModel(
-      imageUrl:
-          "https://res.cloudinary.com/earnindia/image/upload/v1645811487/AlphaPlan2/Documents/r12wveihth0oz7kgdbxy.jpg",
-      headline: "WHAT WE ARE UPTO?",
-      description:
-          "Alpha's Plan is a profitable and sustainable cloud computing server project which has been developed and managed by the Innovation department of Alpha Microelectronics Corp for already 3 years. With the rapid development of the Internet, we have noticed that a large number of users leave the terminal resources on the network idly, causing a huge waste of resources."),
-  DescriptionModel(
-      imageUrl:
-          "https://res.cloudinary.com/earnindia/image/upload/v1645811487/AlphaPlan2/Documents/tfdtxqphafmffileyk60.jpg",
-      headline: "WHO DO WE HELP?",
-      description:
-          "To reduce waste and recycle, we hereby established a laboratory for product development and progressed an innovative cloud computing server product. The product utilizes the latest cloud technology and the function of \"The Internet of Things\" to improve the operational efficiency of idle resources, creating new revenue streams through digital transformation. It will help We Media content creators to get traffic, to connect different IT equipment at any time and any place, to achieve data access and calculation, and to create value"),
-  DescriptionModel(
-      imageUrl:
-          "https://res.cloudinary.com/earnindia/image/upload/v1645811488/AlphaPlan2/Documents/g7wkb40cwrceywqpquhz.jpg",
-      headline: "OUR DATA PROCESSING AT",
-      description:
-          "At present, This project involves 2 self-built server rooms and 100,000 cloud computing servers, which can independently provide Internet infrastructure services such as computing, storage, online backup, hosting, and bandwidth. Also, we have cooperated with more than a dozen well-known cloud server companies at home and abroad with their leasing services to meet the growing business volume in the future. The cooperating companies include Amazon Cloud, IBM Cloud, Google Cloud, Huawei Cloud, etc."),
-  DescriptionModel(
-      imageUrl:
-          "https://res.cloudinary.com/earnindia/image/upload/v1645811487/AlphaPlan2/Documents/cof3n6sy0587pvxzjqxl.jpg",
-      headline: "SOME MORE INFORMATION",
-      description:
-          "In the three years of the trial run, the cloud computing server project has been operating very well. By serving the We Media content creators and advertisers, we have also obtained corresponding revenue. To serve more content creators and advertisers, we decide to expand the range of operations and aggregate social financing."),
-  DescriptionModel(
-      imageUrl:
-          "https://res.cloudinary.com/earnindia/image/upload/v1645811488/AlphaPlan2/Documents/tuuv6fyx7h0iujkn97bp.jpg",
-      headline: "OUR FINANCIAL PLAN",
-      description:
-          "The financing plan is referred to as \"Alpha's Plan\". We have deployed a large number of cloud computing servers around the world. Through P distributed computing, while making full use of idle resources, we also need more funds to pay the end-users who offer those idle resources. Certainly, we will pay back our investors with a considerable investment return."),
 ];

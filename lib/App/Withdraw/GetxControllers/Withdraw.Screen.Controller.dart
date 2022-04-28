@@ -18,7 +18,6 @@ import 'package:powerbank/HelperClasses/SpamZone.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 import 'package:powerbank/HelperClasses/small_services.dart';
-import 'package:powerbank/generated/assets.dart';
 
 var _mainFrameGService = Get.find<MainFrameGService>();
 var _walletBalanceStreamController = Get.find<WalletBalanceStreamController>();
@@ -256,195 +255,209 @@ class WithDrawScreenController extends GetxService {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const DialogAppNameTag(),
-          Container(
-            width: Get.width - 70,
-            height: 370,
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [color3, color2.withBlue(150)]),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              children: [
-                Column(
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                width: Get.width - 70,
+                height: 320,
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [color3, color2.withBlue(150)]),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
                   children: [
-                    Lottie.asset(Assets.assetsMoneyStaks,
-                        height: 90, width: 90),
-                    const SizedBox(
-                      height: 8,
+                    Column(
+                      children: const [
+                        SizedBox(
+                          height: 80,
+                        ),
+                        Text("Withdrawing To",
+                            style: TextStyle(
+                                color: colorWhite,
+                                fontWeight: FontWeight.bold)),
+                      ],
                     ),
-                    const Text("Withdrawing To",
-                        style: TextStyle(
-                            color: colorWhite, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                const Spacer(),
-                ListTile(
-                  leading: const Icon(
-                    FontAwesomeIcons.university,
-                    color: color4,
-                    size: 22,
-                  ),
-                  title: Text(
-                    bankAcNumber.value,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: color4,
+                    const Spacer(),
+                    ListTile(
+                      leading: const Icon(
+                        FontAwesomeIcons.university,
+                        color: color4,
+                        size: 22,
+                      ),
+                      title: Text(
+                        bankAcNumber.value,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          color: color4,
+                        ),
+                      ),
+                      subtitle: Text(
+                        payeeName.value,
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: color4,
+                        ),
+                      ),
+                      trailing: IconButton(
+                        onPressed: () {
+                          SmartDialog.dismiss(status: SmartStatus.dialog);
+                          Get.to(BankInfoScreen());
+                        },
+                        icon: const Icon(
+                          FontAwesomeIcons.pen,
+                          color: color4,
+                          size: 18,
+                        ),
+                      ),
                     ),
-                  ),
-                  subtitle: Text(
-                    payeeName.value,
-                    style: const TextStyle(
-                      fontSize: 11,
-                      color: color4,
+                    const Spacer(),
+                    const Divider(
+                      color: colorWhite,
                     ),
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {
-                      SmartDialog.dismiss(status: SmartStatus.dialog);
-                      Get.to(BankInfoScreen());
-                    },
-                    icon: const Icon(
-                      FontAwesomeIcons.pen,
-                      color: color4,
-                      size: 18,
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                const Divider(
-                  color: colorWhite,
-                ),
-                TextButton(
-                  onPressed: () async {
-                    SmartDialog.showLoading(
-                        background: colorLoadingAnim, backDismiss: false);
+                    TextButton(
+                      onPressed: () async {
+                        SmartDialog.showLoading(
+                            background: colorLoadingAnim, backDismiss: false);
 
-                    String mNo = await _hiveBox.get(FireString.mobileNo);
-                    DateTime currentDateTime = await NTP.now();
-                    String docId = "WD+$mNo+[$currentDateTime]";
-                    try {
-                      if (await InternetConnectionChecker().hasConnection !=
-                          true) {
-                        SmartDialog.showToast("No Internet Connection");
-                        throw "noInternetConnection";
-                      }
+                        String mNo = await _hiveBox.get(FireString.mobileNo);
+                        DateTime currentDateTime = await NTP.now();
+                        String docId = "WD+$mNo+[$currentDateTime]";
+                        try {
+                          if (await InternetConnectionChecker().hasConnection !=
+                              true) {
+                            SmartDialog.showToast("No Internet Connection");
+                            throw "noInternetConnection";
+                          }
 
-                      await _firestore
-                          .collection(FireString.accounts)
-                          .doc(mNo)
-                          .collection(FireString.walletBalance)
-                          .doc(FireString.document1)
-                          .set({
-                        FireString.withdrawableCoin:
-                            FieldValue.increment(-enteredAmount)
-                      }, SetOptions(merge: true)).then((value) async {
-                        Map _userBankInfo = {
-                          FireString.bankName: bankName.value,
-                          FireString.payeeName: payeeName.value,
-                          FireString.bankAcNumber: bankAcNumber.value,
-                          FireString.bankIfsc: ifscCode.value,
-                          FireString.payeeEmail: payeeEmail.value,
-                        };
-                        //Adding data to global withdrawals doc list firestore
-                        await _firestore
-                            .collection(FireString.allWithdrawals)
-                            .doc(docId)
-                            .set({
-                          FireString.withdrawalAmount: enteredAmount,
-                          FireString.withdrawStatus: FireString.processing,
-                          FireString.withdrawBankInfo: _userBankInfo,
-                        }, SetOptions(merge: true)).then((value) async {
-                          //Adding To User Withdrawals Doc List
                           await _firestore
                               .collection(FireString.accounts)
                               .doc(mNo)
-                              .collection(FireString.myWithdrawals)
-                              .doc(docId)
+                              .collection(FireString.walletBalance)
+                              .doc(FireString.document1)
                               .set({
-                            FireString.withdrawalAmount: enteredAmount,
-                            FireString.withdrawDateTime: currentDateTime,
-                            FireString.withdrawStatus: FireString.processing,
-                            FireString.userDeviceName:
-                                _mainFrameGService.currentDevice.toString(),
+                            FireString.withdrawableCoin:
+                                FieldValue.increment(-enteredAmount)
                           }, SetOptions(merge: true)).then((value) async {
+                            Map _userBankInfo = {
+                              FireString.bankName: bankName.value,
+                              FireString.payeeName: payeeName.value,
+                              FireString.bankAcNumber: bankAcNumber.value,
+                              FireString.bankIfsc: ifscCode.value,
+                              FireString.payeeEmail: payeeEmail.value,
+                            };
+                            //Adding data to global withdrawals doc list firestore
                             await _firestore
-                                .collection(FireString.accounts)
-                                .doc(mNo)
-                                .collection(FireString.walletBalance)
-                                .doc(FireString.document2)
+                                .collection(FireString.allWithdrawals)
+                                .doc(docId)
                                 .set({
-                              FireString.lastWithdrawStatus:
-                                  FireString.processing,
-                            }, SetOptions(merge: true));
-                            await _firestore
-                                .collection(FireString.accounts)
-                                .doc(mNo)
-                                .collection(FireString.walletBalance)
-                                .doc(FireString.document1)
-                                .set({
-                              FireString.totalWithdrawal:
-                                  _walletBalanceStreamController
-                                          .totalWithdrawal.value +
-                                      enteredAmount,
-                            }, SetOptions(merge: true));
-                            Future.delayed(const Duration(seconds: 3),
-                                () async {
-                              SmartDialog.dismiss(status: SmartStatus.loading);
-                              SmartDialog.showToast("Sent to withdraw queue");
-                              SpamZone.sendSpecialWithdrawAlert(
-                                "₹$enteredAmount",
-                                " withdraw by $mNo",
-                                "Info: $_userBankInfo.  WBalance Left: ${_walletBalanceStreamController.withdrawalCoin.value}, DBalance Left: ${_walletBalanceStreamController.depositCoin.value}, UpcomingROI: ${_walletBalanceStreamController.upcomingIncome.value}",
-                              );
-                              SpamZone.sendMsgToTelegram(
-                                  "New $appName Withdraw ",
-                                  "of ₹$enteredAmount ",
-                                  "By ${await _hiveBox.get(FireString.mobileNo)} - ${_hiveBox.get(FireString.fullName) ?? _hiveBox.get(FireString.payeeName)}",
-                                  toAdmin: true,
-                                  toTgUsers: false);
+                              FireString.withdrawalAmount: enteredAmount,
+                              FireString.withdrawStatus: FireString.processing,
+                              FireString.withdrawBankInfo: _userBankInfo,
+                            }, SetOptions(merge: true)).then((value) async {
+                              //Adding To User Withdrawals Doc List
+                              await _firestore
+                                  .collection(FireString.accounts)
+                                  .doc(mNo)
+                                  .collection(FireString.myWithdrawals)
+                                  .doc(docId)
+                                  .set({
+                                FireString.withdrawalAmount: enteredAmount,
+                                FireString.withdrawDateTime: currentDateTime,
+                                FireString.withdrawStatus:
+                                    FireString.processing,
+                                FireString.userDeviceName:
+                                    _mainFrameGService.currentDevice.toString(),
+                              }, SetOptions(merge: true)).then((value) async {
+                                await _firestore
+                                    .collection(FireString.accounts)
+                                    .doc(mNo)
+                                    .collection(FireString.walletBalance)
+                                    .doc(FireString.document2)
+                                    .set({
+                                  FireString.lastWithdrawStatus:
+                                      FireString.processing,
+                                }, SetOptions(merge: true));
+                                await _firestore
+                                    .collection(FireString.accounts)
+                                    .doc(mNo)
+                                    .collection(FireString.walletBalance)
+                                    .doc(FireString.document1)
+                                    .set({
+                                  FireString.totalWithdrawal:
+                                      _walletBalanceStreamController
+                                              .totalWithdrawal.value +
+                                          enteredAmount,
+                                }, SetOptions(merge: true));
+                                Future.delayed(const Duration(seconds: 3),
+                                    () async {
+                                  SmartDialog.dismiss(
+                                      status: SmartStatus.loading);
+                                  SmartDialog.showToast(
+                                      "Sent to withdraw queue");
+                                  SpamZone.sendSpecialWithdrawAlert(
+                                    "₹$enteredAmount",
+                                    " withdraw by $mNo",
+                                    "Info: $_userBankInfo.  WBalance Left: ${_walletBalanceStreamController.withdrawalCoin.value}, DBalance Left: ${_walletBalanceStreamController.depositCoin.value}, UpcomingROI: ${_walletBalanceStreamController.upcomingIncome.value}",
+                                  );
+                                  SpamZone.sendMsgToTelegram(
+                                      "New $appName Withdraw ",
+                                      "of ₹$enteredAmount ",
+                                      "By ${await _hiveBox.get(FireString.mobileNo)} - ${_hiveBox.get(FireString.fullName) ?? _hiveBox.get(FireString.payeeName)}",
+                                      toAdmin: true,
+                                      toTgUsers: false);
 //Adding record to all my activity
-                              SmallServices.updateUserActivityByDate(
-                                  userIdMob: mNo,
-                                  newItemsAsList: [
-                                    "Withdraw Rs.$enteredAmount from device: ${_mainFrameGService.currentDevice} at ${timeAsTxt(currentDateTime.toString())}",
-                                  ]);
+                                  SmallServices.updateUserActivityByDate(
+                                      userIdMob: mNo,
+                                      newItemsAsList: [
+                                        "Withdraw Rs.$enteredAmount from device: ${_mainFrameGService.currentDevice} at ${timeAsTxt(currentDateTime.toString())}",
+                                      ]);
+                                });
+                                Get.find<ServerStatsController>()
+                                    .pushServerGlobalStats(
+                                        fireString: FireString
+                                            .totalGlobalTriedWithdrawal,
+                                        valueToAdd: enteredAmount);
+                              });
                             });
-                            Get.find<ServerStatsController>()
-                                .pushServerGlobalStats(
-                                    fireString:
-                                        FireString.totalGlobalTriedWithdrawal,
-                                    valueToAdd: enteredAmount);
                           });
-                        });
-                      });
-                    } catch (e) {
-                      SmartDialog.dismiss(status: SmartStatus.loading);
-                      SmartDialog.showToast('Try Again Later');
-                    }
-                  },
-                  child: const Text(
-                    "Yes, Confirm Withdraw",
-                    style: TextStyle(color: colorWhite),
-                  ),
+                        } catch (e) {
+                          SmartDialog.dismiss(status: SmartStatus.loading);
+                          SmartDialog.showToast('Try Again Later');
+                        }
+                      },
+                      child: const Text(
+                        "Yes, Confirm Withdraw",
+                        style: TextStyle(color: colorWhite),
+                      ),
+                    ),
+                    const Divider(
+                      color: colorWhite,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        SmartDialog.dismiss(status: SmartStatus.dialog);
+                      },
+                      child: const Text(
+                        "Cancel",
+                        style: TextStyle(color: color4),
+                      ),
+                    ),
+                  ],
                 ),
-                const Divider(
-                  color: colorWhite,
-                ),
-                TextButton(
-                  onPressed: () {
-                    SmartDialog.dismiss(status: SmartStatus.dialog);
-                  },
-                  child: const Text(
-                    "Cancel",
-                    style: TextStyle(color: color4),
-                  ),
-                ),
-              ],
-            ),
+              ),
+              Positioned(
+                top: -60,
+                left: 0,
+                right: 0,
+                child: Lottie.asset("assets/piggy_money_blue.json",
+                    height: 160, width: 160),
+              ),
+            ],
           ),
         ],
       ),

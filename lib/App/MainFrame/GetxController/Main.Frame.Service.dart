@@ -221,6 +221,7 @@ class MainFrameGService extends GetxService {
 
   ///////////////////////////
   void getReqDataAndLocalIt() async {
+    await Future.delayed(const Duration(milliseconds: 4000));
     try {
       String mNo = await _hiveBox.get(FireString.mobileNo);
       await FirebaseFirestore.instance
@@ -233,7 +234,11 @@ class MainFrameGService extends GetxService {
         if (_personalData.exists) {
           _hiveBox.put(
               FireString.fullName, _personalData[FireString.fullName] ?? "");
-
+          if (_personalData[FireString.fullName] == "" ||
+              _personalData[FireString.fullName] == null) {
+            Get.to(() => UserPersonalInfoScreen());
+            SmartDialog.showToast("Please fill this info");
+          }
           print("Full name: ${_personalData[FireString.fullName]}");
         }
       });
