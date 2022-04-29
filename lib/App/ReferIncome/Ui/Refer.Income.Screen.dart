@@ -91,7 +91,7 @@ class UserReferIncomeScreen extends StatelessWidget {
                         thickness: 2,
                       ),
                       Text(
-                        "You obtain ${Get.find<CommissionController>().level1CommissionPercent}% from all level 1 referred users when they recharge/deposit to their wallet, ${Get.find<CommissionController>().level2CommissionPercent}% from level 2 referred users and ${Get.find<CommissionController>().level3CommissionPercent}% from all level 3 refers immediately.",
+                        "You obtain ${Get.find<CommissionController>().level1CommissionPercent}% from all level 1 referred users when they invest in the app, ${Get.find<CommissionController>().level2CommissionPercent}% from level 2 referred users and ${Get.find<CommissionController>().level3CommissionPercent}% from all level 3 refers immediately.",
                         style: _textStyle1,
                       ),
                       Obx(() {
@@ -297,7 +297,7 @@ class RefersTimeline extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "Recharge",
+                "Investment",
                 style: _textStyle2,
               ),
               const SizedBox(
@@ -531,7 +531,7 @@ class OnlyReferStats extends StatelessWidget {
                             width: 8,
                           ),
                           Text(
-                            "Total\nLevel Recharge",
+                            "Total\nLevel Invest",
                             style: _textStyle3,
                           ),
                           const Spacer(),

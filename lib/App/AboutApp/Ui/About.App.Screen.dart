@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:powerbank/Constants/Colors.dart';
-import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
 
 class AboutAppScreen extends StatelessWidget {
@@ -315,12 +314,10 @@ List<DescriptionModel> descriptionList = [
       imageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1651170187/DreamLightCity/AppAssets/Fall-2018-Freshman-Class-Diversity-Feature-800x450_tgej03.jpg",
       headline: "WHAT ARE WE ECO POWER GROUP?",
-      description:
-          "Established in July 2016, $appNameShort App Microelectronics Corporation is an IC design house specializing in the design, research, development, application and marketing of integrated circuits. Alpha's common stocks are listed on the Gre-Tai Securities Market (OTC) since September 2018."),
+      description: ""),
   DescriptionModel(
       imageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1651170428/DreamLightCity/AppAssets/822c91e2-5ead-11e8-9334-2218e7146b04_nynemx.jpg",
       headline: "OUR SHARES VALUES",
-      description:
-          "Currently, the total registered capital is NT \$451.60 million. Alpha's product range covers voice ICs, voice integrated MCUS and IC recording products. These products are primarily used in consumer products such as sound equipment, personal electronics, home appliances, toys, gifts and interactive consumer items."),
+      description: ""),
 ];
