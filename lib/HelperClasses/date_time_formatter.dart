@@ -19,3 +19,14 @@ String timeAsFireDoc(String txt) {
   final DateFormat dateFormatter = DateFormat("yyyy-MM-dd");
   return dateFormatter.format(DateTime.parse(txt));
 }
+
+Future<DateTime> getCurrentDateTime() async {
+  DateTime currentDateTime = DateTime.now();
+  try {
+    currentDateTime = await getCurrentDateTime();
+  } catch (e) {
+    currentDateTime = DateTime.now();
+    print(e);
+  }
+  return currentDateTime;
+}

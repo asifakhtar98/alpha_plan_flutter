@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:logger/logger.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/App/UserPersonalInfo/User.Personal.Info.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/strings.dart';
@@ -128,13 +126,13 @@ class RechargeScreenController extends GetxService {
 
   ////////////////////////
   void updateDCoinAfterRecharge({required int amountToAdd}) async {
-    DateTime currentDateTime = await NTP.now();
-
-    String mNo = await _hiveBox.get(FireString.mobileNo);
-    //TODO: Complicating The Payment Order Id By Attaching 4 Digit Random Number
-    lastRechargeRefNo.value =
-        "${lastRechargeRefNo.value}${Random().nextInt(8888) + 1111}";
     try {
+      DateTime currentDateTime = await getCurrentDateTime();
+
+      String mNo = await _hiveBox.get(FireString.mobileNo);
+      //TODO: Complicating The Payment Order Id By Attaching 4 Digit Random Number
+      lastRechargeRefNo.value =
+          "${lastRechargeRefNo.value}${Random().nextInt(8888) + 1111}";
       String docId = "DP+$mNo+[$currentDateTime]";
 
       //Adding old balance and new amount
@@ -199,7 +197,8 @@ class RechargeScreenController extends GetxService {
         "Recharge of Rs.$amountToAdd at ${timeAsTxt(currentDateTime.toString())}",
       ]);
     } catch (e) {
-      Logger().d("Recharge Successful But Update Failed");
+      SmartDialog.showToast("ORSF: " + e.toString(),
+          time: const Duration(seconds: 7));
     }
   }
 

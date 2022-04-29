@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/App/MainFrame/GetxController/Main.Frame.Service.dart';
 import 'package:powerbank/App/UserBankInfo/Ui/Bank.Info.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
@@ -325,7 +324,7 @@ class WithDrawScreenController extends GetxService {
                             background: colorLoadingAnim, backDismiss: false);
 
                         String mNo = await _hiveBox.get(FireString.mobileNo);
-                        DateTime currentDateTime = await NTP.now();
+                        DateTime currentDateTime = await getCurrentDateTime();
                         String docId = "WD+$mNo+[$currentDateTime]";
                         try {
                           if (await InternetConnectionChecker().hasConnection !=

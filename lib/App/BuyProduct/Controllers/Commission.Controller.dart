@@ -4,11 +4,11 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/App/ReferIncome/Ui/Refer.Income.Screen.dart';
 import 'package:powerbank/App/UserPersonalInfo/User.Personal.Info.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 
 class CommissionController extends GetxService {
   List<int> commissionPercentList = [12, 6, 3];
@@ -73,7 +73,7 @@ class CommissionController extends GetxService {
       return;
     }
 
-    var currentDateTime = await NTP.now();
+    var currentDateTime = await getCurrentDateTime();
     //proceed if 1,2,3 level
     await FirebaseFirestore.instance
         .collection(FireString.accounts)

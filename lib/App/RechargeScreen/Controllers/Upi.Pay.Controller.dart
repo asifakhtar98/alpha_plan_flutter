@@ -4,8 +4,8 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 import 'package:upi_pay/upi_pay.dart';
 
 import 'Recharge.Screen.Controller.dart';
@@ -21,7 +21,6 @@ class UpiPayController extends GetxService {
   void createUpiRechargeRequest({required UpiApplication upiApp}) async {
     if (await InternetConnectionChecker().hasConnection != true) {
       SmartDialog.showToast("No Internet Connection");
-      throw "noInternetConnection";
     }
     adminUpiId = _rechargeScreenController
         .adminUpi[rnd.nextInt(_rechargeScreenController.adminUpi.length)];
@@ -42,12 +41,19 @@ class UpiPayController extends GetxService {
     // print(response.txnRef);
     // print(response.txnId);
     if (response.status == UpiTransactionStatus.success) {
-      _rechargeScreenController.lastRechargeRefNo.value = "S+UPI+$uniqueRefId";
-      _rechargeScreenController.updateDCoinAfterRecharge(
-          amountToAdd: _amountToAdd);
+      try {
+        _rechargeScreenController.lastRechargeRefNo.value =
+            "S+UPI+$uniqueRefId";
+        _rechargeScreenController.updateDCoinAfterRecharge(
+            amountToAdd: _amountToAdd);
+      } catch (e) {
+        SmartDialog.showToast(response.status.toString());
+        print(e);
+      }
     } else {
       _rechargeScreenController.lastRechargeRefNo.value =
-          "F+UPI+${await NTP.now()}";
+          "F+UPI+${await getCurrentDateTime()}";
+      SmartDialog.showToast("UF:" + response.status.toString());
     }
   }
 

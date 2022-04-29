@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'dart:math';
+
+import 'package:cashfree_pg/cashfree_pg.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
-import 'package:cashfree_pg/cashfree_pg.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/HelperClasses/date_time_formatter.dart';
+
 import 'Recharge.Screen.Controller.dart';
 
 final _hiveBox = Hive.box(hiveBoxName);
@@ -65,7 +67,6 @@ class CashfreePgController extends GetxService {
         // print("CashFree Try ");
         if (await InternetConnectionChecker().hasConnection != true) {
           SmartDialog.showToast("No Internet Connection");
-          throw "noInternetConnection";
         }
         CashfreePGSDK.doPayment(inputs).then((value) async {
           if (value!["txStatus"] == "SUCCESS") {
@@ -75,7 +76,7 @@ class CashfreePgController extends GetxService {
                 amountToAdd: _currentAmount);
           } else {
             _rechargeScreenController.lastRechargeRefNo.value =
-                "F+CF+${await NTP.now()}";
+                "F+CF+${await getCurrentDateTime()}";
             // print("Cash free Payment Failed");
           }
         });

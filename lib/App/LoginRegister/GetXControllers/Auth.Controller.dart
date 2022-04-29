@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:ntp/ntp.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:powerbank/App/MainFrame/Ui/Main.Frame.Ui.dart';
 import 'package:powerbank/Constants/Colors.dart';
@@ -197,7 +196,7 @@ class AuthGController extends GetxController {
                 FireString.noOfWithdraw: 0,
                 FireString.lastWithdrawStatus: "",
               }, SetOptions(merge: true));
-              var currentDateTime = await NTP.now();
+              var currentDateTime = await getCurrentDateTime();
               SmallServices.updateUserActivityByDate(
                   userIdMob: mNo,
                   newItemsAsList: [
@@ -537,7 +536,7 @@ class AuthGController extends GetxController {
   }
 
   setUserReferData({required String mobileNo, required referredByCode}) async {
-    var currentDateTime = await NTP.now();
+    var currentDateTime = await getCurrentDateTime();
     //generate new refer code of 16 Digit
     String newReferCode =
         "$referCodePrefix${Random().nextInt(444444) + Random().nextInt(444444) + 111111}${mobileNo.replaceRange(1, 6, "" * (10 - 3))}";

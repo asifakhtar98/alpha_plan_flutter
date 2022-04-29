@@ -5,8 +5,8 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import 'Recharge.Screen.Controller.dart';
@@ -29,7 +29,6 @@ class RazorpayController extends GetxService {
   void createRazorpayRechargeRequest(String paymentMethod) async {
     if (await InternetConnectionChecker().hasConnection != true) {
       SmartDialog.showToast("No Internet Connection");
-      throw "noInternetConnection";
     }
     int rndInt =
         Random().nextInt(_rechargeScreenController.razorPayKeys.length);
@@ -74,18 +73,18 @@ class RazorpayController extends GetxService {
 
   _handlePaymentSuccess(PaymentSuccessResponse response) async {
     _rechargeScreenController.lastRechargeRefNo.value =
-        "S+RP+${await NTP.now()}";
+        "S+RP+${await getCurrentDateTime()}";
     _rechargeScreenController.updateDCoinAfterRecharge(
         amountToAdd: _amountToAdd);
   }
 
   _handlePaymentError(PaymentFailureResponse response) async {
     _rechargeScreenController.lastRechargeRefNo.value =
-        "F+CF+${await NTP.now()}";
+        "F+CF+${await getCurrentDateTime()}";
   }
 
   _handleExternalWallet(ExternalWalletResponse response) async {
     _rechargeScreenController.lastRechargeRefNo.value =
-        "EXT+RP+${await NTP.now()}";
+        "EXT+RP+${await getCurrentDateTime()}";
   }
 }

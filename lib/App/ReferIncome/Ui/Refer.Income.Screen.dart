@@ -184,12 +184,8 @@ class UserReferIncomeScreen extends StatelessWidget {
                                                 color: colorWhite,
                                                 fontSize: 12),
                                           ),
-                                          const SizedBox(
-                                            height: 6,
-                                          ),
-                                          const Divider(
-                                            color: colorWhite,
-                                          ),
+                                          const SizedBox(height: 6),
+                                          const Divider(color: colorWhite),
                                           Row(
                                             children: [
                                               Expanded(

@@ -4,10 +4,9 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/Constants/Colors.dart';
-import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 import 'package:powerbank/HelperClasses/small_services.dart';
 
@@ -61,7 +60,7 @@ class PersonalInfoScreenController extends GetxService {
       alternateNumber.value = alternateNoText;
       saveToHiveBox();
       SmartDialog.showToast("Success");
-      var currentDateTime = await NTP.now();
+      var currentDateTime = await getCurrentDateTime();
       SmallServices.updateUserActivityByDate(userIdMob: mNo, newItemsAsList: [
         "Changed Basic info at ${timeAsTxt(currentDateTime.toString())}"
       ]);

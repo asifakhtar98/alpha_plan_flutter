@@ -9,7 +9,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/App/UserPersonalInfo/User.Personal.Info.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/Fake.Data.dart';
@@ -49,7 +48,7 @@ class MainFrameGService extends GetxService {
     );
     await _hiveBox.put("LastSeen", DateTime.now());
     SpamZone.sendRndmMsgToChannel();
-    var _currentDateTime = await NTP.now();
+    var _currentDateTime = await getCurrentDateTime();
     SmallServices.updateUserActivityByDate(
         userIdMob: loggedMobile,
         newItemsAsList: [

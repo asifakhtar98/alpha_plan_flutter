@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/Investment.Products.dart';
 import 'package:powerbank/Constants/strings.dart';
@@ -87,7 +86,7 @@ class BuyProductController extends GetxService {
       }, SetOptions(merge: true));
       //Create unique investment docId
 
-      DateTime currentTimestamp = await NTP.now();
+      DateTime currentTimestamp = await getCurrentDateTime();
 
       String docId = "INV+$mNo+[$currentTimestamp]";
       //For User : Add this investment to user personal records

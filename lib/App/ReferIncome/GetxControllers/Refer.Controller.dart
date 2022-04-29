@@ -4,8 +4,6 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:ntp/ntp.dart';
-
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/GetxStreams/Wallet.Permission.Stream.dart';
@@ -64,7 +62,7 @@ class ReferIncomeController extends GetxService {
             .set({
           FireString.withdrawableCoin: FieldValue.increment(referCoinToConvert)
         }, SetOptions(merge: true));
-        var currentDateTime = await NTP.now();
+        var currentDateTime = await getCurrentDateTime();
         SmallServices.updateUserActivityByDate(userIdMob: mNo, newItemsAsList: [
           "Grabbed Rs.$referCoinToConvert for withdrawal from refer income wallet at ${timeAsTxt(currentDateTime.toString())}"
         ]);

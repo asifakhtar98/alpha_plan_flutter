@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/Constants/strings.dart';
 
 import 'date_time_formatter.dart';
@@ -7,7 +6,7 @@ import 'date_time_formatter.dart';
 class SmallServices {
   static updateUserActivityByDate(
       {required String userIdMob, required List newItemsAsList}) async {
-    var currentDateTime = await NTP.now();
+    var currentDateTime = await getCurrentDateTime();
     try {
       await FirebaseFirestore.instance
           .collection(FireString.accounts)

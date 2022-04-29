@@ -3,7 +3,6 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:ntp/ntp.dart';
 import 'package:powerbank/App/MainFrame/GetxController/Main.Frame.Service.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/date_time_formatter.dart';
@@ -71,7 +70,7 @@ class BankInfoScreenController extends GetxService {
           payeeUpiLink.value = upiLink;
           saveToHiveBox();
           SmartDialog.showToast("Success");
-          var currentDateTime = await NTP.now();
+          var currentDateTime = await getCurrentDateTime();
           SmallServices.updateUserActivityByDate(
               userIdMob: mNo,
               newItemsAsList: [
