@@ -62,7 +62,7 @@ class ReferIncomeController extends GetxService {
             .set({
           FireString.withdrawableCoin: FieldValue.increment(referCoinToConvert)
         }, SetOptions(merge: true));
-        var currentDateTime = await getCurrentDateTime();
+        var currentDateTime = await DateTimeHelper.getCurrentDateTime();
         SmallServices.updateUserActivityByDate(userIdMob: mNo, newItemsAsList: [
           "Grabbed Rs.$referCoinToConvert for withdrawal from refer income wallet at ${timeAsTxt(currentDateTime.toString())}"
         ]);

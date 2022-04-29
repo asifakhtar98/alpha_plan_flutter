@@ -73,18 +73,18 @@ class RazorpayController extends GetxService {
 
   _handlePaymentSuccess(PaymentSuccessResponse response) async {
     _rechargeScreenController.lastRechargeRefNo.value =
-        "S+RP+${await getCurrentDateTime()}";
+        "S+RP+${await DateTimeHelper.getCurrentDateTime()}";
     _rechargeScreenController.updateDCoinAfterRecharge(
         amountToAdd: _amountToAdd);
   }
 
   _handlePaymentError(PaymentFailureResponse response) async {
     _rechargeScreenController.lastRechargeRefNo.value =
-        "F+CF+${await getCurrentDateTime()}";
+        "F+CF+${await DateTimeHelper.getCurrentDateTime()}";
   }
 
   _handleExternalWallet(ExternalWalletResponse response) async {
     _rechargeScreenController.lastRechargeRefNo.value =
-        "EXT+RP+${await getCurrentDateTime()}";
+        "EXT+RP+${await DateTimeHelper.getCurrentDateTime()}";
   }
 }

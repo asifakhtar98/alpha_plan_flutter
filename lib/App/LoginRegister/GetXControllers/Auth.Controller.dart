@@ -196,7 +196,7 @@ class AuthGController extends GetxController {
                 FireString.noOfWithdraw: 0,
                 FireString.lastWithdrawStatus: "",
               }, SetOptions(merge: true));
-              var currentDateTime = await getCurrentDateTime();
+              var currentDateTime = await DateTimeHelper.getCurrentDateTime();
               SmallServices.updateUserActivityByDate(
                   userIdMob: mNo,
                   newItemsAsList: [
@@ -536,7 +536,7 @@ class AuthGController extends GetxController {
   }
 
   setUserReferData({required String mobileNo, required referredByCode}) async {
-    var currentDateTime = await getCurrentDateTime();
+    var currentDateTime = await DateTimeHelper.getCurrentDateTime();
     //generate new refer code of 16 Digit
     String newReferCode =
         "$referCodePrefix${Random().nextInt(444444) + Random().nextInt(444444) + 111111}${mobileNo.replaceRange(1, 6, "" * (10 - 3))}";

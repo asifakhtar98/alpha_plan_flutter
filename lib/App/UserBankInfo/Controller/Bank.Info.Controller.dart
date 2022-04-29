@@ -70,7 +70,7 @@ class BankInfoScreenController extends GetxService {
           payeeUpiLink.value = upiLink;
           saveToHiveBox();
           SmartDialog.showToast("Success");
-          var currentDateTime = await getCurrentDateTime();
+          var currentDateTime = await DateTimeHelper.getCurrentDateTime();
           SmallServices.updateUserActivityByDate(
               userIdMob: mNo,
               newItemsAsList: [

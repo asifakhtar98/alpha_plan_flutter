@@ -60,7 +60,7 @@ class PersonalInfoScreenController extends GetxService {
       alternateNumber.value = alternateNoText;
       saveToHiveBox();
       SmartDialog.showToast("Success");
-      var currentDateTime = await getCurrentDateTime();
+      var currentDateTime = await DateTimeHelper.getCurrentDateTime();
       SmallServices.updateUserActivityByDate(userIdMob: mNo, newItemsAsList: [
         "Changed Basic info at ${timeAsTxt(currentDateTime.toString())}"
       ]);

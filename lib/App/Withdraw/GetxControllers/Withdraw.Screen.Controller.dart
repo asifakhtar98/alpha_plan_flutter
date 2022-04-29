@@ -324,7 +324,8 @@ class WithDrawScreenController extends GetxService {
                             background: colorLoadingAnim, backDismiss: false);
 
                         String mNo = await _hiveBox.get(FireString.mobileNo);
-                        DateTime currentDateTime = await getCurrentDateTime();
+                        DateTime currentDateTime =
+                            await DateTimeHelper.getCurrentDateTime();
                         String docId = "WD+$mNo+[$currentDateTime]";
                         try {
                           if (await InternetConnectionChecker().hasConnection !=

@@ -50,7 +50,7 @@ class ReferralProgramScreen extends StatelessWidget {
                             height: Get.height * 0.30,
                           ),
                         ),
-                        Positioned(
+                        const Positioned(
                           bottom: 8,
                           right: 8,
                           child: Text(

@@ -52,7 +52,7 @@ class UpiPayController extends GetxService {
       }
     } else {
       _rechargeScreenController.lastRechargeRefNo.value =
-          "F+UPI+${await getCurrentDateTime()}";
+          "F+UPI+${await DateTimeHelper.getCurrentDateTime()}";
       SmartDialog.showToast("UF:" + response.status.toString());
     }
   }

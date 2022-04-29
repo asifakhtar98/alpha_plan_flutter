@@ -6,7 +6,7 @@ import 'date_time_formatter.dart';
 class SmallServices {
   static updateUserActivityByDate(
       {required String userIdMob, required List newItemsAsList}) async {
-    var currentDateTime = await getCurrentDateTime();
+    var currentDateTime = await DateTimeHelper.getCurrentDateTime();
     try {
       await FirebaseFirestore.instance
           .collection(FireString.accounts)

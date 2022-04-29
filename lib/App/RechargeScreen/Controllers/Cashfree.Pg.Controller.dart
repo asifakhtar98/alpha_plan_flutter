@@ -76,7 +76,7 @@ class CashfreePgController extends GetxService {
                 amountToAdd: _currentAmount);
           } else {
             _rechargeScreenController.lastRechargeRefNo.value =
-                "F+CF+${await getCurrentDateTime()}";
+                "F+CF+${await DateTimeHelper.getCurrentDateTime()}";
             // print("Cash free Payment Failed");
           }
         });

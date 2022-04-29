@@ -73,7 +73,7 @@ class CommissionController extends GetxService {
       return;
     }
 
-    var currentDateTime = await getCurrentDateTime();
+    var currentDateTime = await DateTimeHelper.getCurrentDateTime();
     //proceed if 1,2,3 level
     await FirebaseFirestore.instance
         .collection(FireString.accounts)

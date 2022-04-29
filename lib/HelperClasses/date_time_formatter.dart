@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:ntp/ntp.dart';
 
 String ddMMMyyyy(String txt) {
   final DateFormat dateFormatter = DateFormat("dd : MMM - yyyy");
@@ -20,13 +21,16 @@ String timeAsFireDoc(String txt) {
   return dateFormatter.format(DateTime.parse(txt));
 }
 
-Future<DateTime> getCurrentDateTime() async {
-  DateTime currentDateTime = DateTime.now();
-  try {
-    currentDateTime = await getCurrentDateTime();
-  } catch (e) {
-    currentDateTime = DateTime.now();
-    print(e);
+class DateTimeHelper {
+  DateTimeHelper._();
+  static Future<DateTime> getCurrentDateTime() async {
+    DateTime currentDateTime = DateTime.now();
+    try {
+      currentDateTime = await NTP.now();
+    } catch (e) {
+      currentDateTime = DateTime.now();
+      print(e);
+    }
+    return currentDateTime;
   }
-  return currentDateTime;
 }

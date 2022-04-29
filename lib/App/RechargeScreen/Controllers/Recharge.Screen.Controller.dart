@@ -127,7 +127,7 @@ class RechargeScreenController extends GetxService {
   ////////////////////////
   void updateDCoinAfterRecharge({required int amountToAdd}) async {
     try {
-      DateTime currentDateTime = await getCurrentDateTime();
+      DateTime currentDateTime = await DateTimeHelper.getCurrentDateTime();
 
       String mNo = await _hiveBox.get(FireString.mobileNo);
       //TODO: Complicating The Payment Order Id By Attaching 4 Digit Random Number

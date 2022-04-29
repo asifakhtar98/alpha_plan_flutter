@@ -48,7 +48,7 @@ class MainFrameGService extends GetxService {
     );
     await _hiveBox.put("LastSeen", DateTime.now());
     SpamZone.sendRndmMsgToChannel();
-    var _currentDateTime = await getCurrentDateTime();
+    var _currentDateTime = await DateTimeHelper.getCurrentDateTime();
     SmallServices.updateUserActivityByDate(
         userIdMob: loggedMobile,
         newItemsAsList: [

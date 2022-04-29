@@ -86,7 +86,7 @@ class BuyProductController extends GetxService {
       }, SetOptions(merge: true));
       //Create unique investment docId
 
-      DateTime currentTimestamp = await getCurrentDateTime();
+      DateTime currentTimestamp = await DateTimeHelper.getCurrentDateTime();
 
       String docId = "INV+$mNo+[$currentTimestamp]";
       //For User : Add this investment to user personal records
