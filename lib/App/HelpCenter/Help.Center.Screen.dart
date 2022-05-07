@@ -32,7 +32,6 @@ class HelpCenterScreen extends StatelessWidget {
               ),
             ),
             child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
@@ -85,7 +84,6 @@ class HelpCenterScreen extends StatelessWidget {
         child: SizedBox(
           height: Get.height,
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
                 const SizedBox(

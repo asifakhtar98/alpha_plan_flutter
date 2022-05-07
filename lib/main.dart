@@ -82,6 +82,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.encodeSansTextTheme(
           Theme.of(context).textTheme,
         ),
+        androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
       ),
       navigatorObservers: [FlutterSmartDialog.observer, gAnalyticsObserver],
       builder: FlutterSmartDialog.init(),

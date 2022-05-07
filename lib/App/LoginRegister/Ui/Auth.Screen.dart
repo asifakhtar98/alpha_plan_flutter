@@ -63,7 +63,6 @@ class _AuthScreenState extends State<AuthScreen> {
             width: Get.width,
             height: Get.height,
             child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
                   Stack(

@@ -63,202 +63,192 @@ class UserReferIncomeScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
             child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(12, 12, 12, 2),
-                  margin: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.amber.withOpacity(0.33),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(12),
-                    ),
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(12, 12, 12, 2),
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.amber.withOpacity(0.33),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12),
+                ),
+              ),
+              child: Column(
+                children: [
+                  Obx(() {
+                    return Text(
+                      "Lifetime Refer Income: ${_userReferIncomeController.lifetimeReferIncome.value}",
+                      style: const TextStyle(
+                          color: colorWhite,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    );
+                  }),
+                  const Divider(
+                    height: 8,
+                    thickness: 2,
                   ),
-                  child: Column(
-                    children: [
-                      Obx(() {
-                        return Text(
-                          "Lifetime Refer Income: ${_userReferIncomeController.lifetimeReferIncome.value}",
-                          style: const TextStyle(
-                              color: colorWhite,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        );
-                      }),
-                      const Divider(
-                        height: 8,
-                        thickness: 2,
-                      ),
-                      Text(
-                        "You obtain ${Get.find<CommissionController>().level1CommissionPercent}% from all level 1 referred users when they invest in the app, ${Get.find<CommissionController>().level2CommissionPercent}% from level 2 referred users and ${Get.find<CommissionController>().level3CommissionPercent}% from all level 3 refers immediately.",
-                        style: _textStyle1,
-                      ),
-                      Obx(() {
-                        return Text(
-                          "▷ Minimum value for conversion ₹${_walletPermissionStreamController.minReferIncomeToConvert.value}",
-                          style: _textStyle1,
-                        );
-                      }),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Divider(
-                        height: 8,
-                        thickness: 2,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          SmartDialog.show(
-                            alignmentTemp: Alignment.center,
-                            widget: Stack(
-                              clipBehavior: Clip.none,
-                              alignment: AlignmentDirectional.center,
+                  Text(
+                    "You obtain ${Get.find<CommissionController>().level1CommissionPercent}% from all level 1 referred users when they invest in the app, ${Get.find<CommissionController>().level2CommissionPercent}% from level 2 referred users and ${Get.find<CommissionController>().level3CommissionPercent}% from all level 3 refers immediately.",
+                    style: _textStyle1,
+                  ),
+                  Obx(() {
+                    return Text(
+                      "▷ Minimum value for conversion ₹${_walletPermissionStreamController.minReferIncomeToConvert.value}",
+                      style: _textStyle1,
+                    );
+                  }),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  const Divider(
+                    height: 8,
+                    thickness: 2,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      SmartDialog.show(
+                        alignmentTemp: Alignment.center,
+                        widget: Stack(
+                          clipBehavior: Clip.none,
+                          alignment: AlignmentDirectional.center,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const DialogAppNameTag(),
-                                    Container(
-                                      width: Get.width - 70,
-                                      height: 270,
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              color4,
-                                              color3.withBlue(150)
-                                            ]),
-                                        borderRadius: BorderRadius.circular(20),
+                                const DialogAppNameTag(),
+                                Container(
+                                  width: Get.width - 70,
+                                  height: 270,
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [color4, color3.withBlue(150)]),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      const Text(
+                                        "Total Referral Income",
+                                        textAlign: TextAlign.end,
+                                        style: TextStyle(color: colorWhite),
                                       ),
-                                      child: Column(
-                                        children: [
-                                          const Text(
-                                            "Total Referral Income",
-                                            textAlign: TextAlign.end,
-                                            style: TextStyle(color: colorWhite),
-                                          ),
-                                          Expanded(
-                                            child: Align(
-                                              alignment: Alignment.center,
-                                              child: Obx(() {
-                                                return AnimatedFlipCounter(
-                                                  value: _walletBalanceStreamer
-                                                      .referralIncome.value,
-                                                  prefix: "₹ ",
-                                                  duration: const Duration(
-                                                      seconds: 2),
-                                                  textStyle: const TextStyle(
-                                                      color: colorWhite,
-                                                      fontSize: 40,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                );
-                                              }),
-                                            ),
-                                          ),
-                                          Obx(() {
+                                      Expanded(
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Obx(() {
                                             return AnimatedFlipCounter(
                                               value: _walletBalanceStreamer
-                                                  .withdrawalCoin.value,
-                                              prefix:
-                                                  "Withdrawable Balance : ₹",
+                                                  .referralIncome.value,
+                                              prefix: "₹ ",
                                               duration:
                                                   const Duration(seconds: 2),
                                               textStyle: const TextStyle(
                                                   color: colorWhite,
-                                                  fontSize: 12,
+                                                  fontSize: 40,
                                                   fontWeight: FontWeight.bold),
                                             );
                                           }),
-                                          const SizedBox(
-                                            height: 6,
-                                          ),
-                                          const Text(
-                                            "Do you want to convert all your referral income to withdrawable money?",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: colorWhite,
-                                                fontSize: 12),
-                                          ),
-                                          const SizedBox(height: 6),
-                                          const Divider(color: colorWhite),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: TextButton(
-                                                  onPressed: () {
-                                                    SmartDialog.dismiss(
-                                                        status:
-                                                            SmartStatus.dialog);
-                                                  },
-                                                  child: const Text(
-                                                    "Not Now",
-                                                    style: TextStyle(
-                                                        color: colorWhite),
-                                                  ),
-                                                ),
+                                        ),
+                                      ),
+                                      Obx(() {
+                                        return AnimatedFlipCounter(
+                                          value: _walletBalanceStreamer
+                                              .withdrawalCoin.value,
+                                          prefix: "Withdrawable Balance : ₹",
+                                          duration: const Duration(seconds: 2),
+                                          textStyle: const TextStyle(
+                                              color: colorWhite,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold),
+                                        );
+                                      }),
+                                      const SizedBox(
+                                        height: 6,
+                                      ),
+                                      const Text(
+                                        "Do you want to convert all your referral income to withdrawable money?",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: colorWhite, fontSize: 12),
+                                      ),
+                                      const SizedBox(height: 6),
+                                      const Divider(color: colorWhite),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: TextButton(
+                                              onPressed: () {
+                                                SmartDialog.dismiss(
+                                                    status: SmartStatus.dialog);
+                                              },
+                                              child: const Text(
+                                                "Not Now",
+                                                style: TextStyle(
+                                                    color: colorWhite),
                                               ),
-                                              Expanded(
-                                                child: TextButton(
-                                                  onPressed: () async {
-                                                    _userReferIncomeController
-                                                        .convertReferIncomeToWithdrawalBalance(
-                                                            _walletBalanceStreamer
-                                                                .referralIncome
-                                                                .value);
-                                                  },
-                                                  child: const Text(
-                                                    "Convert Now",
-                                                    style: TextStyle(
-                                                        color: colorWhite),
-                                                  ),
-                                                ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: TextButton(
+                                              onPressed: () async {
+                                                _userReferIncomeController
+                                                    .convertReferIncomeToWithdrawalBalance(
+                                                        _walletBalanceStreamer
+                                                            .referralIncome
+                                                            .value);
+                                              },
+                                              child: const Text(
+                                                "Convert Now",
+                                                style: TextStyle(
+                                                    color: colorWhite),
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Positioned(
-                                  left: 0,
-                                  child: Column(
-                                    children: [
-                                      Lottie.asset(
-                                          Assets.assetsRupeeCoinLeftRight,
-                                          height: 160),
-                                      const SizedBox(
-                                        height: 270,
-                                      ),
                                     ],
                                   ),
-                                )
+                                ),
                               ],
                             ),
-                          );
-                        },
-                        child: const Text(
-                          "Convert Referral Income",
-                          style: TextStyle(color: colorWhite),
+                            Positioned(
+                              left: 0,
+                              child: Column(
+                                children: [
+                                  Lottie.asset(Assets.assetsRupeeCoinLeftRight,
+                                      height: 160),
+                                  const SizedBox(
+                                    height: 270,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Obx(() {
-                    return childViews[
-                        _userReferIncomeController.selectedStackIndex.value];
-                  }),
-                ),
-              ],
-            )),
+                      );
+                    },
+                    child: const Text(
+                      "Convert Referral Income",
+                      style: TextStyle(color: colorWhite),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Obx(() {
+                return childViews[
+                    _userReferIncomeController.selectedStackIndex.value];
+              }),
+            ),
+          ],
+        )),
       ),
     );
   }

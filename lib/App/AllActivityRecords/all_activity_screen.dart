@@ -2,10 +2,9 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
 import 'package:powerbank/Constants/Colors.dart';
-import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 
 import 'all_activity_controller.dart';
@@ -40,7 +39,6 @@ class AllActivityScreen extends StatelessWidget {
               child: Obx(() {
                 List myActs = _screenController.myActivities.reversed.toList();
                 return ListView.builder(
-                  physics: const BouncingScrollPhysics(),
                   itemCount: myActs.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(

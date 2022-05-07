@@ -190,7 +190,6 @@ class OrderView extends StatelessWidget {
               );
             } else {
               return ListView.builder(
-                physics: const BouncingScrollPhysics(),
                 itemCount: _orderUiController.userInvestedPlans.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(

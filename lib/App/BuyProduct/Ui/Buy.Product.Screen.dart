@@ -164,7 +164,6 @@ class _BuyProductScreenState extends State<BuyProductScreen> {
                   ),
                 ),
                 SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: [
                       const SizedBox(

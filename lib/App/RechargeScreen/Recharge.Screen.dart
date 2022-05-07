@@ -44,7 +44,6 @@ class RechargeScreen extends StatelessWidget {
         backgroundColor: color1,
       ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -156,7 +155,6 @@ class RechargeScreen extends StatelessWidget {
                               maxHeight: Get.height * 0.66,
                             ),
                             child: SingleChildScrollView(
-                              physics: const BouncingScrollPhysics(),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 mainAxisSize: MainAxisSize.min,

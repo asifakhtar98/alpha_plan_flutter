@@ -123,7 +123,6 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(

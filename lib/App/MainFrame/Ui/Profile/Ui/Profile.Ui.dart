@@ -161,7 +161,6 @@ class ProfileView extends StatelessWidget {
         ),
         Expanded(
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
                 for (ProfileActionTile oList in profileActionList)
@@ -234,6 +233,7 @@ class ProfileView extends StatelessWidget {
                           },
                         ),
                       ),
+                      const Icon(FontAwesomeIcons.chevronRight),
                     ],
                   ),
                 ),
