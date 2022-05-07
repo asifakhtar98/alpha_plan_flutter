@@ -53,8 +53,6 @@ class _AuthScreenState extends State<AuthScreen> {
     if (kDebugMode) {
       _regCapthaKeyCntrlr.text = _authGController.currentCaptha.value;
       _loginCapthaKeyCntrlr.text = _authGController.currentCaptha.value;
-      // Get.find<DynamicLinkController>().buildShortDynamicLink();
-      // Get.find<DynamicLinkController>().handleDynamicLink();
     }
     return DoubleBack(
       background: color3,
@@ -166,16 +164,16 @@ class _AuthScreenState extends State<AuthScreen> {
                       );
                     }),
                   ),
-                  // if (kDebugMode)
-                  MaterialButton(
-                    onPressed: () {
-                      _authGController.loginUser(
-                          mNo: demoMobileNo,
-                          pass: demoPassword,
-                          captha: _authGController.currentCaptha.value);
-                    },
-                    child: const Text("Login As Guest"),
-                  ),
+                  if (kDebugMode)
+                    MaterialButton(
+                      onPressed: () {
+                        _authGController.loginUser(
+                            mNo: demoMobileNo,
+                            pass: demoPassword,
+                            captha: _authGController.currentCaptha.value);
+                      },
+                      child: const Text("Login As Guest"),
+                    ),
                   const SizedBox(
                     height: 30,
                   ),

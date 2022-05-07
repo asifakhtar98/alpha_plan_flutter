@@ -55,16 +55,16 @@ class CustomerSupport {
     });
   }
 
-  static whatsappSupportAdmin2() async {
+  static openComplainLink() async {
     FirebaseFirestore.instance
         .collection(FireString.globalSystem)
         .doc(FireString.customerSupport)
         .get()
         .then((docMap) async {
-      String _tmpVal = docMap.get(FireString.admin2No);
+      String _tmpVal = docMap.get(FireString.complainLink);
       print(_tmpVal);
-      await canLaunch("https://wa.me/$_tmpVal?text=Hii,I'm<YourName>")
-          ? await launch("https://wa.me/$_tmpVal?text=Hii,I'm<YourName>")
+      await canLaunch(_tmpVal)
+          ? await launch(_tmpVal)
           : throw "Cant launch url";
     });
   }

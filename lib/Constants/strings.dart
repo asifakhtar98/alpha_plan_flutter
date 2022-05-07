@@ -176,7 +176,7 @@ class FireString {
   ////////////////////////////////////
   static const String customerSupport = "CustomerSupport";
   static const String admin1No = "Admin1No";
-  static const String admin2No = "Admin2No";
+  static const String complainLink = "ComplainLink";
   static const String telegramChannelLink = "TelegramChannelLink";
   static const String developerSite = "DeveloperSite";
   /////////////////////////

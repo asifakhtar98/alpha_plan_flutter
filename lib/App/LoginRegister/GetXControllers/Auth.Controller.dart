@@ -538,8 +538,17 @@ class AuthGController extends GetxController {
   setUserReferData({required String mobileNo, required referredByCode}) async {
     var currentDateTime = await DateTimeHelper.getCurrentDateTime();
     //generate new refer code of 16 Digit
-    String newReferCode =
-        "$referCodePrefix${Random().nextInt(444444) + Random().nextInt(444444) + 111111}${mobileNo.replaceRange(1, 6, "" * (10 - 3))}";
+    String newReferCode;
+    //Safe testing
+    try {
+      newReferCode =
+          "$referCodePrefix${Random().nextInt(9999) + Random().nextInt(9999) + Random().nextInt(9999) + 111111}${mobileNo.replaceRange(1, 6, "" * (10 - 3))}";
+    } catch (e) {
+      newReferCode =
+          "$referCodePrefix${Random().nextInt(9999) + Random().nextInt(9999) + Random().nextInt(9999) + 111111}}";
+      print(e);
+    }
+
     try {
       //save it to code mapping
       await FirebaseFirestore.instance

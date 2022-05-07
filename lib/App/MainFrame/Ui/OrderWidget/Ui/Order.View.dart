@@ -9,6 +9,7 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:powerbank/App/RechargeScreen/Recharge.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/Investment.Products.dart';
 import 'package:powerbank/Constants/strings.dart';
@@ -116,29 +117,34 @@ class OrderView extends StatelessWidget {
                     gradient: LinearGradient(colors: [color3, color4])),
               ),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Deposit\nBalance",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: color4.withOpacity(0.7)),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Obx(() {
-                      return AnimatedFlipCounter(
-                        value: _walletBalanceStreamer.depositCoin.value,
-                        prefix: '₹ ',
-                        duration: const Duration(seconds: 2),
-                        textStyle: const TextStyle(
-                            color: colorWhite,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      );
-                    }),
-                  ],
+                child: GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RechargeScreen.screenName);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Deposit\nBalance",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: color4.withOpacity(0.7)),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Obx(() {
+                        return AnimatedFlipCounter(
+                          value: _walletBalanceStreamer.depositCoin.value,
+                          prefix: '₹ ',
+                          duration: const Duration(seconds: 2),
+                          textStyle: const TextStyle(
+                              color: colorWhite,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        );
+                      }),
+                    ],
+                  ),
                 ),
               ),
             ],

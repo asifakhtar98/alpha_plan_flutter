@@ -1,4 +1,6 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -16,8 +18,10 @@ import 'package:powerbank/App/UserBankInfo/Ui/Bank.Info.Screen.dart';
 import 'package:powerbank/App/UserPersonalInfo/User.Personal.Info.Screen.dart';
 import 'package:powerbank/App/Withdraw/Ui/Withdraw.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 var _walletBalanceStreamer = Get.find<WalletBalanceStreamController>();
 
@@ -46,29 +50,34 @@ class ProfileView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Withdrawn\nBalance",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: color4.withOpacity(0.7)),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Obx(() {
-                      return AnimatedFlipCounter(
-                        value: _walletBalanceStreamer.totalWithdrawal.value,
-                        prefix: '₹ ',
-                        duration: const Duration(seconds: 2),
-                        textStyle: const TextStyle(
-                            color: colorWhite,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      );
-                    })
-                  ],
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(() => const WithdrawScreen());
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Withdrawn\nBalance",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: color4.withOpacity(0.7)),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Obx(() {
+                        return AnimatedFlipCounter(
+                          value: _walletBalanceStreamer.totalWithdrawal.value,
+                          prefix: '₹ ',
+                          duration: const Duration(seconds: 2),
+                          textStyle: const TextStyle(
+                              color: colorWhite,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        );
+                      })
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -79,29 +88,34 @@ class ProfileView extends StatelessWidget {
                     gradient: LinearGradient(colors: [color3, color4])),
               ),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Referral\nIncome",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: color4.withOpacity(0.7)),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Obx(() {
-                      return AnimatedFlipCounter(
-                        value: _walletBalanceStreamer.referralIncome.value,
-                        prefix: '₹ ',
-                        duration: const Duration(seconds: 2),
-                        textStyle: const TextStyle(
-                            color: colorWhite,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      );
-                    })
-                  ],
+                child: GestureDetector(
+                  onTap: () {
+                    Get.toNamed(UserReferIncomeScreen.screenName);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Referral\nIncome",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: color4.withOpacity(0.7)),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Obx(() {
+                        return AnimatedFlipCounter(
+                          value: _walletBalanceStreamer.referralIncome.value,
+                          prefix: '₹ ',
+                          duration: const Duration(seconds: 2),
+                          textStyle: const TextStyle(
+                              color: colorWhite,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        );
+                      })
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -112,29 +126,34 @@ class ProfileView extends StatelessWidget {
                     gradient: LinearGradient(colors: [color3, color4])),
               ),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Withdrawable\nBalance",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: color4.withOpacity(0.7)),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Obx(() {
-                      return AnimatedFlipCounter(
-                        value: _walletBalanceStreamer.withdrawalCoin.value,
-                        prefix: '₹ ',
-                        duration: const Duration(seconds: 2),
-                        textStyle: const TextStyle(
-                            color: colorWhite,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      );
-                    })
-                  ],
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(() => const WithdrawScreen());
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Withdrawable\nBalance",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: color4.withOpacity(0.7)),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Obx(() {
+                        return AnimatedFlipCounter(
+                          value: _walletBalanceStreamer.withdrawalCoin.value,
+                          prefix: '₹ ',
+                          duration: const Duration(seconds: 2),
+                          textStyle: const TextStyle(
+                              color: colorWhite,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        );
+                      })
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -168,6 +187,56 @@ class ProfileView extends StatelessWidget {
                       ),
                     ),
                   ),
+                Container(
+                  margin: const EdgeInsets.all(8.0),
+                  width: Get.width,
+                  height: 60,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: CachedNetworkImageProvider(
+                          "https://res.cloudinary.com/promisedpayment/image/upload/v1651954989/DreamLightCity/AppAssets/ACTIAC_ETWebsiteHeader_Home1920x432_hpeys9.jpg"),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const SizedBox(width: 20.0, height: 100.0),
+                      const Text(
+                        'Travel',
+                        style: TextStyle(fontSize: 35, color: color4),
+                      ),
+                      const SizedBox(width: 20.0, height: 100.0),
+                      DefaultTextStyle(
+                        style: const TextStyle(
+                          fontSize: 35,
+                        ),
+                        child: AnimatedTextKit(
+                          repeatForever: true,
+                          animatedTexts: [
+                            RotateAnimatedText('MALDIVES'),
+                            RotateAnimatedText('TURKEY'),
+                            RotateAnimatedText('THAILAND'),
+                            RotateAnimatedText('SINGAPORE'),
+                            RotateAnimatedText('INDIA'),
+                            RotateAnimatedText('MALAYSIA'),
+                            RotateAnimatedText('VIETNAM'),
+                            RotateAnimatedText('PHILIPPINES'),
+                            RotateAnimatedText('INDONESIA'),
+                            RotateAnimatedText('KOREA'),
+                            RotateAnimatedText('HONG KONG'),
+                            RotateAnimatedText('MEXICO'),
+                            RotateAnimatedText('AUSTRALIA'),
+                          ],
+                          onTap: () {
+                            print("Tap Event");
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
@@ -264,5 +333,11 @@ List<ProfileActionTile> profileActionList = [
       actionText: "Log Out",
       onTap: () {
         Get.find<MainFrameGService>().logout();
+      }),
+  ProfileActionTile(
+      icon: FontAwesomeIcons.chrome,
+      actionText: "Our Site",
+      onTap: () {
+        launch(appWebsiteLink);
       }),
 ];

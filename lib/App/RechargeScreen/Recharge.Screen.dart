@@ -334,11 +334,15 @@ class RechargeScreen extends StatelessWidget {
 
 List<Map<String, dynamic>> dCoins = [
   {"val": 1, "sel": false},
-  {"val": 2, "sel": false},
+  {"val": 300, "sel": false},
   {"val": 500, "sel": false},
   {"val": 1000, "sel": true},
+  {"val": 1500, "sel": false},
+  {"val": 2000, "sel": false},
   {"val": 3000, "sel": false},
   {"val": 5000, "sel": false},
+  {"val": 6000, "sel": false},
+  {"val": 7000, "sel": false},
   {"val": 8000, "sel": false},
   {"val": 10000, "sel": false},
   {"val": 20000, "sel": false},
