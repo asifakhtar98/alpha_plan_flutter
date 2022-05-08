@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 
 import 'date_time_formatter.dart';
 

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
-import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 
 class InvestmentProductsStreamController extends GetxService {
   RxList investmentPlansPriceList = [].obs;

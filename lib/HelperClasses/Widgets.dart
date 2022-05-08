@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -7,6 +7,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/Investment.Products.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/GetxStreams/Investment.Products.Stream.dart';
 import 'package:powerbank/HelperClasses/Server.Stats.Service.dart';

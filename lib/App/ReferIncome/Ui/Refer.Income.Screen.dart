@@ -15,6 +15,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:powerbank/App/BuyProduct/Controllers/Commission.Controller.dart';
 import 'package:powerbank/App/ReferIncome/GetxControllers/Refer.Controller.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/GetxStreams/Wallet.Permission.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';

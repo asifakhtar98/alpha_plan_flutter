@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
-import 'package:powerbank/Constants/strings.dart';
 
 class ServerStatsController extends GetxService {
   RxInt totalGlobalInvestments = 0.obs;

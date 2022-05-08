@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:powerbank/App/RechargeScreen/Recharge.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/Investment.Products.dart';
-import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/GetxStreams/Investment.Products.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';

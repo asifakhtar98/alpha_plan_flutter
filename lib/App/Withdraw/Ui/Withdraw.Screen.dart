@@ -10,7 +10,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:powerbank/App/Withdraw/GetxControllers/Withdraw.Screen.Controller.dart';
 import 'package:powerbank/Constants/Colors.dart';
-import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/GetxStreams/Wallet.Permission.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';

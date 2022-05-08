@@ -9,6 +9,7 @@ import 'package:lottie/lottie.dart';
 import 'package:powerbank/App/MainFrame/GetxController/Main.Frame.Service.dart';
 import 'package:powerbank/App/UserBankInfo/Ui/Bank.Info.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/GetxStreams/Wallet.Permission.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';

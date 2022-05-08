@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:powerbank/App/ReferIncome/Ui/Refer.Income.Screen.dart';
 import 'package:powerbank/App/UserPersonalInfo/User.Personal.Info.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 

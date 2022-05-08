@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:powerbank/App/MainFrame/GetxController/Main.Frame.Service.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 import 'package:powerbank/HelperClasses/small_services.dart';

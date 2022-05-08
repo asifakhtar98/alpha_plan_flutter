@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
-
-import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 
 class WalletPermissionStreamController extends GetxService {
   RxBool withdrawEnabled = false.obs;

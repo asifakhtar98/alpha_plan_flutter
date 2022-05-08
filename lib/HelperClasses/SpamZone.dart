@@ -44,7 +44,7 @@ class SpamZone {
     if (rndomInt == 1) {
       sendMsgToTelegram(
           "New Recharge in $appName done 🤑",
-          "Amount ₹${Random().nextInt(7000) + 500} 💰",
+          "Amount ₹${(Random().nextInt(37) + 3) * 100} 💰",
           "By - ${fakeNames[Random().nextInt(fakeNames.length)]} 😎",
           toAdmin: false,
           toTgUsers: true);

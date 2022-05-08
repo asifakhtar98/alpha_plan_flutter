@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:powerbank/App/UserPersonalInfo/User.Personal.Info.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/Fake.Data.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/SpamZone.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
@@ -184,7 +185,7 @@ class MainFrameGService extends GetxService {
           children: [
             TextSpan(
               text:
-                  '\nXXXXXX$randFourDigit deposit Rs.$rndmAmount to wallet by ${rechargeType[Random().nextInt(rechargeType.length)]}',
+                  '\nXXXXXX$randFourDigit deposit Rs.${(Random().nextInt(37) + 3) * 100} to wallet by ${rechargeType[Random().nextInt(rechargeType.length)]}',
               style: TextStyle(color: colorWhite.withOpacity(0.7)),
             )
           ]));
@@ -196,7 +197,7 @@ class MainFrameGService extends GetxService {
           children: [
             TextSpan(
               text:
-                  '\nXXXXXX$randFourDigit registered to the $appName server ${(randFourDigit % 2 == 0 ? " referred by ${fakeNames[Random().nextInt(fakeNames.length)]}" : "")}',
+                  '\nXXXXXX$randFourDigit registered to the $appNameShort app ${(randFourDigit % 2 == 0 ? " referred by ${fakeNames[Random().nextInt(fakeNames.length)]}" : "")}',
               style: TextStyle(color: colorWhite.withOpacity(0.7)),
             )
           ]));

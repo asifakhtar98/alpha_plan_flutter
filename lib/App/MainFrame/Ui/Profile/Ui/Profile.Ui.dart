@@ -18,6 +18,7 @@ import 'package:powerbank/App/UserBankInfo/Ui/Bank.Info.Screen.dart';
 import 'package:powerbank/App/UserPersonalInfo/User.Personal.Info.Screen.dart';
 import 'package:powerbank/App/Withdraw/Ui/Withdraw.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
@@ -242,7 +243,7 @@ class ProfileView extends StatelessWidget {
                             ),
                           ),
                           const Icon(FontAwesomeIcons.anglesRight),
-                          SizedBox(width: 15),
+                          const SizedBox(width: 15),
                         ],
                       ),
                     ),
