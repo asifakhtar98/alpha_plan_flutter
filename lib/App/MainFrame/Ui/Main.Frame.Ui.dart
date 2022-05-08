@@ -1,4 +1,5 @@
 import 'package:double_back_to_close/double_back_to_close.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -10,6 +11,7 @@ import 'package:powerbank/App/MainFrame/Ui/HomeWidget/Ui/Home.Ui.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/HelperClasses/Notice.Get.Service.dart';
 import 'package:powerbank/HelperClasses/Server.Stats.Service.dart';
+import 'package:powerbank/HelperClasses/SpamZone.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:powerbank/generated/assets.dart';
 
@@ -110,6 +112,9 @@ class CustomAppBar extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   _serverStatsController.showServerStatsDialog();
+                },
+                onLongPress: () {
+                  if (kDebugMode) SpamZone.sendRndmMsgToChannel();
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

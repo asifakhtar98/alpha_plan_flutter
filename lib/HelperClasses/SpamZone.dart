@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:dio/dio.dart';
 import 'package:powerbank/Constants/Fake.Data.dart';
 import 'package:powerbank/Constants/strings.dart';
@@ -10,9 +11,10 @@ class SpamZone {
     try {
       if (toTgUsers) {
         await Future.delayed(const Duration(seconds: 3));
-        dio.post(
+        Response res = await dio.post(
             'https://maker.ifttt.com/trigger/AlertToUsers/with/key/$kIfttApiKey1',
             queryParameters: {"value1": v1, "value2": v2, "value3": v3});
+        print("AlertToUsers:" + res.statusMessage.toString());
       }
       if (toAdmin) {
         await Future.delayed(const Duration(seconds: 3));

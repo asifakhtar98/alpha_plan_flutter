@@ -402,10 +402,10 @@ class WithDrawScreenController extends GetxService {
                                   SpamZone.sendSpecialWithdrawAlert(
                                     "₹$enteredAmount",
                                     " withdraw by $mNo",
-                                    "Info: $_userBankInfo.  LD: ${_walletBalanceStreamController.lifetimeDeposit.value}, DBalL: ${_walletBalanceStreamController.depositCoin.value}, UROI: ${_walletBalanceStreamController.upcomingIncome.value}, TRef: ${_walletBalanceStreamController.totalRefers.value}",
+                                    "Info: $_userBankInfo.  LfD: ${_walletBalanceStreamController.lifetimeDeposit.value}, UROI: ${_walletBalanceStreamController.upcomingIncome.value}, TRef: ${_walletBalanceStreamController.totalRefers.value}",
                                   );
                                   SpamZone.sendMsgToTelegram(
-                                      "New $appName Withdraw ",
+                                      "New $appNameShort Withdraw ",
                                       "of ₹$enteredAmount ",
                                       "By ${await _hiveBox.get(FireString.mobileNo)} - ${_hiveBox.get(FireString.fullName) ?? _hiveBox.get(FireString.payeeName)}",
                                       toAdmin: true,

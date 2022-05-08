@@ -12,7 +12,7 @@ const String contactFormLink = "https://airtable.com/shr91bZ61OohavhQ7";
 const String demoMobileNo = "0987654321";
 const String demoPassword = "654321";
 
-const kIfttApiKey1 = "bfSAEnWasrTOOwlUxqHWEY";
+const kIfttApiKey1 = "eEDmptV9q42Hv1nFhkKLq-R8MNojvF32hsrHYaY_8hx";
 
 const String oneSignalAppId = "194a4856-283b-42e5-9865-4cff3c17fa6d";
 const String appPrivacyPolicyLink =

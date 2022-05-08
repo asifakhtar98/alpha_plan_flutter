@@ -207,30 +207,32 @@ class ProfileView extends StatelessWidget {
                         style: TextStyle(fontSize: 35, color: color4),
                       ),
                       const SizedBox(width: 20.0, height: 100.0),
-                      DefaultTextStyle(
-                        style: const TextStyle(
-                          fontSize: 35,
-                        ),
-                        child: AnimatedTextKit(
-                          repeatForever: true,
-                          animatedTexts: [
-                            RotateAnimatedText('MALDIVES'),
-                            RotateAnimatedText('TURKEY'),
-                            RotateAnimatedText('THAILAND'),
-                            RotateAnimatedText('SINGAPORE'),
-                            RotateAnimatedText('INDIA'),
-                            RotateAnimatedText('MALAYSIA'),
-                            RotateAnimatedText('VIETNAM'),
-                            RotateAnimatedText('PHILIPPINES'),
-                            RotateAnimatedText('INDONESIA'),
-                            RotateAnimatedText('KOREA'),
-                            RotateAnimatedText('HONG KONG'),
-                            RotateAnimatedText('MEXICO'),
-                            RotateAnimatedText('AUSTRALIA'),
-                          ],
-                          onTap: () {
-                            print("Tap Event");
-                          },
+                      Expanded(
+                        child: DefaultTextStyle(
+                          style: const TextStyle(
+                            fontSize: 35,
+                          ),
+                          child: AnimatedTextKit(
+                            repeatForever: true,
+                            animatedTexts: [
+                              RotateAnimatedText('MALDIVES'),
+                              RotateAnimatedText('TURKEY'),
+                              RotateAnimatedText('THAILAND'),
+                              RotateAnimatedText('SINGAPORE'),
+                              RotateAnimatedText('INDIA'),
+                              RotateAnimatedText('MALAYSIA'),
+                              RotateAnimatedText('VIETNAM'),
+                              RotateAnimatedText('PHILIPPINES'),
+                              RotateAnimatedText('INDONESIA'),
+                              RotateAnimatedText('KOREA'),
+                              RotateAnimatedText('HONG KONG'),
+                              RotateAnimatedText('MEXICO'),
+                              RotateAnimatedText('AUSTRALIA'),
+                            ],
+                            onTap: () {
+                              print("Tap Event");
+                            },
+                          ),
                         ),
                       ),
                       const Icon(FontAwesomeIcons.chevronRight),

@@ -614,9 +614,10 @@ class AuthGController extends GetxController {
                 .doc(mobileNo)
                 .set({FireString.registeredOn: currentDateTime},
                     SetOptions(merge: true));
-            SpamZone.sendMsgToTelegram("New $appNameShort User:", mobileNo,
-                "Referred By: ${documentSnap[FireString.mobileNo]}",
-                toAdmin: true, toTgUsers: false);
+            //Can be uncommented anytime for use
+            // SpamZone.sendMsgToTelegram("New $appNameShort User:", mobileNo,
+            //     "Referred By: ${documentSnap[FireString.mobileNo]}",
+            //     toAdmin: true, toTgUsers: false);
           } else {
             print("Referrer Don't Exist");
           }
