@@ -179,11 +179,15 @@ class FireString {
   static const String complainLink = "ComplainLink";
   static const String telegramChannelLink = "TelegramChannelLink";
   static const String developerSite = "DeveloperSite";
+
   /////////////////////////
   static const String myActivities = "MyActivities";
   //////////////////////
   static const String atSpecialEvents = "AtSpecialEvents";
   static const String signUpBonus = "SignUpBonus";
+  //////////////////////////////
+  static const String externalLinks = "ExternalLinks";
+  static const String profileEventUrl = "ProfileEventUrl";
   ///////////////////////
   static const String usersDirectRefers = "UsersDirectRefers";
 }

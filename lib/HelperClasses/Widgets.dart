@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:powerbank/Constants/strings.dart';
@@ -90,6 +91,21 @@ class CustomerSupport {
         .get()
         .then((docMap) async {
       String _tmpVal = docMap.get(FireString.developerSite);
+      print(_tmpVal);
+      await canLaunch(_tmpVal)
+          ? await launch(_tmpVal)
+          : throw "Cant launch url";
+    });
+  }
+
+  static openFirestoreExternalLinks({required String fbFieldName}) async {
+    SmartDialog.showToast("Opening " + fbFieldName);
+    FirebaseFirestore.instance
+        .collection(FireString.globalSystem)
+        .doc(FireString.externalLinks)
+        .get()
+        .then((docMap) async {
+      String _tmpVal = docMap.get(fbFieldName);
       print(_tmpVal);
       await canLaunch(_tmpVal)
           ? await launch(_tmpVal)

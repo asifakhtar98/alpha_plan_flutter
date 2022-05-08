@@ -179,64 +179,73 @@ class ProfileView extends StatelessWidget {
                           style: const TextStyle(color: colorWhite),
                         ),
                         trailing: const Icon(
-                          FontAwesomeIcons.chevronRight,
+                          FontAwesomeIcons.anglesRight,
                           color: color3,
                           size: 14,
                         ),
                       ),
                     ),
                   ),
-                Container(
-                  margin: const EdgeInsets.all(8.0),
-                  width: Get.width,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(
-                          "https://res.cloudinary.com/promisedpayment/image/upload/v1651954989/DreamLightCity/AppAssets/ACTIAC_ETWebsiteHeader_Home1920x432_hpeys9.jpg"),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      const SizedBox(width: 20.0, height: 100.0),
-                      const Text(
-                        'Travel',
-                        style: TextStyle(fontSize: 35, color: color4),
-                      ),
-                      const SizedBox(width: 20.0, height: 100.0),
-                      Expanded(
-                        child: DefaultTextStyle(
-                          style: const TextStyle(
-                            fontSize: 35,
-                          ),
-                          child: AnimatedTextKit(
-                            repeatForever: true,
-                            animatedTexts: [
-                              RotateAnimatedText('MALDIVES'),
-                              RotateAnimatedText('TURKEY'),
-                              RotateAnimatedText('THAILAND'),
-                              RotateAnimatedText('SINGAPORE'),
-                              RotateAnimatedText('INDIA'),
-                              RotateAnimatedText('MALAYSIA'),
-                              RotateAnimatedText('VIETNAM'),
-                              RotateAnimatedText('PHILIPPINES'),
-                              RotateAnimatedText('INDONESIA'),
-                              RotateAnimatedText('KOREA'),
-                              RotateAnimatedText('HONG KONG'),
-                              RotateAnimatedText('MEXICO'),
-                              RotateAnimatedText('AUSTRALIA'),
-                            ],
-                            onTap: () {
-                              print("Tap Event");
-                            },
-                          ),
+                GestureDetector(
+                  onTap: () {
+                    CustomerSupport.openFirestoreExternalLinks(
+                        fbFieldName: FireString.profileEventUrl);
+                  },
+                  child: AbsorbPointer(
+                    child: Container(
+                      margin: const EdgeInsets.all(8.0),
+                      width: Get.width,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: CachedNetworkImageProvider(
+                              "https://res.cloudinary.com/promisedpayment/image/upload/v1651954989/DreamLightCity/AppAssets/ACTIAC_ETWebsiteHeader_Home1920x432_hpeys9.jpg"),
                         ),
                       ),
-                      const Icon(FontAwesomeIcons.chevronRight),
-                    ],
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          const SizedBox(width: 20.0, height: 100.0),
+                          const Text(
+                            'Travel',
+                            style: TextStyle(fontSize: 35, color: color4),
+                          ),
+                          const SizedBox(width: 20.0, height: 100.0),
+                          Expanded(
+                            child: DefaultTextStyle(
+                              style: const TextStyle(
+                                fontSize: 35,
+                              ),
+                              child: AnimatedTextKit(
+                                repeatForever: true,
+                                animatedTexts: [
+                                  RotateAnimatedText('MALDIVES'),
+                                  RotateAnimatedText('TURKEY'),
+                                  RotateAnimatedText('THAILAND'),
+                                  RotateAnimatedText('SINGAPORE'),
+                                  RotateAnimatedText('INDIA'),
+                                  RotateAnimatedText('MALAYSIA'),
+                                  RotateAnimatedText('VIETNAM'),
+                                  RotateAnimatedText('PHILIPPINES'),
+                                  RotateAnimatedText('INDONESIA'),
+                                  RotateAnimatedText('KOREA'),
+                                  RotateAnimatedText('HONG KONG'),
+                                  RotateAnimatedText('MEXICO'),
+                                  RotateAnimatedText('AUSTRALIA'),
+                                ],
+                                onTap: () {
+                                  print("Tap Event");
+                                },
+                              ),
+                            ),
+                          ),
+                          const Icon(FontAwesomeIcons.anglesRight),
+                          SizedBox(width: 15),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
@@ -253,7 +262,7 @@ class ProfileView extends StatelessWidget {
                         style: TextStyle(color: colorWhite),
                       ),
                       trailing: Icon(
-                        FontAwesomeIcons.chevronRight,
+                        FontAwesomeIcons.anglesRight,
                         color: color3,
                         size: 14,
                       ),
