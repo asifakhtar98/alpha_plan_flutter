@@ -918,7 +918,7 @@ List<CarouselModel> corouselItemList = [
       pImageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1652020809/DreamLightCity/AppAssets/GOLDEN-SIGNUP-BANNER_jvt5wc.jpg",
       onClick: () {
-        SmartDialog.showToast("Your already signup");
+        SmartDialog.showToast("You are already registered");
       },
       actionName: ''),
   CarouselModel(

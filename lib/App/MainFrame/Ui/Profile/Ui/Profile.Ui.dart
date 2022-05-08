@@ -28,7 +28,7 @@ var _walletBalanceStreamer = Get.find<WalletBalanceStreamController>();
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
-  static String viewName = "Profile";
+  static String viewName = "Account";
 
   @override
   Widget build(BuildContext context) {

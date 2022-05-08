@@ -377,10 +377,10 @@ void assignAllDepositMethods() {
       },
     if (_rechargeScreenController.directUpiEnabled)
       {
-        "text": "Via SBI Pay",
+        "text": "Via PhonePe",
         "onTap": () {
           _rechargeScreenController.showSecLoading(5);
-          _upiPay.createUpiRechargeRequest(upiApp: UpiApplication.sbiPay);
+          _upiPay.createUpiRechargeRequest(upiApp: UpiApplication.phonePe);
         }
       },
     if (_rechargeScreenController.razorpayEnabled)
