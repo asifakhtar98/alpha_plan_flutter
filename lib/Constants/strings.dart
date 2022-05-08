@@ -6,8 +6,6 @@ const String pCC = "+91";
 
 const String cloudinaryTag =
     "https://res.cloudinary.com/earnindia/image/upload/v1644340110/AlphaPlan2";
-const String appealFormLink = "https://airtable.com/shrJZYFFw1okelsBE";
-const String contactFormLink = "https://airtable.com/shr91bZ61OohavhQ7";
 
 const String demoMobileNo = "0987654321";
 const String demoPassword = "654321";
