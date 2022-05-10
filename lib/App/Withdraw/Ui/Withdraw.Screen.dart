@@ -28,8 +28,12 @@ class WithdrawScreen extends StatefulWidget {
 }
 
 class _WithdrawScreenState extends State<WithdrawScreen> {
-  final TextStyle _textStyle =
-      const TextStyle(fontSize: 11, color: Colors.amber);
+  final _textStyle = const TextStyle(fontSize: 11, color: Colors.amber);
+  @override
+  void initState() {
+    super.initState();
+    _withdrawScreenController.reload();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -168,105 +172,108 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 ),
                 ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  child: Container(
-                    padding: const EdgeInsets.all(25),
-                    height: Get.height * 0.35,
-                    decoration: BoxDecoration(
-                      color: color3.withOpacity(0.4),
-                    ),
-                    foregroundDecoration: RotatedCornerDecoration(
-                      textSpan: TextSpan(
-                        text:
-                            (_walletPermissionController.withdrawEnabled.value)
-                                ? "Online"
-                                : "Offline",
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  child: Obx(() {
+                    return Container(
+                      padding: const EdgeInsets.all(25),
+                      height: Get.height * 0.35,
+                      decoration: BoxDecoration(
+                        color: color3.withOpacity(0.4),
                       ),
-                      color: (_walletPermissionController.withdrawEnabled.value)
-                          ? color4
-                          : Colors.redAccent,
-                      geometry: const BadgeGeometry(
-                          width: 50,
-                          height: 50,
-                          cornerRadius: 0,
-                          alignment: BadgeAlignment.topLeft),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(
-                            "Type the amount you want to withdraw",
-                            style: TextStyle(color: color4, fontSize: 14),
-                          ),
-                        ),
-                        TextField(
-                          controller: enteredAmountTEController,
-                          keyboardType: TextInputType.number,
+                      foregroundDecoration: RotatedCornerDecoration(
+                        textSpan: TextSpan(
+                          text: (_walletPermissionController
+                                  .withdrawEnabled.value)
+                              ? "Online"
+                              : "Offline",
                           style: const TextStyle(
-                              color: colorWhite,
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold),
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(
-                              FontAwesomeIcons.indianRupeeSign,
-                              color: colorWhite,
-                            ),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        MaterialButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          minWidth: Get.width - 35,
-                          color: color4,
-                          onPressed: () async {
-                            enteredAmountTEController.text =
-                                enteredAmountTEController.text
-                                    .replaceAll(" ", "");
-                            if (enteredAmountTEController.text != "") {
-                              bool haveCredential =
-                                  await _withdrawScreenController
-                                      .checkBankInfo();
-                              if (haveCredential) {
-                                _withdrawScreenController.checkOtherParameter(
-                                    enteredAmount: int.parse(
-                                        enteredAmountTEController.text));
-                              }
-                            } else {
-                              SmartDialog.showToast("Enter amount");
-                            }
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12),
+                        color:
+                            (_walletPermissionController.withdrawEnabled.value)
+                                ? color4
+                                : Colors.redAccent,
+                        geometry: const BadgeGeometry(
+                            width: 50,
+                            height: 50,
+                            cornerRadius: 0,
+                            alignment: BadgeAlignment.topLeft),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
                             child: Text(
-                              "Withdraw Now",
-                              style: TextStyle(fontSize: 16),
+                              "Type the amount you want to withdraw",
+                              style: TextStyle(color: color4, fontSize: 14),
                             ),
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.bolt,
-                              color: colorWhite.withOpacity(0.7),
-                              size: 14,
+                          TextField(
+                            controller: enteredAmountTEController,
+                            keyboardType: TextInputType.number,
+                            style: const TextStyle(
+                                color: colorWhite,
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold),
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                FontAwesomeIcons.indianRupeeSign,
+                                color: colorWhite,
+                              ),
                             ),
-                            Text(
-                              "  Powered By Open Bank Gateway",
-                              style: TextStyle(
-                                  color: colorWhite.withOpacity(0.7),
-                                  fontSize: 12),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                          ),
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            minWidth: Get.width - 35,
+                            color: color4,
+                            onPressed: () async {
+                              enteredAmountTEController.text =
+                                  enteredAmountTEController.text
+                                      .replaceAll(" ", "");
+                              if (enteredAmountTEController.text != "") {
+                                bool haveCredential =
+                                    await _withdrawScreenController
+                                        .checkBankInfo();
+                                if (haveCredential) {
+                                  _withdrawScreenController.checkOtherParameter(
+                                      enteredAmount: int.parse(
+                                          enteredAmountTEController.text));
+                                }
+                              } else {
+                                SmartDialog.showToast("Enter amount");
+                              }
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                "Withdraw Now",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.bolt,
+                                color: colorWhite.withOpacity(0.7),
+                                size: 14,
+                              ),
+                              Text(
+                                "  Powered By Open Bank Gateway",
+                                style: TextStyle(
+                                    color: colorWhite.withOpacity(0.7),
+                                    fontSize: 12),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
                 ),
                 const SizedBox(
                   height: 25,

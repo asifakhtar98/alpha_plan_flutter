@@ -9,18 +9,10 @@ import 'package:powerbank/Constants/Colors.dart';
 var _bankScreenController = Get.put(BankInfoScreenController());
 
 class BankInfoScreen extends StatelessWidget {
-  BankInfoScreen({Key? key}) : super(key: key);
-  final TextStyle _textStyle1 = const TextStyle(color: color4, fontSize: 13);
-  final TextStyle _textStyle2 = const TextStyle(color: colorWhite);
-  final TextEditingController _payeeNameTextController =
-      TextEditingController();
-  final TextEditingController _bankNameTextController = TextEditingController();
-  final TextEditingController _accountNoTextController =
-      TextEditingController();
-  final TextEditingController _bankIfscTextController = TextEditingController();
-  final TextEditingController _payeeEmailTextController =
-      TextEditingController();
-  final TextEditingController _upiLinkTextController = TextEditingController();
+  const BankInfoScreen({Key? key}) : super(key: key);
+  final _textStyle1 = const TextStyle(color: color4, fontSize: 13);
+  final _textStyle2 = const TextStyle(color: colorWhite);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,11 +45,12 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _payeeNameTextController.text =
+                      _bankScreenController.payeeNameTextController.text =
                           _bankScreenController.payeeName.value;
                       return TextField(
                         style: _textStyle2,
-                        controller: _payeeNameTextController,
+                        controller:
+                            _bankScreenController.payeeNameTextController,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -75,10 +68,11 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _bankNameTextController.text =
+                      _bankScreenController.bankNameTextController.text =
                           _bankScreenController.bankName.value;
                       return TextField(
-                        controller: _bankNameTextController,
+                        controller:
+                            _bankScreenController.bankNameTextController,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -97,10 +91,11 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _accountNoTextController.text =
+                      _bankScreenController.accountNoTextController.text =
                           _bankScreenController.bankAcNumber.value;
                       return TextField(
-                        controller: _accountNoTextController,
+                        controller:
+                            _bankScreenController.accountNoTextController,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -119,10 +114,11 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _bankIfscTextController.text =
+                      _bankScreenController.bankIfscTextController.text =
                           _bankScreenController.bankIfsc.value;
                       return TextField(
-                        controller: _bankIfscTextController,
+                        controller:
+                            _bankScreenController.bankIfscTextController,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -141,10 +137,11 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _payeeEmailTextController.text =
+                      _bankScreenController.payeeEmailTextController.text =
                           _bankScreenController.payeeEmail.value;
                       return TextField(
-                        controller: _payeeEmailTextController,
+                        controller:
+                            _bankScreenController.payeeEmailTextController,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -163,10 +160,10 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _upiLinkTextController.text =
+                      _bankScreenController.upiLinkTextController.text =
                           _bankScreenController.payeeUpiLink.value;
                       return TextField(
-                        controller: _upiLinkTextController,
+                        controller: _bankScreenController.upiLinkTextController,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -185,18 +182,24 @@ class BankInfoScreen extends StatelessWidget {
                       color: color4,
                       onPressed: () async {
                         _bankScreenController.savePersonalInfo(
-                          nameText: _payeeNameTextController.text
+                          nameText: _bankScreenController
+                              .payeeNameTextController.text
                               .replaceAll('  ', ' '),
-                          bank:
-                              _bankNameTextController.text.replaceAll(' ', ''),
-                          upiLink:
-                              _upiLinkTextController.text.replaceAll(' ', ''),
-                          acNo:
-                              _accountNoTextController.text.replaceAll(' ', ''),
-                          emailText: _payeeEmailTextController.text
+                          bank: _bankScreenController
+                              .bankNameTextController.text
                               .replaceAll(' ', ''),
-                          ifsc:
-                              _bankIfscTextController.text.replaceAll(' ', ''),
+                          upiLink: _bankScreenController
+                              .upiLinkTextController.text
+                              .replaceAll(' ', ''),
+                          acNo: _bankScreenController
+                              .accountNoTextController.text
+                              .replaceAll(' ', ''),
+                          emailText: _bankScreenController
+                              .payeeEmailTextController.text
+                              .replaceAll(' ', ''),
+                          ifsc: _bankScreenController
+                              .bankIfscTextController.text
+                              .replaceAll(' ', ''),
                         );
                       },
                       child: const Text("Submit"),

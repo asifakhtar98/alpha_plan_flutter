@@ -37,10 +37,9 @@ class RechargeScreenController extends GetxService {
   List cashfreeKeys = [];
   List razorPayKeys = [];
   ////////////////////////////
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
+  reload() {
+    selectedStackIndex = 0.obs;
+    getAllLiveRechargingData();
   }
 
   getAllLiveRechargingData() async {
@@ -103,7 +102,7 @@ class RechargeScreenController extends GetxService {
                   TextButton(
                       onPressed: () {
                         SmartDialog.dismiss(status: SmartStatus.dialog);
-                        Get.to(UserPersonalInfoScreen());
+                        Get.to(() => const UserPersonalInfoScreen());
                       },
                       child: const Text("Continue"))
                 ],
@@ -119,7 +118,7 @@ class RechargeScreenController extends GetxService {
         return true;
       } catch (e) {
         SmartDialog.showToast('Fill all information here');
-        Get.to(UserPersonalInfoScreen());
+        Get.to(() => const UserPersonalInfoScreen());
         return false;
       }
     }

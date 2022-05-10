@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -10,6 +11,12 @@ import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 import 'package:powerbank/HelperClasses/small_services.dart';
 
 class BankInfoScreenController extends GetxService {
+  final payeeNameTextController = TextEditingController();
+  final bankNameTextController = TextEditingController();
+  final accountNoTextController = TextEditingController();
+  final bankIfscTextController = TextEditingController();
+  final payeeEmailTextController = TextEditingController();
+  final upiLinkTextController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final _hiveBox = Hive.box(hiveBoxName);
   RxString payeeName = "".obs;

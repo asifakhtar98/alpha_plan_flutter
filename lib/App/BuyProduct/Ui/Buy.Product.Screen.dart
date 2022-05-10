@@ -38,15 +38,15 @@ class _BuyProductScreenState extends State<BuyProductScreen> {
     // TODO: implement initState
     super.initState();
     Get.find<CommissionController>().getGlobalReferCommissionData();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     _buyProductController.togglePlan(
       planID: mainInvestmentProductsList[widget.productIndex].uidProduct,
       localPlanPrice:
           mainInvestmentProductsList[widget.productIndex].productPrice,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: color1,
       appBar: AppBar(

@@ -12,26 +12,25 @@ import 'Controllers/Personal.Info.Screen.Controller.dart';
 
 var _personalInfoScreenController = Get.put(PersonalInfoScreenController());
 
-class UserPersonalInfoScreen extends StatelessWidget {
-  UserPersonalInfoScreen({Key? key}) : super(key: key);
-  final TextStyle _textStyle1 = const TextStyle(color: color4, fontSize: 13);
+class UserPersonalInfoScreen extends StatefulWidget {
+  const UserPersonalInfoScreen({Key? key}) : super(key: key);
 
-  final TextStyle _textStyle2 = const TextStyle(color: colorWhite);
+  @override
+  State<UserPersonalInfoScreen> createState() => _UserPersonalInfoScreenState();
+}
 
-  final TextEditingController _altNoController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
-  final TextEditingController _zipCodeController = TextEditingController();
-  final TextEditingController _fullNameContrlr = TextEditingController();
+class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
+  final _textStyle1 = const TextStyle(color: color4, fontSize: 13);
 
-  final TextEditingController _primaryEmailFieldContrlr =
-      TextEditingController();
+  final _textStyle2 = const TextStyle(color: colorWhite);
 
-  final TextEditingController _nomineeNameController = TextEditingController();
-  final TextEditingController _nomineeNumberController =
-      TextEditingController();
-  final TextEditingController _oldPassController = TextEditingController();
-  final TextEditingController _newPassController = TextEditingController();
   final _hiveBox = Hive.box(hiveBoxName);
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _personalInfoScreenController.getLivePersonalData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,10 +120,11 @@ class UserPersonalInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _fullNameContrlr.text =
+                      _personalInfoScreenController.fullNameContrlr.text =
                           _personalInfoScreenController.fullName.value;
                       return TextField(
-                        controller: _fullNameContrlr,
+                        controller:
+                            _personalInfoScreenController.fullNameContrlr,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -143,10 +143,11 @@ class UserPersonalInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _addressController.text =
+                      _personalInfoScreenController.addressController.text =
                           _personalInfoScreenController.address.value;
                       return TextField(
-                        controller: _addressController,
+                        controller:
+                            _personalInfoScreenController.addressController,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -165,10 +166,11 @@ class UserPersonalInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _zipCodeController.text =
+                      _personalInfoScreenController.zipCodeController.text =
                           _personalInfoScreenController.zipcode.value;
                       return TextField(
-                        controller: _zipCodeController,
+                        controller:
+                            _personalInfoScreenController.zipCodeController,
                         keyboardType: TextInputType.number,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
@@ -188,10 +190,12 @@ class UserPersonalInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _primaryEmailFieldContrlr.text =
+                      _personalInfoScreenController
+                              .primaryEmailFieldContrlr.text =
                           _personalInfoScreenController.primaryEmail.value;
                       return TextField(
-                        controller: _primaryEmailFieldContrlr,
+                        controller: _personalInfoScreenController
+                            .primaryEmailFieldContrlr,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -210,10 +214,11 @@ class UserPersonalInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _altNoController.text =
+                      _personalInfoScreenController.altNoController.text =
                           _personalInfoScreenController.alternateNumber.value;
                       return TextField(
-                        controller: _altNoController,
+                        controller:
+                            _personalInfoScreenController.altNoController,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         keyboardType: TextInputType.phone,
@@ -233,15 +238,21 @@ class UserPersonalInfoScreen extends StatelessWidget {
                       color: color4,
                       onPressed: () {
                         _personalInfoScreenController.savePersonalInfo(
-                            nameText: _fullNameContrlr.text.replaceAll(' ', ''),
-                            emailText: _primaryEmailFieldContrlr.text
+                            nameText: _personalInfoScreenController
+                                .fullNameContrlr.text
                                 .replaceAll(' ', ''),
-                            zipcodeText:
-                                _zipCodeController.text.replaceAll(' ', ''),
-                            addressText:
-                                _addressController.text.replaceAll(' ', ''),
-                            alternateNoText:
-                                _altNoController.text.replaceAll(' ', ''));
+                            emailText: _personalInfoScreenController
+                                .primaryEmailFieldContrlr.text
+                                .replaceAll(' ', ''),
+                            zipcodeText: _personalInfoScreenController
+                                .zipCodeController.text
+                                .replaceAll(' ', ''),
+                            addressText: _personalInfoScreenController
+                                .addressController.text
+                                .replaceAll(' ', ''),
+                            alternateNoText: _personalInfoScreenController
+                                .altNoController.text
+                                .replaceAll(' ', ''));
                       },
                       child: const Text("Save"),
                     ),
@@ -280,12 +291,13 @@ class UserPersonalInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _nomineeNumberController.text =
-                          _personalInfoScreenController
-                                  .personalInfo[FireString.nomineeNumber] ??
-                              "";
+                      _personalInfoScreenController.nomineeNumberController
+                          .text = _personalInfoScreenController
+                              .personalInfo[FireString.nomineeNumber] ??
+                          "";
                       return TextField(
-                        controller: _nomineeNumberController,
+                        controller: _personalInfoScreenController
+                            .nomineeNumberController,
                         style: _textStyle2,
                         keyboardType: TextInputType.phone,
                         textAlign: TextAlign.center,
@@ -305,12 +317,13 @@ class UserPersonalInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _nomineeNameController.text =
+                      _personalInfoScreenController.nomineeNameController.text =
                           _personalInfoScreenController
                                   .personalInfo[FireString.nomineeName] ??
                               "";
                       return TextField(
-                        controller: _nomineeNameController,
+                        controller:
+                            _personalInfoScreenController.nomineeNameController,
                         style: _textStyle2,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
@@ -329,8 +342,10 @@ class UserPersonalInfoScreen extends StatelessWidget {
                       color: color4,
                       onPressed: () {
                         _personalInfoScreenController.saveNominee(
-                            name: _nomineeNameController.text,
-                            number: _nomineeNumberController.text);
+                            name: _personalInfoScreenController
+                                .nomineeNameController.text,
+                            number: _personalInfoScreenController
+                                .nomineeNumberController.text);
                       },
                       child: const Text("Save Nominee"),
                     ),
@@ -367,7 +382,8 @@ class UserPersonalInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     TextField(
-                      controller: _oldPassController,
+                      controller:
+                          _personalInfoScreenController.oldPassController,
                       style: _textStyle2,
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration(
@@ -385,7 +401,8 @@ class UserPersonalInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     TextField(
-                      controller: _newPassController,
+                      controller:
+                          _personalInfoScreenController.newPassController,
                       style: _textStyle2,
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration(
@@ -403,8 +420,10 @@ class UserPersonalInfoScreen extends StatelessWidget {
                       color: color4,
                       onPressed: () {
                         _personalInfoScreenController.changePassword(
-                            oldPass: _oldPassController.text,
-                            newPass: _newPassController.text);
+                            oldPass: _personalInfoScreenController
+                                .oldPassController.text,
+                            newPass: _personalInfoScreenController
+                                .newPassController.text);
                         // _newPassController.text = "";
                         // _oldPassController.text = "";
                       },

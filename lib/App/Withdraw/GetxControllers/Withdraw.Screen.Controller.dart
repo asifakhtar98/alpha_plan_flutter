@@ -38,16 +38,14 @@ class WithDrawScreenController extends GetxService {
   RxList<String> withdrawNoticeList = [
     "24 x 7 ⇋ Day and Night all time withdrawal",
     "Instant - 5 Min ⇋ Withdrawal Processing Time",
-    "6% ⇋ Withdraw Service Tax",
-    "₹15000 ⇋ Maximum amount per transaction",
-    "₹300 ⇋ Minimum amount per transaction",
+    "3% ⇋ Withdraw Service Tax",
+    "₹40000 ⇋ Maximum amount per transaction",
+    "₹250 ⇋ Minimum amount per transaction",
   ].obs;
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
+  reload() {
     updateWithdrawNoticeList();
+    selectedStackIndex.value = 0;
   }
 
   void updateWithdrawNoticeList() {

@@ -12,21 +12,27 @@ import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 import 'package:powerbank/HelperClasses/small_services.dart';
 
 class PersonalInfoScreenController extends GetxService {
+  final altNoController = TextEditingController();
+  final addressController = TextEditingController();
+  final zipCodeController = TextEditingController();
+  final fullNameContrlr = TextEditingController();
+
+  final primaryEmailFieldContrlr = TextEditingController();
+
+  final nomineeNameController = TextEditingController();
+  final nomineeNumberController = TextEditingController();
+  final oldPassController = TextEditingController();
+  final newPassController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final _hiveBox = Hive.box(hiveBoxName);
   //will save the doc as map
   RxMap personalInfo = <String, dynamic>{}.obs;
-  //can be removed
+  //can be removed if above variable is used
   RxString fullName = "".obs;
   RxString primaryEmail = "".obs;
   RxString address = "".obs;
   RxString zipcode = "".obs;
   RxString alternateNumber = "".obs;
-  @override
-  void onInit() {
-    super.onInit();
-    getLivePersonalData();
-  }
 
   void savePersonalInfo({
     required String nameText,

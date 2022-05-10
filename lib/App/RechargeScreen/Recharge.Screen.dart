@@ -28,15 +28,24 @@ var _cashfreePgController = Get.find<CashfreePgController>();
 var _upiPay = Get.find<UpiPayController>();
 int minCustomAmount = 500;
 
-class RechargeScreen extends StatelessWidget {
+class RechargeScreen extends StatefulWidget {
   static String screenName = "/RECHARGE_SCREEN";
 
   const RechargeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    _rechargeScreenController.getAllLiveRechargingData();
+  State<RechargeScreen> createState() => _RechargeScreenState();
+}
 
+class _RechargeScreenState extends State<RechargeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _rechargeScreenController.reload();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: color1,
       appBar: AppBar(
