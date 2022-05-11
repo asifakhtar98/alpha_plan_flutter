@@ -27,12 +27,6 @@ class PersonalInfoScreenController extends GetxService {
   final _hiveBox = Hive.box(hiveBoxName);
   //will save the doc as map
   RxMap personalInfo = <String, dynamic>{}.obs;
-  //can be removed if above variable is used
-  RxString fullName = "".obs;
-  RxString primaryEmail = "".obs;
-  RxString address = "".obs;
-  RxString zipcode = "".obs;
-  RxString alternateNumber = "".obs;
 
   void savePersonalInfo({
     required String nameText,
@@ -60,11 +54,7 @@ class PersonalInfoScreenController extends GetxService {
         FireString.zipCode: zipcodeText,
         FireString.alternateNumber: alternateNoText,
       }, SetOptions(merge: true));
-      fullName.value = nameText;
-      primaryEmail.value = emailText;
-      address.value = addressText;
-      zipcode.value = zipcodeText;
-      alternateNumber.value = alternateNoText;
+
       saveToHiveBox();
       SmartDialog.showToast("Success");
       var currentDateTime = await DateTimeHelper.getCurrentDateTime();
@@ -89,11 +79,12 @@ class PersonalInfoScreenController extends GetxService {
           //this can replace all rx var
           personalInfo.assignAll(_personalData.data()!);
           // print("Data Loaded From Firestore");
-          fullName.value = _personalData[FireString.fullName] ?? "";
-          primaryEmail.value = _personalData[FireString.primaryEmail] ?? "";
-          address.value = _personalData[FireString.address] ?? "";
-          zipcode.value = _personalData[FireString.zipCode] ?? "";
-          alternateNumber.value =
+          fullNameContrlr.text = _personalData[FireString.fullName] ?? "";
+          primaryEmailFieldContrlr.text =
+              _personalData[FireString.primaryEmail] ?? "";
+          addressController.text = _personalData[FireString.address] ?? "";
+          zipCodeController.text = _personalData[FireString.zipCode] ?? "";
+          altNoController.text =
               _personalData[FireString.alternateNumber] ?? "";
           saveToHiveBox();
         }
@@ -104,11 +95,11 @@ class PersonalInfoScreenController extends GetxService {
   }
 
   void saveToHiveBox() {
-    _hiveBox.put(FireString.fullName, fullName.value);
-    _hiveBox.put(FireString.primaryEmail, primaryEmail.value);
-    _hiveBox.put(FireString.address, address.value);
-    _hiveBox.put(FireString.zipCode, zipcode.value);
-    _hiveBox.put(FireString.alternateNumber, alternateNumber.value);
+    _hiveBox.put(FireString.fullName, fullNameContrlr.text);
+    _hiveBox.put(FireString.primaryEmail, primaryEmailFieldContrlr.text);
+    _hiveBox.put(FireString.address, addressController.text);
+    _hiveBox.put(FireString.zipCode, zipCodeController.text);
+    _hiveBox.put(FireString.alternateNumber, altNoController.text);
     // print("Data Saved To Hive");
   }
 
@@ -231,5 +222,18 @@ class PersonalInfoScreenController extends GetxService {
     } else {
       SmartDialog.showToast("Both password length should 6+");
     }
+  }
+
+  reload() {
+    fullNameContrlr.clear();
+    addressController.clear();
+    zipCodeController.clear();
+    altNoController.clear();
+    primaryEmailFieldContrlr.clear();
+    nomineeNameController.clear();
+    nomineeNumberController.clear();
+    oldPassController.clear();
+    newPassController.clear();
+    getLivePersonalData();
   }
 }

@@ -19,17 +19,14 @@ class BankInfoScreenController extends GetxService {
   final upiLinkTextController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final _hiveBox = Hive.box(hiveBoxName);
-  RxString payeeName = "".obs;
-  RxString bankName = "".obs;
-  RxString bankAcNumber = "".obs;
-  RxString bankIfsc = "".obs;
-  RxString payeeEmail = "".obs;
-  RxString payeeUpiLink = "".obs;
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
 
+  reload() {
+    payeeNameTextController.clear();
+    bankNameTextController.clear();
+    accountNoTextController.clear();
+    bankIfscTextController.clear();
+    payeeEmailTextController.clear();
+    upiLinkTextController.clear();
     getBankInfo();
   }
 
@@ -70,12 +67,6 @@ class BankInfoScreenController extends GetxService {
           FireString.payeeEmail: emailText,
           FireString.payeeUpiLink: upiLink,
         }, SetOptions(merge: true)).then((value) async {
-          payeeName.value = nameText;
-          bankName.value = bank;
-          bankAcNumber.value = acNo;
-          bankIfsc.value = ifsc;
-          payeeEmail.value = emailText;
-          payeeUpiLink.value = upiLink;
           saveToHiveBox();
           SmartDialog.showToast("Success");
           var currentDateTime = await DateTimeHelper.getCurrentDateTime();
@@ -104,12 +95,14 @@ class BankInfoScreenController extends GetxService {
           .then((_bankData) {
         if (_bankData.exists) {
           print("Data Loaded From Firestore");
-          payeeName.value = _bankData[FireString.payeeName] ?? "";
-          bankName.value = _bankData[FireString.bankName] ?? "";
-          bankAcNumber.value = _bankData[FireString.bankAcNumber] ?? "";
-          bankIfsc.value = _bankData[FireString.bankIfsc] ?? "";
-          payeeEmail.value = _bankData[FireString.payeeEmail] ?? "";
-          payeeUpiLink.value = _bankData[FireString.payeeUpiLink] ?? "";
+          payeeNameTextController.text = _bankData[FireString.payeeName] ?? "";
+          bankNameTextController.text = _bankData[FireString.bankName] ?? "";
+          accountNoTextController.text =
+              _bankData[FireString.bankAcNumber] ?? "";
+          bankIfscTextController.text = _bankData[FireString.bankIfsc] ?? "";
+          payeeEmailTextController.text =
+              _bankData[FireString.payeeEmail] ?? "";
+          upiLinkTextController.text = _bankData[FireString.payeeUpiLink] ?? "";
           saveToHiveBox();
           //
           //
@@ -121,12 +114,12 @@ class BankInfoScreenController extends GetxService {
   }
 
   void saveToHiveBox() async {
-    await _hiveBox.put(FireString.payeeName, payeeName.value);
-    await _hiveBox.put(FireString.bankName, bankName.value);
-    await _hiveBox.put(FireString.bankAcNumber, bankAcNumber.value);
-    await _hiveBox.put(FireString.bankIfsc, bankIfsc.value);
-    await _hiveBox.put(FireString.payeeEmail, payeeEmail.value);
-    await _hiveBox.put(FireString.payeeUpiLink, payeeUpiLink.value);
+    await _hiveBox.put(FireString.payeeName, payeeNameTextController.text);
+    await _hiveBox.put(FireString.bankName, bankNameTextController.text);
+    await _hiveBox.put(FireString.bankAcNumber, accountNoTextController.text);
+    await _hiveBox.put(FireString.bankIfsc, bankIfscTextController.text);
+    await _hiveBox.put(FireString.payeeEmail, payeeEmailTextController.text);
+    await _hiveBox.put(FireString.payeeUpiLink, upiLinkTextController.text);
     print("Data Saved To Hive");
   }
 }

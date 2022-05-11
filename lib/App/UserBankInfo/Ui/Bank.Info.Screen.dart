@@ -8,10 +8,23 @@ import 'package:powerbank/Constants/Colors.dart';
 
 var _bankScreenController = Get.put(BankInfoScreenController());
 
-class BankInfoScreen extends StatelessWidget {
+class BankInfoScreen extends StatefulWidget {
   const BankInfoScreen({Key? key}) : super(key: key);
+
+  @override
+  State<BankInfoScreen> createState() => _BankInfoScreenState();
+}
+
+class _BankInfoScreenState extends State<BankInfoScreen> {
   final _textStyle1 = const TextStyle(color: color4, fontSize: 13);
+
   final _textStyle2 = const TextStyle(color: colorWhite);
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _bankScreenController.reload();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +58,6 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _bankScreenController.payeeNameTextController.text =
-                          _bankScreenController.payeeName.value;
                       return TextField(
                         style: _textStyle2,
                         controller:
@@ -68,8 +79,6 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _bankScreenController.bankNameTextController.text =
-                          _bankScreenController.bankName.value;
                       return TextField(
                         controller:
                             _bankScreenController.bankNameTextController,
@@ -91,8 +100,6 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _bankScreenController.accountNoTextController.text =
-                          _bankScreenController.bankAcNumber.value;
                       return TextField(
                         controller:
                             _bankScreenController.accountNoTextController,
@@ -114,8 +121,6 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _bankScreenController.bankIfscTextController.text =
-                          _bankScreenController.bankIfsc.value;
                       return TextField(
                         controller:
                             _bankScreenController.bankIfscTextController,
@@ -137,8 +142,6 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _bankScreenController.payeeEmailTextController.text =
-                          _bankScreenController.payeeEmail.value;
                       return TextField(
                         controller:
                             _bankScreenController.payeeEmailTextController,
@@ -160,8 +163,6 @@ class BankInfoScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _bankScreenController.upiLinkTextController.text =
-                          _bankScreenController.payeeUpiLink.value;
                       return TextField(
                         controller: _bankScreenController.upiLinkTextController,
                         style: _textStyle2,

@@ -128,6 +128,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
               ),
               Obx(() {
                 return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -140,6 +141,13 @@ class _RechargeScreenState extends State<RechargeScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 8),
                       child: Text(
                         "2. The balance here is the amount you can invest in the plans provided by the app",
+                        style: TextStyle(color: color3, fontSize: 12),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        "3. Before recharging your wallet with new payment method, please make sure that payment method works for you by checking with ₹1 mentioned above",
                         style: TextStyle(color: color3, fontSize: 12),
                       ),
                     ),

@@ -29,7 +29,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _personalInfoScreenController.getLivePersonalData();
+    _personalInfoScreenController.reload();
   }
 
   @override
@@ -120,8 +120,6 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _personalInfoScreenController.fullNameContrlr.text =
-                          _personalInfoScreenController.fullName.value;
                       return TextField(
                         controller:
                             _personalInfoScreenController.fullNameContrlr,
@@ -143,8 +141,6 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _personalInfoScreenController.addressController.text =
-                          _personalInfoScreenController.address.value;
                       return TextField(
                         controller:
                             _personalInfoScreenController.addressController,
@@ -166,8 +162,6 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _personalInfoScreenController.zipCodeController.text =
-                          _personalInfoScreenController.zipcode.value;
                       return TextField(
                         controller:
                             _personalInfoScreenController.zipCodeController,
@@ -190,9 +184,6 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _personalInfoScreenController
-                              .primaryEmailFieldContrlr.text =
-                          _personalInfoScreenController.primaryEmail.value;
                       return TextField(
                         controller: _personalInfoScreenController
                             .primaryEmailFieldContrlr,
@@ -214,8 +205,6 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     ),
                     const SizedBox(height: 8),
                     Obx(() {
-                      _personalInfoScreenController.altNoController.text =
-                          _personalInfoScreenController.alternateNumber.value;
                       return TextField(
                         controller:
                             _personalInfoScreenController.altNoController,
