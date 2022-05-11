@@ -1,4 +1,3 @@
-import 'package:async_button_builder/async_button_builder.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:delayed_display/delayed_display.dart';
@@ -396,21 +395,11 @@ class LoginView extends StatelessWidget {
             style: TextStyle(color: color4),
           ),
         ),
-        AsyncButtonBuilder(
-          child: const Text('Forget Password'),
-          loadingWidget:
-              const Text('Forget Password ($passwordDialogTimer Sec)'),
-          successWidget: const Text('Try Again Later'),
-          onPressed: () async {
+        TextButton(
+          onPressed: () {
             _passwordRenewController.showRenewPasswordDialog();
-            await Future.delayed(const Duration(seconds: passwordDialogTimer));
           },
-          builder: (context, child, callback, _) {
-            return TextButton(
-              child: child,
-              onPressed: callback,
-            );
-          },
+          child: const Text('Forget Password'),
         ),
       ],
     );
@@ -693,22 +682,12 @@ class RegistrationView extends StatelessWidget {
             style: TextStyle(color: color4),
           ),
         ),
-        AsyncButtonBuilder(
-          child: const Text('Forget Password'),
-          loadingWidget:
-              const Text('Forget Password ($passwordDialogTimer Sec)'),
-          successWidget: const Text('Try Again Later'),
-          onPressed: () async {
+        TextButton(
+          onPressed: () {
             _passwordRenewController.showRenewPasswordDialog();
-            await Future.delayed(const Duration(seconds: passwordDialogTimer));
           },
-          builder: (context, child, callback, _) {
-            return TextButton(
-              child: child,
-              onPressed: callback,
-            );
-          },
-        ),
+          child: const Text('Forget Password'),
+        )
       ],
     );
   }

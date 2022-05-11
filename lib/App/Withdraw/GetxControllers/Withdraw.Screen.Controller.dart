@@ -119,7 +119,7 @@ class WithDrawScreenController extends GetxService {
                   TextButton(
                       onPressed: () {
                         SmartDialog.dismiss();
-                        Get.to(BankInfoScreen());
+                        Get.to(const BankInfoScreen());
                       },
                       child: const Text(
                         "Continue",
@@ -141,7 +141,7 @@ class WithDrawScreenController extends GetxService {
         return true;
       } catch (e) {
         SmartDialog.showToast('Fill all information here');
-        Get.to(BankInfoScreen());
+        Get.to(const BankInfoScreen());
         return false;
       }
     }
@@ -304,7 +304,7 @@ class WithDrawScreenController extends GetxService {
                       trailing: IconButton(
                         onPressed: () {
                           SmartDialog.dismiss(status: SmartStatus.dialog);
-                          Get.to(BankInfoScreen());
+                          Get.to(const BankInfoScreen());
                         },
                         icon: const Icon(
                           FontAwesomeIcons.pen,

@@ -822,6 +822,7 @@ class MySlidingImages extends StatelessWidget {
       ),
       items: corouselItemList.map((i) {
         return Builder(
+          // Builder is used to provide a context to the widget
           builder: (BuildContext context) {
             return GestureDetector(
               onTap: () => i.onClick(),
@@ -916,6 +917,13 @@ class CarouselModel {
 List<CarouselModel> corouselItemList = [
   CarouselModel(
       pImageUrl:
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1650567875/DreamLightCity/PlanImages/106698727-1599822851881-SoFi_Stadium_est_2020_ynf0a1.jpg",
+      onClick: () {
+        Get.to(() => const BuyProductScreen(productIndex: 5));
+      },
+      actionName: 'Stadium of Rs.1000/Day'),
+  CarouselModel(
+      pImageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1652020809/DreamLightCity/AppAssets/GOLDEN-SIGNUP-BANNER_jvt5wc.jpg",
       onClick: () {
         SmartDialog.showToast("You are already registered");
@@ -923,18 +931,11 @@ List<CarouselModel> corouselItemList = [
       actionName: ''),
   CarouselModel(
       pImageUrl:
-          "https://res.cloudinary.com/promisedpayment/image/upload/v1652026197/DreamLightCity/AppAssets/GOLDEN-COMMISSION-BANNER_hds7sh.jpg",
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1652294240/DreamLightCity/AppAssets/GOLDEN-COMMISSION-BANNER_bjvnwk.jpg",
       onClick: () {
         Get.toNamed(UserReferIncomeScreen.screenName);
       },
       actionName: ''),
-  CarouselModel(
-      pImageUrl:
-          "https://res.cloudinary.com/promisedpayment/image/upload/v1650567875/DreamLightCity/PlanImages/106698727-1599822851881-SoFi_Stadium_est_2020_ynf0a1.jpg",
-      onClick: () {
-        Get.to(() => const BuyProductScreen(productIndex: 5));
-      },
-      actionName: 'Stadium of Rs.1000/Day'),
   CarouselModel(
       pImageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1650794761/DreamLightCity/AppAssets/telegram3627_qniduu.png",

@@ -119,19 +119,16 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller:
-                            _personalInfoScreenController.fullNameContrlr,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Enter your full name",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller: _personalInfoScreenController.fullNameContrlr,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter your full name",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -140,19 +137,17 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller:
-                            _personalInfoScreenController.addressController,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Optional",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller:
+                          _personalInfoScreenController.addressController,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Optional",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -161,20 +156,18 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller:
-                            _personalInfoScreenController.zipCodeController,
-                        keyboardType: TextInputType.number,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Enter your Zip Code",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller:
+                          _personalInfoScreenController.zipCodeController,
+                      keyboardType: TextInputType.number,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter your Zip Code",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -183,19 +176,17 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller: _personalInfoScreenController
-                            .primaryEmailFieldContrlr,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Enter your Email Id",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller: _personalInfoScreenController
+                          .primaryEmailFieldContrlr,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter your Email Id",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -204,20 +195,17 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller:
-                            _personalInfoScreenController.altNoController,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        keyboardType: TextInputType.phone,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Enter an alternate number",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller: _personalInfoScreenController.altNoController,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.phone,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter an alternate number",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 12,
                     ),

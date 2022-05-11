@@ -156,269 +156,13 @@ class OrderView extends StatelessWidget {
             if (_orderUiController.userInvestedPlans.isEmpty ||
                 _investmentProductsStreamController
                     .noOfInvestmentsList.isEmpty) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Divider(
-                      color: color3,
-                      indent: 100,
-                      endIndent: 100,
-                    ),
-                    Text(
-                      "No investment on any infrastructure yet",
-                      style: TextStyle(color: color4.withOpacity(0.6)),
-                    ),
-                    const Divider(
-                      color: color3,
-                      indent: 30,
-                      endIndent: 30,
-                    ),
-                    const Text(
-                      "Your can only earn by investing on our featured stadiums stated in app home page",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: color3),
-                    ),
-                    const Divider(
-                      color: color3,
-                      indent: 100,
-                      endIndent: 100,
-                    ),
-                  ],
-                ),
-              );
+              return const NoOrderUi();
             } else {
               return ListView.builder(
                 itemCount: _orderUiController.userInvestedPlans.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(10),
-                      ),
-                      child: Stack(
-                        children: [
-                          Container(
-                            foregroundDecoration: RotatedCornerDecoration(
-                              textSpan: TextSpan(
-                                text:
-                                    (_orderUiController.userInvestedPlans[index]
-                                            [FireString.isCompleted])
-                                        ? "Expired"
-                                        : "Running",
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                ),
-                              ),
-                              color:
-                                  (_orderUiController.userInvestedPlans[index]
-                                          [FireString.isCompleted])
-                                      ? Colors.grey
-                                      : color4,
-                              geometry: const BadgeGeometry(
-                                  width: 50,
-                                  height: 50,
-                                  cornerRadius: 0,
-                                  alignment: BadgeAlignment.topRight),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 1,
-                                  width: Get.width,
-                                  decoration: const BoxDecoration(
-                                      gradient: LinearGradient(
-                                          colors: [color1, color4])),
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                Text(
-                                  "⬤  Start Date ► ${DateFormat.yMMMEd().format(((_orderUiController.userInvestedPlans[index][FireString.planCapturedDate].toDate()).add(const Duration(days: 1))))}",
-                                  style: const TextStyle(color: color4),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: color4.withOpacity(0.4),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "Ord Id: ${_orderUiController.userInvestedPlans[index][FireString.docID].split("+").removeAt(2).replaceAll("[", "").replaceAll("]", "")} ",
-                                          style: const TextStyle(color: color4),
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Clipboard.setData(
-                                              ClipboardData(
-                                                  text:
-                                                      "${_orderUiController.userInvestedPlans[index][FireString.docID]}"),
-                                            ).then(
-                                              (value) => SmartDialog.showToast(
-                                                  "Order Id Copied"),
-                                            );
-                                          },
-                                          child: const Icon(
-                                            FontAwesomeIcons.copy,
-                                            size: 18,
-                                            color: color4,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                          color3,
-                                          color2,
-                                        ]),
-                                    borderRadius: BorderRadius.vertical(
-                                      bottom: Radius.circular(10),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(15.0),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                Radius.circular(10),
-                                              ),
-                                              child: CachedNetworkImage(
-                                                  width: Get.width * 0.36,
-                                                  imageUrl: mainInvestmentProductsList[
-                                                          mainInvestmentProductsList
-                                                              .indexWhere((element) =>
-                                                                  element
-                                                                      .uidProduct ==
-                                                                  _orderUiController
-                                                                              .userInvestedPlans[
-                                                                          index]
-                                                                      [
-                                                                      FireString
-                                                                          .planUid])]
-                                                      .pImageUrl),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
-                                              children: [
-                                                const SizedBox(height: 6),
-                                                Text(
-                                                  mainInvestmentProductsList[mainInvestmentProductsList
-                                                          .indexWhere((element) =>
-                                                              element
-                                                                  .uidProduct ==
-                                                              _orderUiController
-                                                                          .userInvestedPlans[
-                                                                      index][
-                                                                  FireString
-                                                                      .planUid])]
-                                                      .productName,
-                                                  style: const TextStyle(
-                                                      color: colorWhite,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                const SizedBox(height: 10),
-                                                Text(
-                                                  "Price: ${_orderUiController.userInvestedPlans[index][FireString.planCapturedAt]}",
-                                                  style: const TextStyle(
-                                                      color: Colors.amber),
-                                                ),
-                                                const SizedBox(height: 6),
-                                                Text(
-                                                  "Daily Income: ₹${mainInvestmentProductsList[mainInvestmentProductsList.indexWhere((element) => element.uidProduct == _orderUiController.userInvestedPlans[index][FireString.planUid])].dailyIncome}",
-                                                  style: const TextStyle(
-                                                      color: Colors.amber),
-                                                ),
-                                                const SizedBox(height: 6),
-                                                Text(
-                                                  "Total Income: ₹${mainInvestmentProductsList[mainInvestmentProductsList.indexWhere((element) => element.uidProduct == _orderUiController.userInvestedPlans[index][FireString.planUid])].totalIncome}",
-                                                  style: const TextStyle(
-                                                      color: Colors.amber),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: [
-                                            Text(
-                                              "Served Time: ${_orderUiController.userInvestedPlans[index][FireString.servedDays]}/20",
-                                              style: const TextStyle(
-                                                  color: Colors.amber),
-                                            ),
-                                            Text(
-                                              "Already Returned: ₹${_orderUiController.userInvestedPlans[index][FireString.returnedAmount]}",
-                                              style: const TextStyle(
-                                                  color: Colors.amber),
-                                            ),
-                                            const SizedBox(height: 10),
-                                          ],
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          (_orderUiController
-                                                      .userInvestedPlans[index]
-                                                  [FireString.isCompleted])
-                                              ? "Server need reinvestment to start"
-                                              : "Running with other ${_investmentProductsStreamController.noOfInvestmentsList[_investmentProductsStreamController.investmentPlansIdList.indexWhere((element) => element == _orderUiController.userInvestedPlans[index][FireString.planUid])] + mainInvestmentProductsList[mainInvestmentProductsList.indexWhere((element) => element.uidProduct == _orderUiController.userInvestedPlans[index][FireString.planUid])].fakeNumber} instances",
-                                          style: TextStyle(
-                                              fontSize: 9,
-                                              color:
-                                                  colorWhite.withOpacity(0.3)),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Positioned(
-                            bottom: 14,
-                            right: 14,
-                            child: Opacity(
-                              opacity: 0.1,
-                              child: SizedBox(
-                                  width: 25,
-                                  height: 25,
-                                  child: AppIconWidget()),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  return OrdersUi(
+                    index: index,
                   );
                 },
               );
@@ -430,5 +174,257 @@ class OrderView extends StatelessWidget {
   }
 }
 
-const String cloudnaryTag =
-    "https://res.cloudinary.com/asifakhtarcloudinary/image/upload/v1636887259/PowerBankImages/Places";
+class OrdersUi extends StatelessWidget {
+  final int index;
+  const OrdersUi({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      var userInvestedPlan = _orderUiController.userInvestedPlans[index];
+      int investedPlanLocalIndex = mainInvestmentProductsList.indexWhere(
+          (element) =>
+              element.uidProduct == userInvestedPlan[FireString.planUid]);
+
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(10),
+          ),
+          child: Stack(
+            children: [
+              Container(
+                foregroundDecoration: RotatedCornerDecoration(
+                  textSpan: TextSpan(
+                    text: (userInvestedPlan[FireString.isCompleted])
+                        ? "Expired"
+                        : "Running",
+                    style: const TextStyle(
+                      fontSize: 10,
+                    ),
+                  ),
+                  color: (userInvestedPlan[FireString.isCompleted])
+                      ? Colors.grey
+                      : color4,
+                  geometry: const BadgeGeometry(
+                      width: 50,
+                      height: 50,
+                      cornerRadius: 0,
+                      alignment: BadgeAlignment.topRight),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 1,
+                      width: Get.width,
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(colors: [color1, color4])),
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      "⬤  Start Date ► ${DateFormat.yMMMEd().format(((userInvestedPlan[FireString.planCapturedDate].toDate()).add(const Duration(days: 1))))}",
+                      style: const TextStyle(color: color4),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: color4.withOpacity(0.4),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Ord Id: ${userInvestedPlan[FireString.docID].split("+").removeAt(2).replaceAll("[", "").replaceAll("]", "")} ",
+                              style: const TextStyle(color: color4),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Clipboard.setData(
+                                  ClipboardData(
+                                      text:
+                                          "${userInvestedPlan[FireString.docID]}"),
+                                ).then(
+                                  (value) =>
+                                      SmartDialog.showToast("Order Id Copied"),
+                                );
+                              },
+                              child: const Icon(
+                                FontAwesomeIcons.copy,
+                                size: 18,
+                                color: color4,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              color3,
+                              color2,
+                            ]),
+                        borderRadius: BorderRadius.vertical(
+                          bottom: Radius.circular(10),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  child: CachedNetworkImage(
+                                      width: Get.width * 0.36,
+                                      imageUrl: mainInvestmentProductsList[
+                                              investedPlanLocalIndex]
+                                          .pImageUrl),
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      mainInvestmentProductsList[
+                                              investedPlanLocalIndex]
+                                          .productName,
+                                      style: const TextStyle(
+                                          color: colorWhite,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      "Price: ${userInvestedPlan[FireString.planCapturedAt]}",
+                                      style:
+                                          const TextStyle(color: Colors.amber),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      "Daily Income: ₹${mainInvestmentProductsList[investedPlanLocalIndex].dailyIncome}",
+                                      style:
+                                          const TextStyle(color: Colors.amber),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      "Total Income: ₹${mainInvestmentProductsList[investedPlanLocalIndex].totalIncome}",
+                                      style:
+                                          const TextStyle(color: Colors.amber),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  "Served Time: ${userInvestedPlan[FireString.servedDays]}/${mainInvestmentProductsList[investedPlanLocalIndex].maturityTime}",
+                                  style: const TextStyle(color: Colors.amber),
+                                ),
+                                Text(
+                                  "Already Returned: ₹${userInvestedPlan[FireString.returnedAmount]}",
+                                  style: const TextStyle(color: Colors.amber),
+                                ),
+                                const SizedBox(height: 10),
+                              ],
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              (userInvestedPlan[FireString.isCompleted])
+                                  ? "Server need reinvestment to start"
+                                  : "Running with other ${_investmentProductsStreamController.noOfInvestmentsList[investedPlanLocalIndex] + mainInvestmentProductsList[investedPlanLocalIndex].fakeNumber} instances",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: colorWhite.withOpacity(0.3)),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Positioned(
+                bottom: 14,
+                right: 14,
+                child: Opacity(
+                  opacity: 0.1,
+                  child:
+                      SizedBox(width: 25, height: 25, child: AppIconWidget()),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
+  }
+}
+
+class NoOrderUi extends StatelessWidget {
+  const NoOrderUi({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Divider(
+            color: color3,
+            indent: 100,
+            endIndent: 100,
+          ),
+          Text(
+            "No investment on any infrastructure yet",
+            style: TextStyle(color: color4.withOpacity(0.6)),
+          ),
+          const Divider(
+            color: color3,
+            indent: 30,
+            endIndent: 30,
+          ),
+          const Text(
+            "Your can only earn by investing on our featured stadiums stated in app home page",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: color3),
+          ),
+          const Divider(
+            color: color3,
+            indent: 100,
+            endIndent: 100,
+          ),
+        ],
+      ),
+    );
+  }
+}

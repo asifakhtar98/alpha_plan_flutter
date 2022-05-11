@@ -1,6 +1,7 @@
 import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -197,15 +198,15 @@ class MyButtomNavigationBar extends StatelessWidget {
       items: [
         TitledNavigationBarItem(
           title: Text(HomeView.viewName),
-          icon: const Icon(Icons.home),
+          icon: const Icon(FontAwesomeIcons.hotel),
         ),
         TitledNavigationBarItem(
           title: Text(OrderView.viewName),
-          icon: const Icon(Icons.shopping_cart),
+          icon: const Icon(FontAwesomeIcons.bagShopping),
         ),
         TitledNavigationBarItem(
           title: Text(ProfileView.viewName),
-          icon: const Icon(Icons.person_outline),
+          icon: const Icon(FontAwesomeIcons.userShield),
         ),
       ],
     );

@@ -49,7 +49,7 @@ class CommissionController extends GetxService {
     investorName = await _hiveBox.get(FireString.fullName) ?? "";
     if (investorName.isEmpty) {
       SmartDialog.dismiss();
-      Get.off(() => UserPersonalInfoScreen());
+      Get.off(() => const UserPersonalInfoScreen());
       SmartDialog.showToast("Please fill this info");
     }
     print("Investor Name: $investorName");

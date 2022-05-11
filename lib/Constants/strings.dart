@@ -1,4 +1,3 @@
-const int passwordDialogTimer = 30;
 const String referCodePrefix = "dreamcity";
 const int referCodeLength = 20;
 const int minPasswordSize = 6;
@@ -8,7 +7,7 @@ const String cloudinaryTag =
     "https://res.cloudinary.com/earnindia/image/upload/v1644340110/AlphaPlan2";
 
 const String demoMobileNo = "0987654321";
-const String demoPassword = "654321";
+const String demoPassword = "123456";
 
 const kIfttApiKey1 = "eEDmptV9q42Hv1nFhkKLq-R8MNojvF32hsrHYaY_8hx";
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:powerbank/App/UserBankInfo/Controller/Bank.Info.Controller.dart';
 import 'package:powerbank/Constants/Colors.dart';
 
@@ -57,19 +56,16 @@ class _BankInfoScreenState extends State<BankInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        style: _textStyle2,
-                        controller:
-                            _bankScreenController.payeeNameTextController,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Enter your full name",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      style: _textStyle2,
+                      controller: _bankScreenController.payeeNameTextController,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter your full name",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -78,19 +74,16 @@ class _BankInfoScreenState extends State<BankInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller:
-                            _bankScreenController.bankNameTextController,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Optional",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller: _bankScreenController.bankNameTextController,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Optional",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -99,19 +92,16 @@ class _BankInfoScreenState extends State<BankInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller:
-                            _bankScreenController.accountNoTextController,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Enter your bank account number",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller: _bankScreenController.accountNoTextController,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter your bank account number",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -120,19 +110,16 @@ class _BankInfoScreenState extends State<BankInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller:
-                            _bankScreenController.bankIfscTextController,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Enter your bank IFSC Code",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller: _bankScreenController.bankIfscTextController,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter your bank IFSC Code",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -141,19 +128,17 @@ class _BankInfoScreenState extends State<BankInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller:
-                            _bankScreenController.payeeEmailTextController,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Enter your email address",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller:
+                          _bankScreenController.payeeEmailTextController,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter your email address",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -162,18 +147,16 @@ class _BankInfoScreenState extends State<BankInfoScreen> {
                       style: _textStyle1,
                     ),
                     const SizedBox(height: 8),
-                    Obx(() {
-                      return TextField(
-                        controller: _bankScreenController.upiLinkTextController,
-                        style: _textStyle2,
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Optional",
-                            fillColor: color2,
-                            filled: true),
-                      );
-                    }),
+                    TextField(
+                      controller: _bankScreenController.upiLinkTextController,
+                      style: _textStyle2,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Optional",
+                          fillColor: color2,
+                          filled: true),
+                    ),
                     const SizedBox(
                       height: 12,
                     ),

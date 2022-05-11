@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
 
 class AboutAppScreen extends StatelessWidget {
@@ -156,18 +157,19 @@ class AboutAppScreen extends StatelessWidget {
                           spacing: 15,
                           runSpacing: 15,
                           children: const [
-                            Icon(FontAwesomeIcons.amazon),
-                            Icon(FontAwesomeIcons.planeDeparture),
-                            Icon(FontAwesomeIcons.avianex),
-                            Icon(FontAwesomeIcons.fedex),
-                            Icon(FontAwesomeIcons.telegram),
-                            Icon(FontAwesomeIcons.unity),
-                            Icon(FontAwesomeIcons.hooli),
-                            Icon(FontAwesomeIcons.firefoxBrowser),
-                            Icon(FontAwesomeIcons.code),
-                            Icon(FontAwesomeIcons.ccJcb),
+                            Icon(FontAwesomeIcons.volleyball),
+                            Icon(FontAwesomeIcons.medal),
                             Icon(FontAwesomeIcons.paypal),
                             Icon(FontAwesomeIcons.earlybirds),
+                            Icon(FontAwesomeIcons.avianex),
+                            Icon(FontAwesomeIcons.ccJcb),
+                            Icon(FontAwesomeIcons.personBiking),
+                            Icon(FontAwesomeIcons.unity),
+                            Icon(FontAwesomeIcons.dumbbell),
+                            Icon(FontAwesomeIcons.planeDeparture),
+                            Icon(FontAwesomeIcons.amazon),
+                            Icon(FontAwesomeIcons.spa),
+                            Icon(FontAwesomeIcons.fedex),
                           ],
                         ),
                       ),
@@ -190,7 +192,7 @@ class AboutAppScreen extends StatelessWidget {
                                       fontSize: 14),
                                 ),
                                 const Text(
-                                  "2016",
+                                  "2018",
                                   style: TextStyle(
                                       color: colorWhite,
                                       fontSize: 22,
@@ -201,13 +203,13 @@ class AboutAppScreen extends StatelessWidget {
                             Column(
                               children: [
                                 Text(
-                                  "Server Rooms",
+                                  "Nations Covered",
                                   style: TextStyle(
                                       color: colorWhite.withOpacity(0.7),
                                       fontSize: 14),
                                 ),
                                 const Text(
-                                  "5",
+                                  "12",
                                   style: TextStyle(
                                       color: colorWhite,
                                       fontSize: 22,
@@ -218,13 +220,13 @@ class AboutAppScreen extends StatelessWidget {
                             Column(
                               children: [
                                 Text(
-                                  "Servers",
+                                  "Architectures",
                                   style: TextStyle(
                                       color: colorWhite.withOpacity(0.7),
                                       fontSize: 14),
                                 ),
                                 const Text(
-                                  "215,000+",
+                                  "18,500+",
                                   style: TextStyle(
                                       color: colorWhite,
                                       fontSize: 22,
@@ -241,7 +243,7 @@ class AboutAppScreen extends StatelessWidget {
                                       fontSize: 14),
                                 ),
                                 const Text(
-                                  "510,000+",
+                                  "412,080+",
                                   style: TextStyle(
                                       color: colorWhite,
                                       fontSize: 22,
@@ -277,7 +279,7 @@ class AboutAppScreen extends StatelessWidget {
                         height: 20,
                       ),
                       Text(
-                        "Copyright © 2016-2022\nEco-Power Corporation All Right Reserved",
+                        "Copyright © 2018-2022\n$companyName Corporation All Right Reserved",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: colorWhite.withOpacity(0.7), fontSize: 12),
@@ -311,12 +313,8 @@ class DescriptionModel {
 List<DescriptionModel> descriptionList = [
   DescriptionModel(
       imageUrl:
-          "https://res.cloudinary.com/promisedpayment/image/upload/v1651170187/DreamLightCity/AppAssets/Fall-2018-Freshman-Class-Diversity-Feature-800x450_tgej03.jpg",
-      headline: "WHAT ARE WE ECO POWER GROUP?",
-      description: ""),
-  DescriptionModel(
-      imageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1651170428/DreamLightCity/AppAssets/822c91e2-5ead-11e8-9334-2218e7146b04_nynemx.jpg",
-      headline: "OUR SHARES VALUES",
-      description: ""),
+      headline: "WHAT ARE WE ECO POWER GROUP?",
+      description:
+          "Eco Power Corporation is a combining six major world corporations namely International Golf Federation, World Archery Federation, International Cricket Council, Union Internationale Motonautique, International Masters Games Association founded in 2018 to oversee international competition among the national associations of Belgium, Denmark, France, Germany, the Netherlands, Spain, Sweden, India and Switzerland. Headquartered in Zürich, Switzerland, its membership now comprises 211 national associations. The need for a single body to oversee association football became apparent at the beginning of the 20th century with the increasing popularity of international fixtures."),
 ];

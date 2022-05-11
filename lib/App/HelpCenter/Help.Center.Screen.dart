@@ -125,15 +125,14 @@ class HelpCenterScreen extends StatelessWidget {
                           m["q"],
                           style: const TextStyle(
                               fontSize: 12,
+                              fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.bold,
                               color: color4),
                         ),
                         Text(
                           "➥ ${m["a"]}",
-                          style: const TextStyle(
-                              fontSize: 14,
-                              fontStyle: FontStyle.italic,
-                              color: colorWhite),
+                          style:
+                              const TextStyle(fontSize: 14, color: colorWhite),
                         ),
                         const SizedBox(
                           height: 12,
@@ -213,6 +212,6 @@ List<Map> faqMapList = [
   {
     "q": "How to get best supports from $appNameShort App managers/accountants",
     "a":
-        "While connecting for help support with $appNameShort App manager/accountant explain your query, complain, issue with details and visual or proofs. Record and send video if you found any bugs or issue in app"
+        "While connecting for help support with $appNameShort App manager/server admin explain your query, complain, issue with details and visual or proofs. Record and send video if you found any bugs or issue in app"
   },
 ];

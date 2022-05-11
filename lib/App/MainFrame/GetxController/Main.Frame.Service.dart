@@ -138,7 +138,7 @@ class MainFrameGService extends GetxService {
                       child: TextButton(
                         onPressed: () {
                           SmartDialog.dismiss();
-                          Get.to(UserPersonalInfoScreen());
+                          Get.to(const UserPersonalInfoScreen());
                         },
                         child: const Text(
                           "Set Password",
@@ -236,7 +236,7 @@ class MainFrameGService extends GetxService {
               FireString.fullName, _personalData[FireString.fullName] ?? "");
           if (_personalData[FireString.fullName] == "" ||
               _personalData[FireString.fullName] == null) {
-            Get.to(() => UserPersonalInfoScreen());
+            Get.to(() => const UserPersonalInfoScreen());
             SmartDialog.showToast("Please fill this info");
           }
           print("Full name: ${_personalData[FireString.fullName]}");

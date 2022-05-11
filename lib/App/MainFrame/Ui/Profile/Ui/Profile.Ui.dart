@@ -211,15 +211,19 @@ class ProfileView extends StatelessWidget {
                           const SizedBox(width: 20.0, height: 100.0),
                           const Text(
                             'Travel',
-                            style: TextStyle(fontSize: 35, color: color4),
+                            style: TextStyle(
+                                fontSize: 25,
+                                color: color4,
+                                fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(width: 20.0, height: 100.0),
                           Expanded(
                             child: DefaultTextStyle(
                               style: const TextStyle(
-                                fontSize: 35,
+                                fontSize: 25,
                               ),
                               child: AnimatedTextKit(
+                                pause: const Duration(milliseconds: 300),
                                 repeatForever: true,
                                 animatedTexts: [
                                   RotateAnimatedText('MALDIVES'),
@@ -242,7 +246,7 @@ class ProfileView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const Icon(FontAwesomeIcons.anglesRight),
+                          const Icon(FontAwesomeIcons.anglesRight, size: 20),
                           const SizedBox(width: 15),
                         ],
                       ),
@@ -291,10 +295,10 @@ class ProfileActionTile {
 
 List<ProfileActionTile> profileActionList = [
   ProfileActionTile(
-      icon: FontAwesomeIcons.user,
+      icon: FontAwesomeIcons.userPen,
       actionText: "My Personal Info",
       onTap: () {
-        Get.to(() => UserPersonalInfoScreen());
+        Get.to(() => const UserPersonalInfoScreen());
       }),
   ProfileActionTile(
     icon: FontAwesomeIcons.wallet,
@@ -314,7 +318,7 @@ List<ProfileActionTile> profileActionList = [
       icon: FontAwesomeIcons.moneyCheckAlt,
       actionText: "My Bank Info",
       onTap: () {
-        Get.to(() => BankInfoScreen());
+        Get.to(() => const BankInfoScreen());
       }),
   ProfileActionTile(
       icon: FontAwesomeIcons.piggyBank,
