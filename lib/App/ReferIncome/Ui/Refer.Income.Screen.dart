@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
@@ -423,10 +424,11 @@ class OnlyReferStats extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () async {
-                            final bytes = await rootBundle.load(
-                                'assets/refer_files/AppInsiderCoverPic.jpg');
+                            String fileName =
+                                "AppInsiderCoverPic${Random().nextInt(2) + 1}.jpg";
+                            final bytes = await rootBundle
+                                .load('assets/refer_files/$fileName');
                             final list = bytes.buffer.asUint8List();
-
                             final tempDir = await getTemporaryDirectory();
                             final file = await File('${tempDir.path}/image.jpg')
                                 .create();
