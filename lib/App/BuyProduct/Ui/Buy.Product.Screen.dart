@@ -515,7 +515,6 @@ class _BuyProductScreenState extends State<BuyProductScreen> {
                                       ),
                                       Expanded(
                                         child: AsyncButtonBuilder(
-                                          child: const Text('Confirm Checkout'),
                                           loadingWidget:
                                               const Text('Verifying...'),
                                           errorWidget:
@@ -570,14 +569,15 @@ class _BuyProductScreenState extends State<BuyProductScreen> {
                                             );
 
                                             return OutlinedButton(
-                                              child: child,
                                               onPressed: callback,
                                               style: OutlinedButton.styleFrom(
                                                 primary: Colors.black,
                                                 backgroundColor: buttonColor,
                                               ),
+                                              child: child,
                                             );
                                           },
+                                          child: const Text('Confirm Checkout'),
                                         ),
                                       ),
                                     ],

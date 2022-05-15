@@ -156,7 +156,6 @@ class PasswordRenewController extends GetxController {
                             decoration:
                                 BoxDecoration(color: color3.withOpacity(0.7)),
                             child: AsyncButtonBuilder(
-                              child: const Text('Get OTP'),
                               loadingWidget: const Text('Resend-20S'),
                               successWidget: const Text('Try Later'),
                               errorWidget: const Text("Check Again"),
@@ -190,10 +189,11 @@ class PasswordRenewController extends GetxController {
                               },
                               builder: (context, child, callback, _) {
                                 return TextButton(
-                                  child: child,
                                   onPressed: callback,
+                                  child: child,
                                 );
                               },
+                              child: const Text('Get OTP'),
                             ),
                           ),
                         ),
@@ -219,10 +219,6 @@ class PasswordRenewController extends GetxController {
                         ),
                         Expanded(
                           child: AsyncButtonBuilder(
-                            child: const Text(
-                              'Change Now',
-                              style: TextStyle(color: colorWhite),
-                            ),
                             loadingWidget: const Text('Verifying'),
                             successWidget: const Text('Change Now'),
                             errorWidget: const Text("Change Now"),
@@ -252,10 +248,14 @@ class PasswordRenewController extends GetxController {
                             },
                             builder: (context, child, callback, _) {
                               return TextButton(
-                                child: child,
                                 onPressed: callback,
+                                child: child,
                               );
                             },
+                            child: const Text(
+                              'Change Now',
+                              style: TextStyle(color: colorWhite),
+                            ),
                           ),
                         ),
                       ],

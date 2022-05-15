@@ -92,17 +92,17 @@ class BankInfoScreenController extends GetxService {
           .collection(FireString.bankInfo)
           .doc(FireString.document1)
           .get()
-          .then((_bankData) {
-        if (_bankData.exists) {
+          .then((bankData) {
+        if (bankData.exists) {
           print("Data Loaded From Firestore");
-          payeeNameTextController.text = _bankData[FireString.payeeName] ?? "";
-          bankNameTextController.text = _bankData[FireString.bankName] ?? "";
+          payeeNameTextController.text = bankData[FireString.payeeName] ?? "";
+          bankNameTextController.text = bankData[FireString.bankName] ?? "";
           accountNoTextController.text =
-              _bankData[FireString.bankAcNumber] ?? "";
-          bankIfscTextController.text = _bankData[FireString.bankIfsc] ?? "";
+              bankData[FireString.bankAcNumber] ?? "";
+          bankIfscTextController.text = bankData[FireString.bankIfsc] ?? "";
           payeeEmailTextController.text =
-              _bankData[FireString.payeeEmail] ?? "";
-          upiLinkTextController.text = _bankData[FireString.payeeUpiLink] ?? "";
+              bankData[FireString.payeeEmail] ?? "";
+          upiLinkTextController.text = bankData[FireString.payeeUpiLink] ?? "";
           saveToHiveBox();
           //
           //

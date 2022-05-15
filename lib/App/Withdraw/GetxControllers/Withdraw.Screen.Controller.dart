@@ -342,7 +342,7 @@ class WithDrawScreenController extends GetxService {
                             FireString.withdrawableCoin:
                                 FieldValue.increment(-enteredAmount)
                           }, SetOptions(merge: true)).then((value) async {
-                            Map _userBankInfo = {
+                            Map userBankInfo = {
                               FireString.bankName: bankName.value,
                               FireString.payeeName: payeeName.value,
                               FireString.bankAcNumber: bankAcNumber.value,
@@ -356,7 +356,7 @@ class WithDrawScreenController extends GetxService {
                                 .set({
                               FireString.withdrawalAmount: enteredAmount,
                               FireString.withdrawStatus: FireString.processing,
-                              FireString.withdrawBankInfo: _userBankInfo,
+                              FireString.withdrawBankInfo: userBankInfo,
                             }, SetOptions(merge: true)).then((value) async {
                               //Adding To User Withdrawals Doc List
                               await _firestore
@@ -401,7 +401,7 @@ class WithDrawScreenController extends GetxService {
                                   SpamZone.sendSpecialWithdrawAlert(
                                     "₹$enteredAmount",
                                     " withdraw by $mNo",
-                                    "Info: $_userBankInfo.  LfD: ${_walletBalanceStreamController.lifetimeDeposit.value}, UROI: ${_walletBalanceStreamController.upcomingIncome.value}, TRef: ${_walletBalanceStreamController.totalRefers.value}",
+                                    "Info: $userBankInfo.  LfD: ${_walletBalanceStreamController.lifetimeDeposit.value}, UROI: ${_walletBalanceStreamController.upcomingIncome.value}, TRef: ${_walletBalanceStreamController.totalRefers.value}",
                                   );
                                   SpamZone.sendMsgToTelegram(
                                       "New $appNameShort Withdraw ",

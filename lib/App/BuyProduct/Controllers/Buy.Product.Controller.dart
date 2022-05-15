@@ -51,7 +51,7 @@ class BuyProductController extends GetxService {
   Future<bool> proceedToPlanBuy(
       {required bool isDepositWalletSet, required String planUid}) async {
     print(planUid);
-    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
     String mNo = await _hiveBox.get(FireString.mobileNo);
     int tmpPlanPrice;
     try {
@@ -64,13 +64,13 @@ class BuyProductController extends GetxService {
         throw "inHibernation";
       }
       //Get current plan price
-      var planDocument = await _firestore
+      var planDocument = await firestore
           .collection(FireString.investmentPlans)
           .doc(planUid)
           .get();
       tmpPlanPrice = planDocument.get(FireString.checkoutPrice);
       //Balance Deduction
-      await _firestore
+      await firestore
           .collection(FireString.accounts)
           .doc(mNo)
           .collection(FireString.walletBalance)
@@ -91,7 +91,7 @@ class BuyProductController extends GetxService {
 
       String docId = "INV+$mNo+[$currentTimestamp]";
       //For User : Add this investment to user personal records
-      await _firestore
+      await firestore
           .collection(FireString.accounts)
           .doc(mNo)
           .collection(FireString.myInvestments)
@@ -105,7 +105,7 @@ class BuyProductController extends GetxService {
         FireString.isCompleted: false
       }, SetOptions(merge: true));
       //For Admin: Add investment to global investment records
-      await _firestore.collection(FireString.allAppInvestments).doc(docId).set({
+      await firestore.collection(FireString.allAppInvestments).doc(docId).set({
         FireString.isCompleted: false,
         FireString.planUid: planUid,
         FireString.planCapturedDate: currentTimestamp,
@@ -115,7 +115,7 @@ class BuyProductController extends GetxService {
       }, SetOptions(merge: true));
       //Update user no of investment by 1 (no of investment restrict non investor to get only 1 free withdrawal)
 
-      await _firestore
+      await firestore
           .collection(FireString.accounts)
           .doc(mNo)
           .collection(FireString.walletBalance)

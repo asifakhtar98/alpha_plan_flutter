@@ -44,13 +44,13 @@ class AuthGController extends GetxController {
     setNewCapthaCode(5);
     accounts = _firestoreIns.collection(FireString.accounts);
     //Check For Local Saved Data To Login
-    var _mNo = await _hiveBox.get(FireString.mobileNo) ?? "";
-    print("The No: $_mNo");
-    if (_mNo != "" && _mNo != null) {
+    var mNo = await _hiveBox.get(FireString.mobileNo) ?? "";
+    print("The No: $mNo");
+    if (mNo != "" && mNo != null) {
       SmartDialog.showLoading(background: colorLoadingAnim, backDismiss: false);
-      var _pass = await _hiveBox.get(FireString.password) ?? "";
+      var pass = await _hiveBox.get(FireString.password) ?? "";
       await Future.delayed(const Duration(seconds: 1));
-      loginUser(mNo: _mNo, pass: _pass, captha: currentCaptha.value);
+      loginUser(mNo: mNo, pass: pass, captha: currentCaptha.value);
     }
     _serverStatsController.loadGlobalStats();
   }
@@ -122,9 +122,9 @@ class AuthGController extends GetxController {
           }
 
           //Check if this no is account firestore collection
-          var _tempCollection = await accounts.doc(mNo).get();
+          var tempCollection = await accounts.doc(mNo).get();
           // print(_tempCollection.exists);
-          if (_tempCollection.exists) {
+          if (tempCollection.exists) {
             //When user already registered
             SmartDialog.dismiss();
             Get.snackbar(
@@ -338,13 +338,13 @@ class AuthGController extends GetxController {
   ///////////////////////////
 
   void setNewCapthaCode(int length) {
-    String _chars =
+    String chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
     currentCaptha.value = String.fromCharCodes(
       Iterable.generate(
         length,
-        (_) => _chars.codeUnitAt(
-          Random().nextInt(_chars.length),
+        (_) => chars.codeUnitAt(
+          Random().nextInt(chars.length),
         ),
       ),
     );

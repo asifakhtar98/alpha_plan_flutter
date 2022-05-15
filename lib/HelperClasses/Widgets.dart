@@ -49,10 +49,10 @@ class CustomerSupport {
         .doc(FireString.customerSupport)
         .get()
         .then((docMap) async {
-      String _tmpVal = docMap.get(FireString.admin1No);
-      print(_tmpVal);
-      await canLaunch("https://wa.me/$_tmpVal?text=Hii,I'm<YourName>")
-          ? await launch("https://wa.me/$_tmpVal?text=Hii,I'm<YourName>")
+      String tmpVal = docMap.get(FireString.admin1No);
+      print(tmpVal);
+      await canLaunch("https://wa.me/$tmpVal?text=Hii,I'm<YourName>")
+          ? await launch("https://wa.me/$tmpVal?text=Hii,I'm<YourName>")
           : throw "Cant launch url";
     });
   }
@@ -63,10 +63,10 @@ class CustomerSupport {
         .doc(FireString.customerSupport)
         .get()
         .then((docMap) async {
-      String _tmpVal = docMap.get(FireString.complainLink);
-      print(_tmpVal);
-      await canLaunch(_tmpVal)
-          ? await launch(_tmpVal)
+      String tmpVal = docMap.get(FireString.complainLink);
+      print(tmpVal);
+      await canLaunch(tmpVal)
+          ? await launch(tmpVal)
           : throw "Cant launch url";
     });
   }
@@ -77,10 +77,10 @@ class CustomerSupport {
         .doc(FireString.customerSupport)
         .get()
         .then((docMap) async {
-      String _tmpVal = docMap.get(FireString.telegramChannelLink);
-      print(_tmpVal);
-      await canLaunch(_tmpVal)
-          ? await launch(_tmpVal)
+      String tmpVal = docMap.get(FireString.telegramChannelLink);
+      print(tmpVal);
+      await canLaunch(tmpVal)
+          ? await launch(tmpVal)
           : throw "Cant launch url";
     });
   }
@@ -91,25 +91,25 @@ class CustomerSupport {
         .doc(FireString.customerSupport)
         .get()
         .then((docMap) async {
-      String _tmpVal = docMap.get(FireString.developerSite);
-      print(_tmpVal);
-      await canLaunch(_tmpVal)
-          ? await launch(_tmpVal)
+      String tmpVal = docMap.get(FireString.developerSite);
+      print(tmpVal);
+      await canLaunch(tmpVal)
+          ? await launch(tmpVal)
           : throw "Cant launch url";
     });
   }
 
   static openFirestoreExternalLinks({required String fbFieldName}) async {
-    SmartDialog.showToast("Opening " + fbFieldName);
+    SmartDialog.showToast("Opening $fbFieldName");
     FirebaseFirestore.instance
         .collection(FireString.globalSystem)
         .doc(FireString.externalLinks)
         .get()
         .then((docMap) async {
-      String _tmpVal = docMap.get(fbFieldName);
-      print(_tmpVal);
-      await canLaunch(_tmpVal)
-          ? await launch(_tmpVal)
+      String tmpVal = docMap.get(fbFieldName);
+      print(tmpVal);
+      await canLaunch(tmpVal)
+          ? await launch(tmpVal)
           : throw "Cant launch url";
     });
   }

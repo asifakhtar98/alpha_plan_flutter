@@ -74,18 +74,18 @@ class PersonalInfoScreenController extends GetxService {
           .collection(FireString.personalInfo)
           .doc(FireString.document1)
           .get()
-          .then((_personalData) {
-        if (_personalData.exists) {
+          .then((personalData) {
+        if (personalData.exists) {
           //this can replace all rx var
-          personalInfo.assignAll(_personalData.data()!);
+          personalInfo.assignAll(personalData.data()!);
           // print("Data Loaded From Firestore");
-          fullNameContrlr.text = _personalData[FireString.fullName] ?? "";
+          fullNameContrlr.text = personalData[FireString.fullName] ?? "";
           primaryEmailFieldContrlr.text =
-              _personalData[FireString.primaryEmail] ?? "";
-          addressController.text = _personalData[FireString.address] ?? "";
-          zipCodeController.text = _personalData[FireString.zipCode] ?? "";
+              personalData[FireString.primaryEmail] ?? "";
+          addressController.text = personalData[FireString.address] ?? "";
+          zipCodeController.text = personalData[FireString.zipCode] ?? "";
           altNoController.text =
-              _personalData[FireString.alternateNumber] ?? "";
+              personalData[FireString.alternateNumber] ?? "";
           saveToHiveBox();
         }
       });

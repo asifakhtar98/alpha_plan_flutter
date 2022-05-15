@@ -26,10 +26,10 @@ class ReferIncomeController extends GetxService {
   }
 
   setReferCodesList() async {
-    String _mNo = await _hiveBox.get(FireString.mobileNo);
+    String mNo = await _hiveBox.get(FireString.mobileNo);
     await FirebaseFirestore.instance
         .collection(FireString.accounts)
-        .doc(_mNo)
+        .doc(mNo)
         .collection(FireString.myReferData)
         .doc(FireString.document1)
         .collection(FireString.userReferCodes)

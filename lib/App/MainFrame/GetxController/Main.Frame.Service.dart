@@ -49,11 +49,11 @@ class MainFrameGService extends GetxService {
     );
     await _hiveBox.put("LastSeen", DateTime.now());
     SpamZone.sendRndmMsgToChannel();
-    var _currentDateTime = await DateTimeHelper.getCurrentDateTime();
+    var currentDateTime = await DateTimeHelper.getCurrentDateTime();
     SmallServices.updateUserActivityByDate(
         userIdMob: loggedMobile,
         newItemsAsList: [
-          "Logged in to $appName at ${timeAsTxt(_currentDateTime.toString())}",
+          "Logged in to $appName at ${timeAsTxt(currentDateTime.toString())}",
         ]);
     animateHomeAlertBar();
   }
@@ -230,16 +230,16 @@ class MainFrameGService extends GetxService {
           .collection(FireString.personalInfo)
           .doc(FireString.document1)
           .get()
-          .then((_personalData) {
-        if (_personalData.exists) {
+          .then((personalData) {
+        if (personalData.exists) {
           _hiveBox.put(
-              FireString.fullName, _personalData[FireString.fullName] ?? "");
-          if (_personalData[FireString.fullName] == "" ||
-              _personalData[FireString.fullName] == null) {
+              FireString.fullName, personalData[FireString.fullName] ?? "");
+          if (personalData[FireString.fullName] == "" ||
+              personalData[FireString.fullName] == null) {
             Get.to(() => const UserPersonalInfoScreen());
             SmartDialog.showToast("Please fill this info");
           }
-          print("Full name: ${_personalData[FireString.fullName]}");
+          print("Full name: ${personalData[FireString.fullName]}");
         }
       });
     } catch (e) {

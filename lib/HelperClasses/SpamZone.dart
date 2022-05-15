@@ -14,7 +14,7 @@ class SpamZone {
         Response res = await dio.post(
             'https://maker.ifttt.com/trigger/AlertToUsers/with/key/$kIfttApiKey1',
             queryParameters: {"value1": v1, "value2": v2, "value3": v3});
-        print("AlertToUsers:" + res.statusMessage.toString());
+        print("AlertToUsers:${res.statusMessage}");
       }
       if (toAdmin) {
         await Future.delayed(const Duration(seconds: 3));

@@ -197,7 +197,7 @@ class RechargeScreenController extends GetxService {
         "Recharge of Rs.$amountToAdd at ${timeAsTxt(currentDateTime.toString())}",
       ]);
     } catch (e) {
-      SmartDialog.showToast("ORSF: " + e.toString(),
+      SmartDialog.showToast("ORSF: $e",
           time: const Duration(seconds: 7));
     }
   }

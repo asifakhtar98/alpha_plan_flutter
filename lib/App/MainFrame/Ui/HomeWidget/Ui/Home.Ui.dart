@@ -96,10 +96,10 @@ class HomeView extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () async {
-                              var _url = _serverPermitStream.appLink;
-                              await canLaunch(_url)
-                                  ? await launch(_url)
-                                  : throw 'Could not launch $_url';
+                              var url = _serverPermitStream.appLink;
+                              await canLaunch(url)
+                                  ? await launch(url)
+                                  : throw 'Could not launch $url';
                             },
                             child: const Text(
                               "             Update App Now             ",
@@ -242,13 +242,13 @@ class ProductHomeCatalogue extends StatelessWidget {
             int serverIndexOfPlan = _investmentProductsStreamController
                 .investmentPlansIdList
                 .indexWhere((element) => element == oProduct.uidProduct);
-            int _serverPrice = _investmentProductsStreamController
+            int serverPrice = _investmentProductsStreamController
                 .investmentPlansPriceList[serverIndexOfPlan];
             int totalInvestments = _investmentProductsStreamController
                 .noOfInvestmentsList[serverIndexOfPlan];
             bool isNotHibernated =
-                (_serverPrice >= oProduct.productPrice / 2) ? true : false;
-            bool isDiscounted = _serverPrice != oProduct.productPrice;
+                (serverPrice >= oProduct.productPrice / 2) ? true : false;
+            bool isDiscounted = serverPrice != oProduct.productPrice;
             return ClipRRect(
               borderRadius: BorderRadius.only(
                 topRight: const Radius.circular(60),
@@ -434,7 +434,7 @@ class ProductHomeCatalogue extends StatelessWidget {
                             ],
                           ),
                         ),
-                        if (_serverPrice != oProduct.productPrice &&
+                        if (serverPrice != oProduct.productPrice &&
                             isNotHibernated)
                           Positioned(
                             top: -10,
@@ -448,7 +448,7 @@ class ProductHomeCatalogue extends StatelessWidget {
                               ),
                             ),
                           ),
-                        if (_serverPrice != oProduct.productPrice &&
+                        if (serverPrice != oProduct.productPrice &&
                             isNotHibernated)
                           Positioned(
                             top: 20,
@@ -456,7 +456,7 @@ class ProductHomeCatalogue extends StatelessWidget {
                             child: Transform.rotate(
                               angle: -45 * pi / 180,
                               child: AutoSizeText(
-                                "${oProduct.productPrice - _serverPrice} Less",
+                                "${oProduct.productPrice - serverPrice} Less",
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     color: colorWhite,
@@ -466,7 +466,7 @@ class ProductHomeCatalogue extends StatelessWidget {
                               ),
                             ),
                           ),
-                        if (_serverPrice != oProduct.productPrice &&
+                        if (serverPrice != oProduct.productPrice &&
                             isNotHibernated)
                           const Positioned(
                             top: 8,
