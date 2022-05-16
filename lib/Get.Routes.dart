@@ -9,7 +9,6 @@ import 'package:powerbank/App/MainFrame/Ui/OrderWidget/Order.Ui.Controller.dart'
 import 'package:powerbank/App/RechargeScreen/Controllers/Cashfree.Pg.Controller.dart';
 import 'package:powerbank/App/RechargeScreen/Controllers/Razor.Pay.Controller.dart';
 import 'package:powerbank/App/RechargeScreen/Controllers/Recharge.Screen.Controller.dart';
-import 'package:powerbank/App/RechargeScreen/Controllers/Upi.Pay.Controller.dart';
 import 'package:powerbank/App/RechargeScreen/Recharge.Screen.dart';
 import 'package:powerbank/App/ReferIncome/GetxControllers/Refer.Controller.dart';
 import 'package:powerbank/App/ReferIncome/Ui/Refer.Income.Screen.dart';
@@ -18,6 +17,7 @@ import 'package:powerbank/GetxStreams/Wallet.Permission.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
 
 import 'App/AllActivityRecords/all_activity_controller.dart';
+import 'App/RechargeScreen/Controllers/upi_india_controller.dart';
 import 'HelperClasses/Notice.Get.Service.dart';
 import 'HelperClasses/Password.Renew.Controller.dart';
 import 'HelperClasses/Server.Stats.Service.dart';
@@ -68,7 +68,8 @@ List<GetPage> myGetRoutes = [
             fenix: true),
         Get.lazyPut<RazorpayController>(() => RazorpayController(),
             fenix: true),
-        Get.lazyPut<UpiPayController>(() => UpiPayController(), fenix: true),
+        Get.lazyPut<UpiIndiaController>(() => UpiIndiaController(),
+            fenix: true),
         Get.lazyPut<CommissionController>(() => CommissionController(),
             fenix: true),
       },

@@ -12,20 +12,22 @@ import 'package:intl/intl.dart';
 import 'package:powerbank/App/RechargeScreen/Controllers/Cashfree.Pg.Controller.dart';
 import 'package:powerbank/App/RechargeScreen/Controllers/Razor.Pay.Controller.dart';
 import 'package:powerbank/App/RechargeScreen/Controllers/Recharge.Screen.Controller.dart';
-import 'package:powerbank/App/RechargeScreen/Controllers/Upi.Pay.Controller.dart';
+import 'package:powerbank/App/RechargeScreen/Controllers/upi_india_controller.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
 import 'package:selectable_container/selectable_container.dart';
-import 'package:upi_pay/upi_pay.dart';
+import 'package:upi_india/upi_app.dart';
+// import 'package:upi_pay/upi_pay.dart';
 
 var _walletBalanceStreamer = Get.find<WalletBalanceStreamController>();
 TextEditingController customAmount = TextEditingController();
 var _rechargeScreenController = Get.find<RechargeScreenController>();
 var _razorpayController = Get.find<RazorpayController>();
 var _cashfreePgController = Get.find<CashfreePgController>();
-var _upiPay = Get.find<UpiPayController>();
+
+var _upiIndia = Get.find<UpiIndiaController>();
 int minCustomAmount = 500;
 
 class RechargeScreen extends StatefulWidget {
@@ -368,38 +370,36 @@ List depositMethodsList = [];
 
 void assignAllDepositMethods() {
   depositMethodsList = [
-    if (_rechargeScreenController.directUpiEnabled)
+    if (_rechargeScreenController.directUpiEnabled) ...[
       {
         "text": "Via Paytm App",
         "onTap": () {
           _rechargeScreenController.showSecLoading(5);
-          _upiPay.createUpiRechargeRequest(upiApp: UpiApplication.paytm);
+          _upiIndia.startUpiIndia(upiIndApp: UpiApp.paytm);
         }
       },
-    if (_rechargeScreenController.directUpiEnabled)
       {
         "text": "Via GooglePay",
         "onTap": () {
           _rechargeScreenController.showSecLoading(5);
-          _upiPay.createUpiRechargeRequest(upiApp: UpiApplication.googlePay);
+          _upiIndia.startUpiIndia(upiIndApp: UpiApp.googlePay);
         }
       },
-    if (_rechargeScreenController.directUpiEnabled)
       {
         "text": "Via AmazonPay",
         "onTap": () {
           _rechargeScreenController.showSecLoading(5);
-          _upiPay.createUpiRechargeRequest(upiApp: UpiApplication.amazonPay);
+          _upiIndia.startUpiIndia(upiIndApp: UpiApp.googlePay);
         }
       },
-    if (_rechargeScreenController.directUpiEnabled)
       {
         "text": "Via PhonePe",
         "onTap": () {
           _rechargeScreenController.showSecLoading(5);
-          _upiPay.createUpiRechargeRequest(upiApp: UpiApplication.phonePe);
+          _upiIndia.startUpiIndia(upiIndApp: UpiApp.phonePe);
         }
       },
+    ],
     if (_rechargeScreenController.razorpayEnabled)
       {
         "text": "Via RP Upi Id",
