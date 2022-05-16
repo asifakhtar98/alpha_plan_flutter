@@ -1,7 +1,7 @@
 name: powerbank
 description: A new finance app.
 publish_to: 'none'
-version: 2022.5.15+11
+version: 2022.5.15+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

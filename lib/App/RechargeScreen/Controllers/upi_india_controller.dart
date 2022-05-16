@@ -38,9 +38,9 @@ class UpiIndiaController extends GetxController {
       amount: double.parse(_amountToAdd.toString()),
     );
 
-    print(upiIndRes.status);
-    print(upiIndRes.responseCode);
-    print(upiIndRes.approvalRefNo);
+    // print(upiIndRes.status);
+    // print(upiIndRes.responseCode);
+
     if (upiIndRes.status == UpiPaymentStatus.SUCCESS) {
       try {
         _rechargeScreenController.lastRechargeRefNo.value =

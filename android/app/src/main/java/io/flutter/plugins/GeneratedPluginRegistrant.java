@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import io.flutter.Log;
 
 import io.flutter.embedding.engine.FlutterEngine;
-import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 
 /**
  * Generated file. Do not edit.
@@ -16,7 +15,6 @@ import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
-    ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
     try {
       flutterEngine.getPlugins().add(new com.cashfree.cashfree_pg.CashfreePgPlugin());
     } catch(Exception e) {
@@ -88,9 +86,9 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin sqflite, com.tekartik.sqflite.SqflitePlugin", e);
     }
     try {
-      com.drenther.upi_pay.UpiPayPlugin.registerWith(shimPluginRegistry.registrarFor("com.drenther.upi_pay.UpiPayPlugin"));
+      flutterEngine.getPlugins().add(new com.az.upi_india.UpiIndiaPlugin());
     } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin upi_pay, com.drenther.upi_pay.UpiPayPlugin", e);
+      Log.e(TAG, "Error registering plugin upi_india, com.az.upi_india.UpiIndiaPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.urllauncher.UrlLauncherPlugin());

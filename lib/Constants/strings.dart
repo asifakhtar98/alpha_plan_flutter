@@ -22,5 +22,5 @@ const String referMsgPrefix =
 const String appName = "Dream Light City";
 const String appNameShort = "DLC";
 const String companyName = "EcoPower";
-//TODO: release hive box id: HB2745643636
-const String hiveBoxName = "HB63525532633";
+//TODO: release hive box id: HB27434777
+const String hiveBoxName = "HB27434777";
