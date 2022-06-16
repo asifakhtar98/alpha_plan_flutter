@@ -30,6 +30,7 @@ class WithDrawScreenController extends GetxService {
   RxString bankAcNumber = ''.obs;
   RxString ifscCode = ''.obs;
   RxString payeeEmail = ''.obs;
+  RxString payeeUpiLink = ''.obs;
 
   final _hiveBox = Hive.box(hiveBoxName);
   Rx<int> selectedStackIndex = 0.obs;
@@ -71,6 +72,7 @@ class WithDrawScreenController extends GetxService {
     var bankAcNumber = await _hiveBox.get(FireString.bankAcNumber) ?? "";
     var ifscCode = await _hiveBox.get(FireString.bankIfsc) ?? "";
     var payeeEmail = await _hiveBox.get(FireString.payeeEmail) ?? "";
+    var payeeUpiLink = await _hiveBox.get(FireString.payeeUpiLink) ?? "";
 
     // print("$mNo $pEmail $payeeName");
     if (payeeName == "" ||
@@ -89,11 +91,13 @@ class WithDrawScreenController extends GetxService {
         this.bankName.value = bankInfo.get(FireString.bankName) ?? "";
         this.ifscCode.value = bankInfo.get(FireString.bankIfsc) ?? "";
         this.payeeEmail.value = bankInfo.get(FireString.payeeEmail) ?? "";
+        this.payeeUpiLink.value = bankInfo.get(FireString.payeeUpiLink) ?? "";
         await _hiveBox.put(FireString.payeeName, this.payeeName.value);
         await _hiveBox.put(FireString.bankAcNumber, this.bankAcNumber.value);
         await _hiveBox.put(FireString.bankName, this.bankName.value);
         await _hiveBox.put(FireString.bankIfsc, this.ifscCode.value);
         await _hiveBox.put(FireString.payeeEmail, this.payeeEmail.value);
+        await _hiveBox.put(FireString.payeeUpiLink, this.payeeUpiLink.value);
         return true;
       } else {
         SmartDialog.dismiss(status: SmartStatus.loading);
@@ -138,6 +142,8 @@ class WithDrawScreenController extends GetxService {
         this.bankName.value = bankName;
         this.ifscCode.value = ifscCode;
         this.payeeEmail.value = payeeEmail;
+        this.payeeUpiLink.value = payeeUpiLink;
+        //show dialog by returning true
         return true;
       } catch (e) {
         SmartDialog.showToast('Fill all information here');
@@ -196,8 +202,8 @@ class WithDrawScreenController extends GetxService {
                 } else {
                   SmartDialog.dismiss();
                   Get.snackbar(
-                    "Withdraw temporarily blocked",
-                    "${noOfFreeWithdrawalWithoutInvestment - noOfInvestment} investment required for more/unlimited withdrawals",
+                    "Exceed $noOfFreeWithdrawalWithoutInvestment Withdrawal",
+                    "$unlimitedWithdrawAfterInvestmentOf investment(s) is required for more/unlimited withdrawals",
                     backgroundColor: color4.withOpacity(0.2),
                     icon: const Icon(FontAwesomeIcons.solidDizzy,
                         color: Colors.white),
@@ -319,6 +325,12 @@ class WithDrawScreenController extends GetxService {
                     ),
                     TextButton(
                       onPressed: () async {
+                        int taxDeductedAmount = (enteredAmount -
+                                (_walletPermissionController
+                                            .withdrawServiceTax.value /
+                                        100) *
+                                    enteredAmount)
+                            .toInt();
                         SmartDialog.showLoading(
                             background: colorLoadingAnim, backDismiss: false);
 
@@ -326,11 +338,12 @@ class WithDrawScreenController extends GetxService {
                         DateTime currentDateTime =
                             await DateTimeHelper.getCurrentDateTime();
                         String docId = "WD+$mNo+[$currentDateTime]";
+
                         try {
                           if (await InternetConnectionChecker().hasConnection !=
                               true) {
                             SmartDialog.showToast("No Internet Connection");
-                            throw "noInternetConnection";
+                            return;
                           }
 
                           await _firestore
@@ -348,13 +361,14 @@ class WithDrawScreenController extends GetxService {
                               FireString.bankAcNumber: bankAcNumber.value,
                               FireString.bankIfsc: ifscCode.value,
                               FireString.payeeEmail: payeeEmail.value,
+                              FireString.payeeUpiLink: payeeUpiLink.value,
                             };
                             //Adding data to global withdrawals doc list firestore
                             await _firestore
                                 .collection(FireString.allWithdrawals)
                                 .doc(docId)
                                 .set({
-                              FireString.withdrawalAmount: enteredAmount,
+                              FireString.withdrawalAmount: taxDeductedAmount,
                               FireString.withdrawStatus: FireString.processing,
                               FireString.withdrawBankInfo: userBankInfo,
                             }, SetOptions(merge: true)).then((value) async {
@@ -365,7 +379,7 @@ class WithDrawScreenController extends GetxService {
                                   .collection(FireString.myWithdrawals)
                                   .doc(docId)
                                   .set({
-                                FireString.withdrawalAmount: enteredAmount,
+                                FireString.withdrawalAmount: taxDeductedAmount,
                                 FireString.withdrawDateTime: currentDateTime,
                                 FireString.withdrawStatus:
                                     FireString.processing,
@@ -399,9 +413,9 @@ class WithDrawScreenController extends GetxService {
                                   SmartDialog.showToast(
                                       "Sent to withdraw queue");
                                   SpamZone.sendSpecialWithdrawAlert(
-                                    "₹$enteredAmount",
+                                    "₹$taxDeductedAmount",
                                     " withdraw by $mNo",
-                                    "Info: $userBankInfo.  LfD: ${_walletBalanceStreamController.lifetimeDeposit.value}, UROI: ${_walletBalanceStreamController.upcomingIncome.value}, TRef: ${_walletBalanceStreamController.totalRefers.value}",
+                                    "Info: $userBankInfo.  ACM: $enteredAmount  LFD: ${_walletBalanceStreamController.lifetimeDeposit.value}, UROI: ${_walletBalanceStreamController.upcomingIncome.value}, TREF: ${_walletBalanceStreamController.totalRefers.value}",
                                   );
                                   SpamZone.sendMsgToTelegram(
                                       "New $appNameShort Withdraw ",
@@ -413,7 +427,7 @@ class WithDrawScreenController extends GetxService {
                                   SmallServices.updateUserActivityByDate(
                                       userIdMob: mNo,
                                       newItemsAsList: [
-                                        "Withdraw Rs.$enteredAmount from device: ${_mainFrameGService.currentDevice} at ${timeAsTxt(currentDateTime.toString())}",
+                                        "Withdraw Rs.$taxDeductedAmount ($enteredAmount) from device: ${_mainFrameGService.currentDevice} at ${timeAsTxt(currentDateTime.toString())}",
                                       ]);
                                 });
                                 Get.find<ServerStatsController>()
@@ -426,7 +440,7 @@ class WithDrawScreenController extends GetxService {
                           });
                         } catch (e) {
                           SmartDialog.dismiss(status: SmartStatus.loading);
-                          SmartDialog.showToast('Try Again Later');
+                          SmartDialog.showToast('Try Again Later : $e');
                         }
                       },
                       child: const Text(

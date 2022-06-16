@@ -917,14 +917,14 @@ class CarouselModel {
 List<CarouselModel> corouselItemList = [
   CarouselModel(
       pImageUrl:
-          "https://res.cloudinary.com/promisedpayment/image/upload/v1650567875/DreamLightCity/PlanImages/106698727-1599822851881-SoFi_Stadium_est_2020_ynf0a1.jpg",
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1650532147/DreamLightCity/PlanImages/J1A6493_2_LIGHTS-1504x846_m2vhj2.jpg",
       onClick: () {
-        Get.to(() => const BuyProductScreen(productIndex: 5));
+        Get.to(() => const BuyProductScreen(productIndex: 10));
       },
-      actionName: 'Stadium of Rs.1000/Day'),
+      actionName: 'Stadium for Rs 10000'),
   CarouselModel(
       pImageUrl:
-          "https://res.cloudinary.com/promisedpayment/image/upload/v1652020809/DreamLightCity/AppAssets/GOLDEN-SIGNUP-BANNER_jvt5wc.jpg",
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1655407726/DreamLightCity/AppAssets/GOLDEN-SIGNUP-BANNER_msgaok.jpg",
       onClick: () {
         SmartDialog.showToast("You are already registered");
       },

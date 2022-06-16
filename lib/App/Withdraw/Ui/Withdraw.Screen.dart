@@ -1,6 +1,7 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -212,6 +213,11 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           ),
                           TextField(
                             controller: enteredAmountTEController,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(8),
+                              FilteringTextInputFormatter.allow(
+                                  RegExp("[0-9]")),
+                            ],
                             keyboardType: TextInputType.number,
                             style: const TextStyle(
                                 color: colorWhite,
@@ -223,7 +229,22 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                 color: colorWhite,
                               ),
                             ),
+                            onChanged: (val) {
+                              setState(() {});
+                            },
                           ),
+                          if (enteredAmountTEController.text.isNotEmpty &&
+                              _walletPermissionController
+                                      .withdrawServiceTax.value >
+                                  0)
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "Actual settlement amount will be Rs. ${(int.parse(enteredAmountTEController.text) - (_walletPermissionController.withdrawServiceTax.value / 100) * int.parse(enteredAmountTEController.text)).toInt()}",
+                                style: const TextStyle(
+                                    color: color4, fontSize: 12),
+                              ),
+                            ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
@@ -234,10 +255,10 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                   enteredAmountTEController.text
                                       .replaceAll(" ", "");
                               if (enteredAmountTEController.text != "") {
-                                bool haveCredential =
+                                bool haveBankIfo =
                                     await _withdrawScreenController
                                         .checkBankInfo();
-                                if (haveCredential) {
+                                if (haveBankIfo) {
                                   _withdrawScreenController.checkOtherParameter(
                                       enteredAmount: int.parse(
                                           enteredAmountTEController.text));

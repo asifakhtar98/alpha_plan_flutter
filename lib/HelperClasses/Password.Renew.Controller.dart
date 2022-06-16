@@ -4,6 +4,7 @@ import 'package:async_button_builder/async_button_builder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -73,6 +74,10 @@ class PasswordRenewController extends GetxController {
                     ),
                     const Spacer(),
                     TextField(
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(10),
+                        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                      ],
                       style: const TextStyle(color: colorWhite),
                       controller: mobileNoController,
                       keyboardType: TextInputType.number,

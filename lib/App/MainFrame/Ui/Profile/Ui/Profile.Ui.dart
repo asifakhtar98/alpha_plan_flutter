@@ -327,14 +327,14 @@ List<ProfileActionTile> profileActionList = [
         Get.toNamed(UserReferIncomeScreen.screenName);
       }),
   ProfileActionTile(
-      icon: FontAwesomeIcons.sitemap,
+      icon: FontAwesomeIcons.bolt,
       actionText: "Referral Program",
       onTap: () {
         Get.to(() => const ReferralProgramScreen());
       }),
   ProfileActionTile(
       icon: FontAwesomeIcons.globeAsia,
-      actionText: "Server Activities",
+      actionText: "Account Activities",
       onTap: () {
         Get.toNamed(AllActivityScreen.screenName);
       }),

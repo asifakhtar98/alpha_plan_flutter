@@ -62,6 +62,14 @@ class UserReferIncomeScreen extends StatelessWidget {
         backgroundColor: color1,
         title: const Text("My Referral Incomes"),
         centerTitle: true,
+        // actions: [
+        //   IconButton(
+        //       icon: Icon(Icons.account_tree),
+        //       onPressed: () {
+        //         Share.share(
+        //             "https://play.google.com/store/apps/details?id=com.powerbank.app");
+        //       }),
+        // ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(

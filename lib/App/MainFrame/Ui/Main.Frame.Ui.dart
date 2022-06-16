@@ -198,15 +198,15 @@ class MyButtomNavigationBar extends StatelessWidget {
       items: [
         TitledNavigationBarItem(
           title: Text(HomeView.viewName),
-          icon: const Icon(FontAwesomeIcons.hotel),
+          icon: const Icon(FontAwesomeIcons.hotel, color: colorWhite),
         ),
         TitledNavigationBarItem(
           title: Text(OrderView.viewName),
-          icon: const Icon(FontAwesomeIcons.bagShopping),
+          icon: const Icon(FontAwesomeIcons.bagShopping, color: colorWhite),
         ),
         TitledNavigationBarItem(
           title: Text(ProfileView.viewName),
-          icon: const Icon(FontAwesomeIcons.userShield),
+          icon: const Icon(FontAwesomeIcons.userShield, color: colorWhite),
         ),
       ],
     );

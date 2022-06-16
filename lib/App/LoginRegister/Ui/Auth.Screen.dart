@@ -4,6 +4,7 @@ import 'package:delayed_display/delayed_display.dart';
 import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:powerbank/App/LoginRegister/GetXControllers/Auth.Controller.dart';
@@ -277,6 +278,10 @@ class LoginView extends StatelessWidget {
     return Column(
       children: [
         TextField(
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(10),
+            FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+          ],
           controller: _loginPhoneNoCntrlr,
           style: const TextStyle(color: colorWhite),
           keyboardType: TextInputType.number,
@@ -418,6 +423,10 @@ class RegistrationView extends StatelessWidget {
         Stack(
           children: [
             TextField(
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(10),
+                FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+              ],
               controller: _regPhoneNoCntrlr,
               style: const TextStyle(color: colorWhite),
               keyboardType: TextInputType.number,

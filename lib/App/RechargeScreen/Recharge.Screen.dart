@@ -2,6 +2,7 @@ import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -592,6 +593,10 @@ class _WAddDCoinState extends State<WAddDCoin> {
                             SizedBox(
                               width: 70,
                               child: TextField(
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp("[0-9]")),
+                                ],
                                 onChanged: (s) {
                                   updateCustomAmount();
                                 },

@@ -1,9 +1,12 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:async_button_builder/async_button_builder.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -487,6 +490,18 @@ class _BuyProductScreenState extends State<BuyProductScreen> {
                                       ),
                                     ],
                                   ),
+                                  Obx(() {
+                                    if (_buyProductController
+                                        .isDepositWalletSelected.isTrue) {
+                                      return const Text(
+                                          "Have Investment commissions for 3 upper level members",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: color4, fontSize: 12));
+                                    } else {
+                                      return const SizedBox();
+                                    }
+                                  }),
                                   const Spacer(),
                                   Text(
                                       "Final checkout value = ₹${_buyProductController.planServerPrice.value}",

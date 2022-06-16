@@ -26,7 +26,7 @@ class CommissionController extends GetxService {
 
   getGlobalReferCommissionData() async {
     thisCommissionHistory.clear();
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     await FirebaseFirestore.instance
         .collection(FireString.globalSystem)
         .doc(FireString.globalReferData)
@@ -50,7 +50,7 @@ class CommissionController extends GetxService {
     if (investorName.isEmpty) {
       SmartDialog.dismiss();
       Get.off(() => const UserPersonalInfoScreen());
-      SmartDialog.showToast("Please fill this info");
+      SmartDialog.showToast("Please fill this info first");
     }
     print("Investor Name: $investorName");
     print("Investor Number: $investorNum");
@@ -258,7 +258,7 @@ class CommissionController extends GetxService {
                     ),
                     const Divider(color: color1),
                     const Text(
-                      "Your recharged",
+                      "Your Invested",
                       style: TextStyle(color: colorWhite, fontSize: 16),
                     )
                   ],

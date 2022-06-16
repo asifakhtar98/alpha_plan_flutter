@@ -32,6 +32,7 @@ class BuyProductController extends GetxService {
   RxInt planServerPrice = 0.obs;
 
   void togglePlan({required String planID, required int localPlanPrice}) async {
+    isDepositWalletSelected.value = true;
     if (await InternetConnectionChecker().hasConnection) {
       await Future.delayed(const Duration(milliseconds: 300));
       int onlinePlanIndex = _investmentProductsStreamController
@@ -151,9 +152,12 @@ class BuyProductController extends GetxService {
 
   void showAfterPurchaseDialog(int localIndex) async {
     String mNo = await _hiveBox.get(FireString.mobileNo);
-    //Process commissions system
-    Get.find<CommissionController>().grabUserReferrerNo(
-        findReferrerOf: mNo, invAmount: planServerPrice.value);
+    //Process commissions system if user used deposit wallet
+    if (isDepositWalletSelected.isTrue) {
+      Get.find<CommissionController>().grabUserReferrerNo(
+          findReferrerOf: mNo, invAmount: planServerPrice.value);
+    }
+
     await Future.delayed(const Duration(seconds: 1));
     SmartDialog.dismiss(status: SmartStatus.dialog);
     await Future.delayed(const Duration(seconds: 1));
