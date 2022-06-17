@@ -355,7 +355,7 @@ class OrdersUi extends StatelessWidget {
                             child: Text(
                               (userInvestedPlan[FireString.isCompleted])
                                   ? "Server need reinvestment to start"
-                                  : "Running with other ${_investmentProductsStreamController.noOfInvestmentsList[investedPlanLocalIndex] + mainInvestmentProductsList[investedPlanLocalIndex].fakeNumber} instances",
+                                  : "Total global investments done here is ${_investmentProductsStreamController.noOfInvestmentsList[investedPlanLocalIndex] + mainInvestmentProductsList[investedPlanLocalIndex].fakeNumber}",
                               style: TextStyle(
                                   fontSize: 12,
                                   color: colorWhite.withOpacity(0.3)),

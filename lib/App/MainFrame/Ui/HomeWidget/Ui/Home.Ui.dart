@@ -917,18 +917,18 @@ class CarouselModel {
 List<CarouselModel> corouselItemList = [
   CarouselModel(
       pImageUrl:
-          "https://res.cloudinary.com/promisedpayment/image/upload/v1650532147/DreamLightCity/PlanImages/J1A6493_2_LIGHTS-1504x846_m2vhj2.jpg",
-      onClick: () {
-        Get.to(() => const BuyProductScreen(productIndex: 10));
-      },
-      actionName: 'Stadium for Rs 10000'),
-  CarouselModel(
-      pImageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1655407726/DreamLightCity/AppAssets/GOLDEN-SIGNUP-BANNER_msgaok.jpg",
       onClick: () {
         SmartDialog.showToast("You are already registered");
       },
       actionName: ''),
+  CarouselModel(
+      pImageUrl:
+          "https://res.cloudinary.com/promisedpayment/image/upload/v1650573038/DreamLightCity/PlanImages/foreign_english_2020-08-10_dn122769_image1_h4cace.jpg",
+      onClick: () {
+        Get.to(() => const BuyProductScreen(productIndex: 9));
+      },
+      actionName: 'Rs 12000 in 10 Days'),
   CarouselModel(
       pImageUrl:
           "https://res.cloudinary.com/promisedpayment/image/upload/v1652294240/DreamLightCity/AppAssets/GOLDEN-COMMISSION-BANNER_bjvnwk.jpg",
