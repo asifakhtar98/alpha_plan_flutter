@@ -18,16 +18,18 @@ class ReferIncomeController extends GetxService {
   Rx<int> selectedStackIndex = 0.obs;
   RxList myReferCodes = [].obs;
   RxInt lifetimeReferIncome = 0.obs;
-  @override
-  void onInit() {
+
+  void reload() {
     getLevelsCommissionOverall();
     setReferCodesList();
     super.onInit();
   }
 
   setReferCodesList() async {
+    print('On setReferCodesList');
     String mNo = await _hiveBox.get(FireString.mobileNo);
-    await FirebaseFirestore.instance
+    print('mNo: $mNo');
+    FirebaseFirestore.instance
         .collection(FireString.accounts)
         .doc(mNo)
         .collection(FireString.myReferData)
@@ -35,11 +37,10 @@ class ReferIncomeController extends GetxService {
         .collection(FireString.userReferCodes)
         .get()
         .then((doc) {
+      print(doc.docs.toString());
       myReferCodes.assignAll(doc.docs);
     });
   }
-
-  fetchAllFieldsValue() {}
 
   convertReferIncomeToWithdrawalBalance(int referCoinToConvert) async {
     String mNo = await _hiveBox.get(FireString.mobileNo);

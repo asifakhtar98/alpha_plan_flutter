@@ -214,7 +214,7 @@ class CommissionController extends GetxService {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "${(itemMap[FireString.mobileNo]?.length == 10) ? itemMap[FireString.mobileNo]?.replaceRange(1, 7, "*" * 8) : ""} get commission of",
+                            "${(itemMap[FireString.mobileNo]?.length == 10) ? "XXXXX" + itemMap[FireString.mobileNo]?.substring(5, 10) : ""} get commission of",
                             style: const TextStyle(
                                 color: color3,
                                 fontSize: 12,

@@ -540,13 +540,14 @@ class AuthGController extends GetxController {
     var currentDateTime = await DateTimeHelper.getCurrentDateTime();
     //generate new refer code of 16 Digit
     String newReferCode;
+    String halfMobileNumber = mobileNo.substring(5, 10);
     //Safe testing
     try {
       newReferCode =
-          "$referCodePrefix${Random().nextInt(9999) + Random().nextInt(9999) + Random().nextInt(9999) + 111111}${mobileNo.replaceRange(1, 6, "" * (10 - 3))}";
+          "$referCodePrefix${Random().nextInt(9999) + Random().nextInt(9999) + Random().nextInt(9999) + 111111}$halfMobileNumber";
     } catch (e) {
       newReferCode =
-          "$referCodePrefix${Random().nextInt(9999) + Random().nextInt(9999) + Random().nextInt(9999) + 111111}}";
+          "$referCodePrefix${Random().nextInt(9999) + Random().nextInt(9999) + Random().nextInt(9999) + 111111}";
       print(e);
     }
 
@@ -596,7 +597,7 @@ class AuthGController extends GetxController {
             SmallServices.updateUserActivityByDate(
                 userIdMob: documentSnap[FireString.mobileNo],
                 newItemsAsList: [
-                  "Your refer code was used by ${mobileNo.replaceRange(1, 6, "*" * (10 - 3))}"
+                  "Your refer code was used by XXXXX$halfMobileNumber"
                 ]);
             //Increse Upline Total Refers
             await FirebaseFirestore.instance

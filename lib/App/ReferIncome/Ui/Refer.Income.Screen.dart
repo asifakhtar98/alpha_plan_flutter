@@ -48,10 +48,21 @@ LinearGradient _linearGradient2 = const LinearGradient(
     end: Alignment.bottomCenter,
     colors: [color3, color2]);
 
-class UserReferIncomeScreen extends StatelessWidget {
+class UserReferIncomeScreen extends StatefulWidget {
   static String screenName = "/REFER_INCOME_SCREEN";
 
   const UserReferIncomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<UserReferIncomeScreen> createState() => _UserReferIncomeScreenState();
+}
+
+class _UserReferIncomeScreenState extends State<UserReferIncomeScreen> {
+  @override
+  initState() {
+    super.initState();
+    _userReferIncomeController.reload();
+  }
 
   @override
   Widget build(BuildContext context) {
