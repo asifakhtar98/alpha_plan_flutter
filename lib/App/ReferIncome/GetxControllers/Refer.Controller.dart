@@ -18,11 +18,11 @@ class ReferIncomeController extends GetxService {
   Rx<int> selectedStackIndex = 0.obs;
   RxList myReferCodes = [].obs;
   RxInt lifetimeReferIncome = 0.obs;
-
+  var currentTeamSize = 0.obs;
   void reload() {
     getLevelsCommissionOverall();
     setReferCodesList();
-    super.onInit();
+    getTeamSize();
   }
 
   setReferCodesList() async {
@@ -142,5 +142,21 @@ class ReferIncomeController extends GetxService {
       }
       print(allMembersOfALevel.toString());
     });
+  }
+
+  void getTeamSize() async {
+    try {
+      String mNo = _hiveBox.get(FireString.mobileNo);
+      await FirebaseFirestore.instance
+          .collection(FireString.usersDirectRefers)
+          .doc(mNo)
+          .collection(FireString.mobileNo)
+          .get()
+          .then((snapshots) {
+        currentTeamSize.value = snapshots.docs.length;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

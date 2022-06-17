@@ -86,9 +86,10 @@ class _UserReferIncomeScreenState extends State<UserReferIncomeScreen> {
         child: SingleChildScrollView(
             child: Column(
           children: [
+            SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.fromLTRB(12, 12, 12, 2),
-              margin: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
                 color: Colors.amber.withOpacity(0.33),
                 borderRadius: const BorderRadius.all(
@@ -261,6 +262,98 @@ class _UserReferIncomeScreenState extends State<UserReferIncomeScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 8),
+            Container(
+                padding: const EdgeInsets.all(12),
+                margin: const EdgeInsets.symmetric(horizontal: 8),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        color4,
+                        color3.withBlue(150),
+                        color3.withBlue(150)
+                      ]),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          SmartDialog.showToast(
+                              "This is your team current size",
+                              time: const Duration(seconds: 4));
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              FontAwesomeIcons.peopleGroup,
+                              color: colorWhite,
+                            ),
+                            const SizedBox(width: 8),
+                            const Text(
+                              "Team Size",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: colorWhite,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Obx(() {
+                              return AnimatedFlipCounter(
+                                value: _userReferIncomeController
+                                    .currentTeamSize.value,
+                                duration: const Duration(seconds: 2),
+                                textStyle: const TextStyle(
+                                    color: colorWhite,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold),
+                              );
+                            }),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 1,
+                      height: 80,
+                      color: colorWhite,
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          SmartDialog.showToast(
+                              "Required More Team Members To Unlock This Feature",
+                              time: const Duration(seconds: 4));
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(
+                              FontAwesomeIcons.solidMessage,
+                              color: colorWhite,
+                            ),
+                            Text(
+                              "Club\nHouse",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: colorWhite,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Obx(() {
@@ -414,6 +507,7 @@ class OnlyReferStats extends StatelessWidget {
                 gradient: _linearGradient2, borderRadius: _borderRadius2),
             child: Obx(() {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   for (var s in _userReferIncomeController.myReferCodes)
@@ -477,6 +571,7 @@ class OnlyReferStats extends StatelessWidget {
                     ),
                   Text(
                     "3 Level commission system ${(true) ? "enabled" : "disabled"}",
+                    textAlign: TextAlign.center,
                     style: _textStyle3,
                   )
                 ],

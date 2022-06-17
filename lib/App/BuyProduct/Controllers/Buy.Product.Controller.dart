@@ -58,11 +58,11 @@ class BuyProductController extends GetxService {
     try {
       if (await InternetConnectionChecker().hasConnection != true) {
         SmartDialog.showToast("No Internet Connection");
-        throw "noInternetConnection";
+        return false;
       }
       if (!isNotHibernated.value) {
         SmartDialog.showToast("This plan server is in hibernation");
-        throw "inHibernation";
+        return false;
       }
       //Get current plan price
       var planDocument = await firestore

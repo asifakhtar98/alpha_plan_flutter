@@ -381,9 +381,7 @@ class AuthGController extends GetxController {
                     const SizedBox(
                       height: 8,
                     ),
-                    Text(
-                        phoneNoToVerify.value
-                            .replaceRange(1, 6, "*" * (10 - 3)),
+                    Text("XXXXXX" + phoneNoToVerify.value.substring(5, 10),
                         style: const TextStyle(
                             color: colorWhite, fontWeight: FontWeight.bold)),
                   ],
@@ -467,9 +465,7 @@ class AuthGController extends GetxController {
                     const SizedBox(
                       height: 8,
                     ),
-                    Text(
-                        phoneNoToVerify.value
-                            .replaceRange(1, 6, "*" * (10 - 3)),
+                    Text("XXXXX" + phoneNoToVerify.value.substring(5, 10),
                         style: const TextStyle(
                             color: colorWhite, fontWeight: FontWeight.bold)),
                   ],

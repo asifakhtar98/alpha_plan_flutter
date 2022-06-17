@@ -23,4 +23,4 @@ const String appName = "Dream Light City";
 const String appNameShort = "DLC";
 const String companyName = "EcoPower";
 //TODO: release hive box id: HB27434777
-const String hiveBoxName = "HB27434777";
+const String hiveBoxName = "HB274347771";
