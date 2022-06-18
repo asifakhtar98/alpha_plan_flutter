@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -24,6 +25,7 @@ import 'package:powerbank/GetxStreams/Server.Permit.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Permission.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
+import 'package:powerbank/HelperClasses/route_names.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 var _walletBalanceStreamer = Get.find<WalletBalanceStreamController>();
@@ -704,7 +706,11 @@ class ThreeCards extends StatelessWidget {
                 ),
                 child: InkWell(
                   onTap: () {
-                    Get.to(() => const AboutAppScreen());
+                    if (kDebugMode) {
+                      Get.toNamed(Routes.colorPredict);
+                    } else {
+                      Get.to(() => const AboutAppScreen());
+                    }
                   },
                   child: Container(
                     height: 80,

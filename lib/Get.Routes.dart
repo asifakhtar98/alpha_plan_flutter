@@ -12,6 +12,8 @@ import 'package:powerbank/App/RechargeScreen/Controllers/Recharge.Screen.Control
 import 'package:powerbank/App/RechargeScreen/Recharge.Screen.dart';
 import 'package:powerbank/App/ReferIncome/GetxControllers/Refer.Controller.dart';
 import 'package:powerbank/App/ReferIncome/Ui/Refer.Income.Screen.dart';
+import 'package:powerbank/Games/ColorPrediction/Bindings/color_prediction_bindings.dart';
+import 'package:powerbank/Games/ColorPrediction/Views/color_predict_screen.dart';
 import 'package:powerbank/GetxStreams/Investment.Products.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Permission.Stream.dart';
 import 'package:powerbank/GetxStreams/Wallet.Value.Stream.dart';
@@ -21,6 +23,7 @@ import 'App/RechargeScreen/Controllers/upi_india_controller.dart';
 import 'HelperClasses/Notice.Get.Service.dart';
 import 'HelperClasses/Password.Renew.Controller.dart';
 import 'HelperClasses/Server.Stats.Service.dart';
+import 'HelperClasses/route_names.dart';
 
 List<GetPage> myGetRoutes = [
   GetPage(
@@ -96,5 +99,10 @@ List<GetPage> myGetRoutes = [
             fenix: true),
       },
     ),
+  ),
+  GetPage(
+    name: Routes.colorPredict,
+    page: () => ColorPredictScreen(),
+    binding: ColorPredictBinding(),
   ),
 ];
