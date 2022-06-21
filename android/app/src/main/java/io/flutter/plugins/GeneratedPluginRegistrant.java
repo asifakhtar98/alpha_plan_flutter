@@ -66,11 +66,6 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin path_provider_android, io.flutter.plugins.pathprovider.PathProviderPlugin", e);
     }
     try {
-      flutterEngine.getPlugins().add(new com.paytm.allinonesdk.AllInOneSdkPlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin paytm_allinonesdk, com.paytm.allinonesdk.AllInOneSdkPlugin", e);
-    }
-    try {
       flutterEngine.getPlugins().add(new com.razorpay.razorpay_flutter.RazorpayFlutterPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin razorpay_flutter, com.razorpay.razorpay_flutter.RazorpayFlutterPlugin", e);

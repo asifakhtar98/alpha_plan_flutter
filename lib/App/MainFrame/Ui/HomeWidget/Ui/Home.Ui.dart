@@ -731,7 +731,7 @@ class ThreeCards extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Text(
-                                "About Us",
+                                "Color Light\nCity",
                                 style: TextStyle(
                                     color: colorWhite,
                                     fontSize: 18,
