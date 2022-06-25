@@ -323,6 +323,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.5"
+  firebase_crashlytics:
+    dependency: "direct main"
+    description:
+      name: firebase_crashlytics
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.8.2"
+  firebase_crashlytics_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_crashlytics_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.8"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -342,20 +356,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.0"
-  flutter_fortune_wheel:
-    dependency: "direct main"
-    description:
-      name: flutter_fortune_wheel
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
-  flutter_hooks:
-    dependency: transitive
-    description:
-      name: flutter_hooks
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.18.5"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -695,13 +695,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
-  quiver:
-    dependency: transitive
-    description:
-      name: quiver
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.0"
   razorpay_flutter:
     dependency: "direct main"
     description:
@@ -805,6 +798,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
+  stepper_counter_swipe:
+    dependency: "direct main"
+    description:
+      name: stepper_counter_swipe
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   stream_channel:
     dependency: transitive
     description:

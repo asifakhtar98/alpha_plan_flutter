@@ -5,6 +5,7 @@ import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:powerbank/App/LoginRegister/GetXControllers/Auth.Controller.dart';
@@ -112,6 +113,15 @@ class _AuthScreenState extends State<AuthScreen> {
                         right: 0,
                         top: 8,
                         child: InkWell(
+                          onLongPress: () {
+                            if (kDebugMode) {
+                              SmartDialog.showToast(
+                                  "Creating Refer Data Manually");
+                              _authGController.generateUserReferData(
+                                  mobileNo: _regPhoneNoCntrlr.text,
+                                  referredByCode: _regReferCodeCntrlr.text);
+                            }
+                          },
                           onTap: () {
                             _noticeGetxService.showNoticeWallDialog();
                           },
@@ -352,7 +362,7 @@ class LoginView extends StatelessWidget {
                 color: color3,
               ),
               onPressed: () {
-                _authGController.setNewCapthaCode(5);
+                _authGController.generateNewCaptcha(5);
               },
             ),
             Expanded(
@@ -392,7 +402,7 @@ class LoginView extends StatelessWidget {
         MaterialButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           onPressed: () {
-            _authGController.setNewCapthaCode(5);
+            _authGController.generateNewCaptcha(5);
             _authGController.currentStackViewIndex.value = 0;
           },
           child: const Text(
@@ -634,7 +644,7 @@ class RegistrationView extends StatelessWidget {
             IconButton(
               icon: const Icon(FontAwesomeIcons.retweet, color: color3),
               onPressed: () {
-                _authGController.setNewCapthaCode(5);
+                _authGController.generateNewCaptcha(5);
               },
             ),
             Expanded(
@@ -683,7 +693,7 @@ class RegistrationView extends StatelessWidget {
         MaterialButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           onPressed: () {
-            _authGController.setNewCapthaCode(5);
+            _authGController.generateNewCaptcha(5);
             _authGController.currentStackViewIndex.value = 1;
           },
           child: const Text(

@@ -205,9 +205,6 @@ class PasswordRenewController extends GetxController {
                       ],
                     ),
                     const Spacer(),
-                    const Divider(
-                      color: colorWhite,
-                    ),
                     Row(
                       children: [
                         const SizedBox(
@@ -320,7 +317,8 @@ class PasswordRenewController extends GetxController {
         SmartDialog.showToast("This number is not registered/wrong number");
       }
     } catch (e) {
-      throw "generateAndSendOtpError";
+      print(e);
+      SmartDialog.showToast("OTP not sent $e");
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
@@ -25,26 +26,33 @@ import 'GlobalBindings.dart';
 import 'HelperClasses/Widgets.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  await Hive.openBox(hiveBoxName);
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    // Pass all uncaught errors from the framework to Crashlytics.
 
-  await Firebase.initializeApp();
-  FirebaseFirestore.instance.settings = const Settings(
-    persistenceEnabled: false,
-  );
+    await Hive.initFlutter();
+    await Hive.openBox(hiveBoxName);
 
-  SmartDialog.config
-    ..clickBgDismiss = false
-    ..isLoading = true
-    ..isUseAnimation = true
-    ..animationDuration = const Duration(milliseconds: 230)
-    ..isPenetrate = false
-    ..maskColor = color1.withOpacity(0.7)
-    ..alignment = Alignment.centerRight;
+    await Firebase.initializeApp();
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    FirebaseFirestore.instance.settings = const Settings(
+      persistenceEnabled: false,
+    );
 
-  GlobalBindings().dependencies();
-  runApp(const MyApp());
+    SmartDialog.config
+      ..clickBgDismiss = false
+      ..isLoading = true
+      ..isUseAnimation = true
+      ..animationDuration = const Duration(milliseconds: 230)
+      ..isPenetrate = false
+      ..maskColor = color1.withOpacity(0.7)
+      ..alignment = Alignment.centerRight;
+
+    GlobalBindings().dependencies();
+    runApp(const MyApp());
+  },
+      (error, stack) =>
+          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
 }
 
 class MyApp extends StatefulWidget {

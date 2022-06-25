@@ -22,6 +22,7 @@ class ServerPermitStreamController extends GetxService {
   String appLink = "";
   RxBool isUpdateAvailable = false.obs;
   RxBool isReferCodeCompulsory = true.obs;
+  RxBool shouldVerifyIdByOtp = true.obs;
   late StreamSubscription subscription1;
   late PackageInfo packageInfo;
   @override
@@ -45,6 +46,8 @@ class ServerPermitStreamController extends GetxService {
         appLink = documentSnapshot[FireString.appLink];
         isReferCodeCompulsory.value =
             documentSnapshot[FireString.isReferCodeCompulsory];
+        shouldVerifyIdByOtp.value =
+            documentSnapshot[FireString.shouldVerifyIdByOtp];
 
         if (packageInfo.buildNumber == appVersionCode) {
           isUpdateAvailable.value = false;

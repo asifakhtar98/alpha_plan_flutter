@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
+
+import '../../HelpCenter/Help.Center.Screen.dart';
 
 class AboutAppScreen extends StatelessWidget {
   const AboutAppScreen({Key? key}) : super(key: key);
@@ -13,7 +16,7 @@ class AboutAppScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          CustomerSupport.whatsappSupportAdmin1();
+          Get.to(() => const HelpCenterScreen());
         },
         backgroundColor: color3,
         child: const Icon(

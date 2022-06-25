@@ -9,6 +9,7 @@ import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:powerbank/App/HelpCenter/Help.Center.Screen.dart';
 import 'package:powerbank/App/MainFrame/Ui/Main.Frame.Ui.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/firestore_strings.dart';
@@ -41,7 +42,7 @@ class AuthGController extends GetxController {
   ////////////////////////////////
 
   void reload() async {
-    setNewCapthaCode(5);
+    generateNewCaptcha(5);
     accounts = _firestoreIns.collection(FireString.accounts);
     //Check For Local Saved Data To Login
     var mNo = await _hiveBox.get(FireString.mobileNo) ?? "";
@@ -159,6 +160,7 @@ class AuthGController extends GetxController {
               FireString.password: pass,
               FireString.countryCode: countryCode.value,
               FireString.canLogin: true,
+              FireString.isOtpVerified: false,
             }, SetOptions(merge: true)).then((_) async {
               //Get signup bonus
               var specialEventsValue = await _firestoreIns
@@ -198,6 +200,15 @@ class AuthGController extends GetxController {
                 FireString.lastWithdrawStatus: "",
               }, SetOptions(merge: true));
               var currentDateTime = await DateTimeHelper.getCurrentDateTime();
+              await _firestoreIns
+                  .collection(FireString.accounts)
+                  .doc(mNo)
+                  .collection(FireString.personalInfo)
+                  .doc(FireString.document1)
+                  .set({
+                FireString.fullName: "",
+                FireString.registeredOn: currentDateTime
+              }, SetOptions(merge: true));
               SmallServices.updateUserActivityByDate(
                   userIdMob: mNo,
                   newItemsAsList: [
@@ -208,26 +219,17 @@ class AuthGController extends GetxController {
                     if (referredByCode.isEmpty)
                       "Haven't used any refer-code while registration"
                   ]);
-              await _firestoreIns
-                  .collection(FireString.accounts)
-                  .doc(mNo)
-                  .collection(FireString.personalInfo)
-                  .doc(FireString.document1)
-                  .set({
-                FireString.fullName: "",
-                FireString.registeredOn: currentDateTime
-              }, SetOptions(merge: true));
-
-              Get.find<ServerStatsController>().pushServerGlobalStats(
-                  fireString: FireString.totalGlobalUsers, valueToAdd: 1);
             });
-            setUserReferData(referredByCode: referredByCode, mobileNo: mNo);
+            generateUserReferData(
+                referredByCode: referredByCode, mobileNo: mNo);
             await Future.delayed(const Duration(seconds: 3));
             loginUser(mNo: mNo, pass: pass, captha: currentCaptha.value);
+            Get.find<ServerStatsController>().pushServerGlobalStats(
+                fireString: FireString.totalGlobalUsers, valueToAdd: 1);
           }
         } catch (e) {
           print(e.toString());
-
+          SmartDialog.showToast("Error in Registration: $e");
           SmartDialog.dismiss();
         }
       }
@@ -277,7 +279,7 @@ class AuthGController extends GetxController {
       try {
         if (await InternetConnectionChecker().hasConnection != true) {
           SmartDialog.showToast("No Internet Connection");
-          throw "noInternetConnection";
+          return;
         }
         //Fetching password to verify user form
 
@@ -308,6 +310,14 @@ class AuthGController extends GetxController {
                     .put(FireString.mobileNo, mNo)
                     .then((value) => print("No Saved To Hive"));
                 _hiveBox.put(FireString.password, pass);
+                try {
+                  _hiveBox.put(FireString.isOtpVerified,
+                      userData.get(FireString.isOtpVerified));
+                } catch (e) {
+                  _hiveBox.put(FireString.isOtpVerified, false);
+                  print(e.toString());
+                }
+
                 SmartDialog.dismiss(status: SmartStatus.loading);
                 Get.offAllNamed(MainFrame.screenName);
                 OneSignal.shared.setExternalUserId(mNo);
@@ -329,7 +339,7 @@ class AuthGController extends GetxController {
           );
         }
       } catch (e) {
-        print(e);
+        SmartDialog.showToast(e.toString());
         SmartDialog.dismiss(status: SmartStatus.loading);
       }
     }
@@ -337,7 +347,7 @@ class AuthGController extends GetxController {
 
   ///////////////////////////
 
-  void setNewCapthaCode(int length) {
+  void generateNewCaptcha(int length) {
     String chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
     currentCaptha.value = String.fromCharCodes(
@@ -381,7 +391,7 @@ class AuthGController extends GetxController {
                     const SizedBox(
                       height: 8,
                     ),
-                    Text("XXXXXX" + phoneNoToVerify.value.substring(5, 10),
+                    Text("XXXXXX${phoneNoToVerify.value.substring(5, 10)}",
                         style: const TextStyle(
                             color: colorWhite, fontWeight: FontWeight.bold)),
                   ],
@@ -465,7 +475,7 @@ class AuthGController extends GetxController {
                     const SizedBox(
                       height: 8,
                     ),
-                    Text("XXXXX" + phoneNoToVerify.value.substring(5, 10),
+                    Text("XXXXX${phoneNoToVerify.value.substring(5, 10)}",
                         style: const TextStyle(
                             color: colorWhite, fontWeight: FontWeight.bold)),
                   ],
@@ -490,7 +500,7 @@ class AuthGController extends GetxController {
                 ),
                 TextButton(
                   onPressed: () {
-                    CustomerSupport.whatsappSupportAdmin1();
+                    Get.to(() => const HelpCenterScreen());
                   },
                   child: const Text(
                     "Appeal Now",
@@ -519,20 +529,23 @@ class AuthGController extends GetxController {
   }
 
   validateReferrerCode(String referrer) {
-    FirebaseFirestore.instance
-        .collection(FireString.refMobMapping)
-        .doc(referrer)
-        .get()
-        .then((value) {
-      if (value.exists) {
-        showReferrerBoxTick.value = true;
-      } else {
-        showReferrerBoxTick.value = false;
-      }
-    });
+    try {
+      FirebaseFirestore.instance
+          .collection(FireString.refMobMapping)
+          .doc(referrer)
+          .get()
+          .then((value) {
+        if (value.exists) {
+          showReferrerBoxTick.value = true;
+        } else {
+          showReferrerBoxTick.value = false;
+        }
+      });
+    } catch (e) {}
   }
 
-  setUserReferData({required String mobileNo, required referredByCode}) async {
+  generateUserReferData(
+      {required String mobileNo, required referredByCode}) async {
     var currentDateTime = await DateTimeHelper.getCurrentDateTime();
     //generate new refer code of 16 Digit
     String newReferCode;

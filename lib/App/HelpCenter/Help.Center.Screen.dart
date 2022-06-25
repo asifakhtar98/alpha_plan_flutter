@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
 
@@ -160,6 +161,16 @@ List<Map> contactsMapList = [
     "ActionText": "Join Now"
   },
   {
+    "Place": "Premium Support",
+    "onClick": () {
+      CustomerSupport.openFirestoreExternalLinks(
+          fbFieldName: FireString.premiumCustomerSupportLink);
+    },
+    "Image":
+        "https://res.cloudinary.com/promisedpayment/image/upload/v1650793538/DreamLightCity/AppAssets/official-woman12414_v9kwqv.jpg",
+    "ActionText": "Pay Now"
+  },
+  {
     "Place": "Manager",
     "onClick": () {
       CustomerSupport.whatsappSupportAdmin1();
@@ -167,15 +178,6 @@ List<Map> contactsMapList = [
     "Image":
         "https://res.cloudinary.com/promisedpayment/image/upload/v1650793484/DreamLightCity/AppAssets/official-man1241_na6g6e.jpg",
     "ActionText": "WhatsApp"
-  },
-  {
-    "Place": "Server Admin",
-    "onClick": () {
-      CustomerSupport.openComplainLink();
-    },
-    "Image":
-        "https://res.cloudinary.com/promisedpayment/image/upload/v1650793538/DreamLightCity/AppAssets/official-woman12414_v9kwqv.jpg",
-    "ActionText": "Open Form"
   },
   {
     "Place": "Developer",

@@ -7,6 +7,7 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:lottie/lottie.dart';
+import 'package:powerbank/App/HelpCenter/Help.Center.Screen.dart';
 import 'package:powerbank/App/MainFrame/GetxController/Main.Frame.Service.dart';
 import 'package:powerbank/App/MainFrame/Ui/HomeWidget/Ui/Home.Ui.dart';
 import 'package:powerbank/Constants/Colors.dart';
@@ -78,7 +79,7 @@ class _MainFrameState extends State<MainFrame> {
           backgroundColor: color4,
           elevation: 0,
           onPressed: () {
-            CustomerSupport.whatsappSupportAdmin1();
+            Get.to(() => const HelpCenterScreen());
           },
           child: Lottie.asset(Assets.assetsSmsBubble, fit: BoxFit.contain),
         ),

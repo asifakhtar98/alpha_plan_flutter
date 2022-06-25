@@ -57,6 +57,7 @@ class CustomerSupport {
     });
   }
 
+  //Not used
   static openComplainLink() async {
     FirebaseFirestore.instance
         .collection(FireString.globalSystem)
@@ -65,9 +66,7 @@ class CustomerSupport {
         .then((docMap) async {
       String tmpVal = docMap.get(FireString.complainLink);
       print(tmpVal);
-      await canLaunch(tmpVal)
-          ? await launch(tmpVal)
-          : throw "Cant launch url";
+      await canLaunch(tmpVal) ? await launch(tmpVal) : throw "Cant launch url";
     });
   }
 
@@ -79,9 +78,7 @@ class CustomerSupport {
         .then((docMap) async {
       String tmpVal = docMap.get(FireString.telegramChannelLink);
       print(tmpVal);
-      await canLaunch(tmpVal)
-          ? await launch(tmpVal)
-          : throw "Cant launch url";
+      await canLaunch(tmpVal) ? await launch(tmpVal) : throw "Cant launch url";
     });
   }
 
@@ -93,9 +90,7 @@ class CustomerSupport {
         .then((docMap) async {
       String tmpVal = docMap.get(FireString.developerSite);
       print(tmpVal);
-      await canLaunch(tmpVal)
-          ? await launch(tmpVal)
-          : throw "Cant launch url";
+      await canLaunch(tmpVal) ? await launch(tmpVal) : throw "Cant launch url";
     });
   }
 
@@ -108,9 +103,7 @@ class CustomerSupport {
         .then((docMap) async {
       String tmpVal = docMap.get(fbFieldName);
       print(tmpVal);
-      await canLaunch(tmpVal)
-          ? await launch(tmpVal)
-          : throw "Cant launch url";
+      await canLaunch(tmpVal) ? await launch(tmpVal) : throw "Cant launch url";
     });
   }
 

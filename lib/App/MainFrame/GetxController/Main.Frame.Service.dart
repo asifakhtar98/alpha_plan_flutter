@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
@@ -9,15 +10,21 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:powerbank/App/UserPersonalInfo/User.Personal.Info.Screen.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/Fake.Data.dart';
 import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
+import 'package:powerbank/GetxStreams/Server.Permit.Stream.dart';
 import 'package:powerbank/HelperClasses/SpamZone.dart';
 import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:powerbank/HelperClasses/date_time_formatter.dart';
 import 'package:powerbank/HelperClasses/small_services.dart';
+
+import '../../../generated/assets.dart';
+
+var _serverPermitStreamController = Get.find<ServerPermitStreamController>();
 
 class MainFrameGService extends GetxService {
   DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
@@ -32,6 +39,7 @@ class MainFrameGService extends GetxService {
     print(loggedMobile);
     initSomeValue();
     getReqDataAndLocalIt();
+    checkIdVerification();
   }
 
   initSomeValue() async {
@@ -244,6 +252,170 @@ class MainFrameGService extends GetxService {
       });
     } catch (e) {
       print(e);
+    }
+  }
+
+  ///////////////////////////////////////////////////
+  checkIdVerification() async {
+    await Future.delayed(const Duration(milliseconds: 4000));
+    if (_serverPermitStreamController.shouldVerifyIdByOtp.isFalse) {
+      return;
+    }
+    bool isOtpVerified = await _hiveBox.get(FireString.isOtpVerified);
+    if (isOtpVerified == true) {
+      return;
+    }
+    String mNo = await _hiveBox.get(FireString.mobileNo);
+    try {
+      await FirebaseFirestore.instance
+          .collection(FireString.accounts)
+          .doc(mNo)
+          .get()
+          .then((accData) {
+        if (accData.exists) {
+          if (accData[FireString.isOtpVerified] == false) {
+            showIdVerificationDialog(mNo);
+          }
+        }
+      });
+    } catch (e) {
+      print(e);
+      showIdVerificationDialog(mNo);
+    }
+  }
+
+  showIdVerificationDialog(String mobNo) {
+    try {
+      String userEnteredOTP = "";
+      String currentOTP = "${Random().nextInt(8888) + 1111}";
+      Dio().get('https://www.fast2sms.com/dev/bulkV2', queryParameters: {
+        "authorization":
+            "MJA0BoDCzSjgaTHIQROdpY98rcEy6P7q34GUn5LsbeFhiwZumvn5BxY6grRyPdpSDeuJ7qHOC12Fozsa",
+        "route": " v3",
+        " sender_id": "Cghpet",
+        " message": "$currentOTP is your $appName App OTP.",
+        " language": "english",
+        "  numbers": mobNo,
+        "flash": "0"
+      });
+      SmartDialog.show(
+          alignmentTemp: Alignment.topCenter,
+          widget: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 60,
+              ),
+              const DialogAppNameTag(),
+              Container(
+                width: Get.width - 70,
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [color4, color3.withBlue(150)]),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        Lottie.asset(Assets.assetsStopWarning,
+                            height: 70, width: 70),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text("Is this your phone number?\nThen verify it",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: colorWhite,
+                                fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      "4 Digit OTP is sent to your\nMobile number $mobNo",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(color: colorWhite),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    TextField(
+                      style: const TextStyle(color: colorWhite),
+                      onChanged: (v) {
+                        userEnteredOTP = v;
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          prefixIcon: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(
+                                FontAwesomeIcons.sms,
+                                color: colorWhite,
+                              ),
+                              Text(
+                                "   ",
+                                style:
+                                    TextStyle(color: colorWhite, fontSize: 1),
+                              ),
+                            ],
+                          ),
+                          hintText: "Enter Sms OTP"),
+                    ),
+                    const SizedBox(height: 8),
+                    const Divider(
+                      color: colorWhite,
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        if (userEnteredOTP == currentOTP) {
+                          await FirebaseFirestore.instance
+                              .collection(FireString.accounts)
+                              .doc(mobNo)
+                              .set({
+                            FireString.isOtpVerified: true,
+                          }, SetOptions(merge: true));
+
+                          SmartDialog.showToast("OTP verification success");
+                          SmartDialog.dismiss();
+                          _hiveBox.put(FireString.isOtpVerified, true);
+                        } else {
+                          SmartDialog.showToast("Wrong OTP");
+                        }
+                      },
+                      child: const Text(
+                        "Proceed",
+                        style: TextStyle(color: colorWhite),
+                      ),
+                    ),
+                    const Divider(
+                      color: colorWhite,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        CustomerSupport.openFirestoreExternalLinks(
+                            fbFieldName: FireString.premiumCustomerSupportLink);
+                      },
+                      child: const Text(
+                        "Verify Via Admin",
+                        style: TextStyle(color: colorWhite),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ));
+    } catch (e) {
+      print(e);
+      SmartDialog.showToast("Otp Id Verification Failed $e");
     }
   }
 }

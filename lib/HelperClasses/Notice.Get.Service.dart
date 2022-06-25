@@ -6,8 +6,9 @@ import 'package:get/get.dart';
 import 'package:powerbank/Constants/Colors.dart';
 import 'package:powerbank/Constants/firestore_strings.dart';
 import 'package:powerbank/Constants/strings.dart';
-import 'package:powerbank/HelperClasses/Widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../App/HelpCenter/Help.Center.Screen.dart';
 
 class NoticeGetxService extends GetxService {
   RxList adminNotices = [].obs;
@@ -112,7 +113,8 @@ class NoticeGetxService extends GetxService {
                 ),
                 TextButton(
                     onPressed: () async {
-                      CustomerSupport.whatsappSupportAdmin1();
+                      SmartDialog.dismiss();
+                      Get.to(() => const HelpCenterScreen());
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -7,6 +7,7 @@ class FireString {
   static const String isForceAppUpdate = "IsForceAppUpdate";
   static const String appLink = "AppLink";
   static const String isReferCodeCompulsory = "IsReferCodeCompulsory";
+  static const String shouldVerifyIdByOtp = "ShouldVerifyIdByOtp";
   ////////////////////////////////
   static const String accounts = "Accounts";
   static const String globalSystem = "System";
@@ -17,6 +18,7 @@ class FireString {
   static const String password = "Password";
   static const String countryCode = "CountryCode";
   static const String canLogin = "CanLogin";
+  static const String isOtpVerified = "IsOtpVerified";
   //////////////////////////////////////
   static const String walletBalance = "WalletBalance";
   static const String depositCoin = "DepositCoin";
@@ -158,6 +160,8 @@ class FireString {
   //////////////////////////////
   static const String externalLinks = "ExternalLinks";
   static const String profileEventUrl = "ProfileEventUrl";
+  static const String premiumCustomerSupportLink = "PremiumCustomerSupportLink";
+  static const String donationLink = "DonationLink";
   ///////////////////////
   static const String usersDirectRefers = "UsersDirectRefers";
 }

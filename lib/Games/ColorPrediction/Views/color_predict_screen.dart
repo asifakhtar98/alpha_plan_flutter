@@ -1,13 +1,14 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:powerbank/Constants/Colors.dart';
+import 'package:powerbank/Constants/firestore_strings.dart';
+import 'package:powerbank/HelperClasses/Widgets.dart';
+import 'package:stepper_counter_swipe/stepper_counter_swipe.dart';
 
 import '../Controllers/color_prediction_controller.dart';
 
@@ -29,31 +30,31 @@ class _ColorPredictScreenState extends State<ColorPredictScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 8),
-            Text("Color Light City\nBy Dream Light City",
+            const SizedBox(height: 8),
+            const Text("Color Light City\n45 SEC COLOR PARITY",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     letterSpacing: 1.5,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white)),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Stack(
               alignment: Alignment.center,
               children: [
                 Container(
                   width: Get.width - 10,
                   height: 45,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: color4,
-                    borderRadius: const BorderRadius.vertical(
+                    borderRadius: BorderRadius.vertical(
                       top: Radius.circular(50),
                       bottom: Radius.circular(10),
                     ),
                   ),
                 ),
                 CircularCountDownTimer(
-                  duration: 10,
+                  duration: 45,
                   initialDuration: 0,
                   controller: sController.countDownController,
                   width: 45,
@@ -66,8 +67,8 @@ class _ColorPredictScreenState extends State<ColorPredictScreen> {
                   backgroundGradient: null,
                   strokeWidth: 10,
                   strokeCap: StrokeCap.round,
-                  textStyle: TextStyle(
-                      fontSize: 33.0,
+                  textStyle: const TextStyle(
+                      fontSize: 20.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                   textFormat: CountdownTextFormat.S,
@@ -86,7 +87,7 @@ class _ColorPredictScreenState extends State<ColorPredictScreen> {
               ],
             ),
             Row(
-              children: [
+              children: const [
                 SizedBox(
                   width: 20,
                 ),
@@ -127,7 +128,7 @@ class _ColorPredictScreenState extends State<ColorPredictScreen> {
                   children: [
                     for (int i = 0; i < 30; i++)
                       Container(
-                        margin: EdgeInsets.all(4),
+                        margin: const EdgeInsets.all(4),
                         height: 20,
                         width: Get.width - 12,
                         decoration: BoxDecoration(
@@ -136,19 +137,19 @@ class _ColorPredictScreenState extends State<ColorPredictScreen> {
                         ),
                         child: Row(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             Expanded(
                               flex: 2,
                               child: Text(
                                 "${DateTime.now().year}${DateTime.now().month}${DateTime.now().day}${DateTime.now().hour}${DateTime.now().minute}${DateTime.now().second}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
                               ),
                             ),
-                            Expanded(
+                            const Expanded(
                               flex: 1,
                               child: Text(
                                 "547",
@@ -166,15 +167,15 @@ class _ColorPredictScreenState extends State<ColorPredictScreen> {
                                   Container(
                                     width: 12,
                                     height: 12,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Colors.green,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 4,
                                   ),
-                                  Text(
+                                  const Text(
                                     "4",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -184,7 +185,7 @@ class _ColorPredictScreenState extends State<ColorPredictScreen> {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                           ],
@@ -196,46 +197,67 @@ class _ColorPredictScreenState extends State<ColorPredictScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.symmetric(horizontal: 6),
+              margin: const EdgeInsets.symmetric(horizontal: 6),
               height: 45,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: color4,
-                borderRadius: const BorderRadius.vertical(
+                borderRadius: BorderRadius.vertical(
                   top: Radius.circular(10),
                   bottom: Radius.circular(50),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 "Current Period: 20221456457",
                 style: TextStyle(
-                    fontSize: 22, color: color1, fontWeight: FontWeight.bold),
+                    fontSize: 20, color: color1, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 8),
-            ColorAndContract(),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
+            const ColorAndContract(),
+            const Text("This gaming project is under development",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                )),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: MaterialButton(
+                onPressed: () {
+                  CustomerSupport.openFirestoreExternalLinks(
+                      fbFieldName: FireString.donationLink);
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                color: highlightColor2,
+                child: const Text(
+                  "DONATE FOR THIS PROJECT",
+                  style: TextStyle(color: color1, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 8),
+              margin: const EdgeInsets.symmetric(horizontal: 8),
               height: 45,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: color4,
-                borderRadius: const BorderRadius.vertical(
+                borderRadius: BorderRadius.vertical(
                   top: Radius.circular(50),
                   bottom: Radius.circular(10),
                 ),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Icon(
                     FontAwesomeIcons.indianRupeeSign,
                     color: color1,
                   ),
                   AnimatedFlipCounter(
                     value: 98888888888,
-                    duration: const Duration(seconds: 2),
-                    textStyle: const TextStyle(
-                        fontSize: 25,
+                    duration: Duration(seconds: 2),
+                    textStyle: TextStyle(
+                        fontSize: 20,
                         color: color1,
                         fontWeight: FontWeight.bold),
                   )
@@ -261,9 +283,9 @@ class ColorAndContract extends StatelessWidget {
       child: ZoomDrawer(
         controller: sController.zoomDrawerController,
         style: DrawerStyle.defaultStyle,
-        menuScreen: ContractValueSelection(),
-        mainScreen: ColorAndNumberTiles(),
-        slideWidth: Get.width,
+        menuScreen: const ContractValueSelection(),
+        mainScreen: const ColorAndNumberTiles(),
+        slideWidth: Get.width - 10,
         openCurve: Curves.fastOutSlowIn,
         closeCurve: Curves.bounceIn,
       ),
@@ -286,20 +308,20 @@ class ColorAndNumberTiles extends StatelessWidget {
             crossAxisCount: 3,
             childAspectRatio: 1.8,
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: [
-              for (var itm in ["Green", "Violet", "Orange"])
+              for (var itm in ["Green", "Violet", "Red"])
                 Padding(
                   padding: const EdgeInsets.all(4),
                   child: MaterialButton(
                     onPressed: () {
                       sController.zoomDrawerController.toggle!();
                     },
-                    child: Text("$itm"),
                     color: color3,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
+                    child: Text(itm),
                   ),
                 ),
             ],
@@ -311,7 +333,7 @@ class ColorAndNumberTiles extends StatelessWidget {
             crossAxisCount: 5,
             childAspectRatio: 1.8,
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: [
               for (var itm in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
                 Padding(
@@ -320,11 +342,11 @@ class ColorAndNumberTiles extends StatelessWidget {
                     onPressed: () {
                       sController.zoomDrawerController.toggle!();
                     },
-                    child: Text("$itm"),
                     color: color3,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
+                    child: Text("$itm"),
                   ),
                 ),
             ],
@@ -342,31 +364,60 @@ class ContractValueSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Expanded(
-            child: FortuneBar(
-              items: [
-                FortuneItem(child: Text('Han Solo')),
-                FortuneItem(child: Text('Yoda')),
-                FortuneItem(child: Text('Obi-Wan Kenobi')),
-              ],
-              selected: sController.contractAmountController.stream,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              const Text(
+                "Contract Value",
+                style: TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.bold, color: color4),
+              ),
+              StepperSwipe(
+                initialValue: 50,
+                speedTransitionLimitCount: 3, //Trigger count for fast counting
+                onChanged: (int value) => print('new value $value'),
+                firstIncrementDuration: const Duration(
+                    milliseconds: 250), //Unit time before fast counting
+                secondIncrementDuration: const Duration(
+                    milliseconds: 100), //Unit time during fast counting
+                direction: Axis.horizontal,
+                dragButtonColor: color4,
+                maxValue: 5000,
+                minValue: 50, stepperValue: 50,
+              ),
+            ],
           ),
-          Expanded(
-            child: FortuneBar(
-              items: [
-                FortuneItem(child: Text('Han Solo')),
-                FortuneItem(child: Text('Yoda')),
-                FortuneItem(child: Text('Obi-Wan Kenobi')),
-              ],
-              selected: sController.contractAmountMultiplierController.stream,
-            ),
+        ),
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              const Text(
+                "Multiplier",
+                style: TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.bold, color: color4),
+              ),
+              StepperSwipe(
+                initialValue: 1,
+                speedTransitionLimitCount: 3, //Trigger count for fast counting
+                onChanged: (int value) => print('new value $value'),
+                firstIncrementDuration: const Duration(
+                    milliseconds: 250), //Unit time before fast counting
+                secondIncrementDuration: const Duration(
+                    milliseconds: 100), //Unit time during fast counting
+                direction: Axis.horizontal,
+                dragButtonColor: color4,
+                maxValue: 100,
+                minValue: 1, stepperValue: 50,
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

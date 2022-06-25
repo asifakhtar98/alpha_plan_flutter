@@ -1,7 +1,7 @@
 name: powerbank
 description: A new finance app.
 publish_to: 'none'
-version: 2022.6.18+3
+version: 2022.6.26+4
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -55,8 +55,9 @@ dependencies:
 
 #games:
   circular_countdown_timer: ^0.2.1
-  flutter_fortune_wheel: ^1.2.0
+  stepper_counter_swipe: ^1.0.2
   flutter_zoom_drawer: ^3.0.2
+  firebase_crashlytics: ^2.8.2
 
 dev_dependencies:
   flutter_test:

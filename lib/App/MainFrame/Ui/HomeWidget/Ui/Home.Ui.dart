@@ -6,12 +6,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:powerbank/App/AboutApp/Ui/About.App.Screen.dart';
 import 'package:powerbank/App/BuyProduct/Ui/Buy.Product.Screen.dart';
 import 'package:powerbank/App/MainFrame/GetxController/Main.Frame.Service.dart';
 import 'package:powerbank/App/ReferIncome/Ui/Refer.Income.Screen.dart';
@@ -620,6 +618,80 @@ class ThreeCards extends StatelessWidget {
                 ),
                 child: InkWell(
                   onTap: () {
+                    Get.toNamed(Routes.colorPredict);
+                  },
+                  child: Container(
+                    height: 80,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [color3, color4],
+                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "Color Light\nCity",
+                                style: TextStyle(
+                                    color: colorWhite,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Align(
+                          alignment: const Alignment(0.9, 8),
+                          child: ClipOval(
+                            child: Container(
+                              color: color3.withOpacity(0.4),
+                              width: 70,
+                              height: 70,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: const Alignment(1.3, 6),
+                          child: ClipOval(
+                            child: Container(
+                              color: color4,
+                              width: 70,
+                              height: 70,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Icon(
+                              FontAwesomeIcons.gamepad,
+                              color: colorWhite.withOpacity(0.6),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(15),
+                ),
+                child: InkWell(
+                  onTap: () {
                     Get.to(() => const ReferralProgramScreen());
                   },
                   child: Container(
@@ -692,84 +764,6 @@ class ThreeCards extends StatelessWidget {
                                 color: colorWhite.withOpacity(0.6),
                               ),
                             )),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              ClipRRect(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(15),
-                ),
-                child: InkWell(
-                  onTap: () {
-                    if (kDebugMode) {
-                      Get.toNamed(Routes.colorPredict);
-                    } else {
-                      Get.to(() => const AboutAppScreen());
-                    }
-                  },
-                  child: Container(
-                    height: 80,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [color3, color4],
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text(
-                                "Color Light\nCity",
-                                style: TextStyle(
-                                    color: colorWhite,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Align(
-                          alignment: const Alignment(0.9, 8),
-                          child: ClipOval(
-                            child: Container(
-                              color: color3.withOpacity(0.4),
-                              width: 70,
-                              height: 70,
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: const Alignment(1.3, 6),
-                          child: ClipOval(
-                            child: Container(
-                              color: color4,
-                              width: 70,
-                              height: 70,
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Icon(
-                              FontAwesomeIcons.fistRaised,
-                              color: colorWhite.withOpacity(0.6),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),

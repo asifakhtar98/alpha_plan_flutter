@@ -86,7 +86,7 @@ class _UserReferIncomeScreenState extends State<UserReferIncomeScreen> {
         child: SingleChildScrollView(
             child: Column(
           children: [
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.fromLTRB(12, 12, 12, 2),
               margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -262,7 +262,7 @@ class _UserReferIncomeScreenState extends State<UserReferIncomeScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Container(
                 padding: const EdgeInsets.all(12),
                 margin: const EdgeInsets.symmetric(horizontal: 8),

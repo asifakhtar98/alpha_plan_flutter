@@ -102,7 +102,7 @@ List<GetPage> myGetRoutes = [
   ),
   GetPage(
     name: Routes.colorPredict,
-    page: () => ColorPredictScreen(),
+    page: () => const ColorPredictScreen(),
     binding: ColorPredictBinding(),
   ),
 ];
