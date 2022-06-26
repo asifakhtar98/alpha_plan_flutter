@@ -300,6 +300,8 @@ class MainFrameGService extends GetxService {
       });
       SmartDialog.show(
           alignmentTemp: Alignment.topCenter,
+          backDismiss: false,
+          clickBgDismissTemp: false,
           widget: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
